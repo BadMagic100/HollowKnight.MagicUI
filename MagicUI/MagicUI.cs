@@ -6,23 +6,11 @@ namespace MagicUI
     {
         internal static MagicUI? Instance { get; private set; }
 
-        public override string GetVersion()
-        {
-            return GetType().Assembly.GetName().Version.ToString();
-        }
-
-        public MagicUI() : base()
-        {
-            Instance = this;
-        }
+        public override string GetVersion() => GetType().Assembly.GetName().Version.ToString();
 
         public override void Initialize()
         {
-            Log("Initializing");
-
-            //todo: make the magic happen (honestly may not even need stuff here lmao)
-
-            Log("Initialized");
+            Instance = this;
         }
     }
 }
