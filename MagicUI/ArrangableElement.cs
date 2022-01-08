@@ -85,20 +85,34 @@ namespace MagicUI
         /// <summary>
         /// This element's parent in the visual hierarchy, if any
         /// </summary>
-        public GameObject? VisualParent {
+        public virtual GameObject? VisualParent {
             get => GameObject.transform.parent.gameObject;
-            internal set
+            set
             {
-                GameObject.transform.SetParent(value?.transform, false);
-                Persist? persist = GameObject.GetComponent<Persist>();
-                Persist? parentPersist = value?.GetComponent<Persist>();
-
                 // if we're unparenting, hide it. It's not arrangable if it's not on our special canvas
                 if (value == null)
                 {
                     GameObject.SetActive(false);
                 }
+                else
+                {
+                    // if we're not unparenting, validate that the new parent has a layout orchestrator we'd be able to use, and use it
+                    Canvas canvas = value.GetComponentInParent<Canvas>().rootCanvas;
+                    Canvas oldCanvas = GameObject.GetComponentInParent<Canvas>().rootCanvas;
+                    if (oldCanvas != canvas)
+                    {
+                        LayoutOrchestrator? orch = canvas.GetComponent<LayoutOrchestrator>();
+                        if (orch == null)
+                        {
+                            throw new ArgumentException("Visual parent must have a LayoutOrchestrator component to perform layout");
+                        }
+                        oldCanvas.GetComponent<LayoutOrchestrator>().RemoveElement(this);
+                        orch.RegisterElement(this);
+                    }
+                }
 
+                Persist? persist = GameObject.GetComponent<Persist>();
+                Persist? parentPersist = value?.GetComponent<Persist>();
                 // manage persistent state
                 if (parentPersist != null && persist == null)
                 {
@@ -110,10 +124,13 @@ namespace MagicUI
                     //undo the don't destroy on load too
                     USceneManager.MoveGameObjectToScene(GameObject, USceneManager.GetActiveScene());
                 }
+
+                // finally, set my own GameObject's parent
+                GameObject.transform.SetParent(value?.transform, false);
             }
         }
 
-        public ArrangableElement(string name)
+        public ArrangableElement(string name = "New ArrangeableElement")
         {
             Name = name;
         }

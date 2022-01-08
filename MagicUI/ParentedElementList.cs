@@ -1,8 +1,5 @@
-﻿using MagicUI.Behaviours;
-using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace MagicUI
 {
@@ -13,19 +10,10 @@ namespace MagicUI
     {
         private readonly List<ArrangableElement> logicalChildren = new();
         private readonly ArrangableElement logicalParent;
-        private readonly GameObject visualParent;
-        private readonly LayoutOrchestrator orchestrator;
 
-        internal ParentedElementList(GameObject visualParent, ArrangableElement logicalParent)
+        internal ParentedElementList(ArrangableElement logicalParent)
         {
             this.logicalParent = logicalParent;
-            this.visualParent = visualParent;
-            LayoutOrchestrator? orch = visualParent.GetComponent<LayoutOrchestrator>();
-            if (orch == null)
-            {
-                throw new ArgumentException("Visual parent must have a LayoutOrchestrator component to perform layout", nameof(visualParent));
-            }
-            orchestrator = orch;
         }
 
         public ArrangableElement this[int index] 
@@ -62,10 +50,11 @@ namespace MagicUI
 
         public void Insert(int index, ArrangableElement item)
         {
-            orchestrator.RegisterElement(item);
-
-            item.VisualParent = visualParent;
             item.LogicalParent = logicalParent;
+            if (item.VisualParent == null)
+            {
+                item.VisualParent = logicalParent.VisualParent;
+            }
             logicalChildren.Insert(index, item);
             logicalParent.InvalidateMeasure();
         }
@@ -87,10 +76,12 @@ namespace MagicUI
         {
             ArrangableElement element = logicalChildren[index];
             logicalChildren.RemoveAt(index);
-
-            element.VisualParent = null;
+            
+            if (element.VisualParent == logicalParent.VisualParent)
+            {
+                element.VisualParent = null;
+            }
             element.LogicalParent = null;
-            orchestrator.RemoveElement(element);
             logicalParent.InvalidateMeasure();
         }
 
