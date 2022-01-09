@@ -316,6 +316,7 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include="Resources\.gitignore" />
+	<None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MagicUI\MagicUI.csproj" />
