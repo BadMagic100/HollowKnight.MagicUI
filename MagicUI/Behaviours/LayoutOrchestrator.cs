@@ -129,10 +129,10 @@ namespace MagicUI.Behaviours
             foreach (ArrangableElement element in elementsToRemeasure)
             {
                 log.LogDebug($"Triggering remeasure/arrange for {element.Name} of type {element.GetType().Name}");
-                // tree roots should always be layouts - we'll allocate the entire screen size for arrangement
+                // tree roots should always be top-level layouts - we'll allocate the entire screen size for arrangement
                 // and allow the children to go where they need to go.
                 element.Measure();
-                element.Arrange(GuiManager.Screen);
+                element.Arrange(UI.Screen);
             }
 
             // rearrange the specified number of elements. arrange invalidation does not propagate up the tree, so we can generally

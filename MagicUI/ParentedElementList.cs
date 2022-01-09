@@ -6,6 +6,7 @@ namespace MagicUI
     /// <summary>
     /// A list of arrangable elements with reference to hierarchical parents
     /// </summary>
+    /// <inheritdoc/>
     public class ParentedElementList : IList<ArrangableElement>
     {
         private readonly List<ArrangableElement> logicalChildren = new();
@@ -51,10 +52,6 @@ namespace MagicUI
         public void Insert(int index, ArrangableElement item)
         {
             item.LogicalParent = logicalParent;
-            if (item.VisualParent == null)
-            {
-                item.VisualParent = logicalParent.VisualParent;
-            }
             logicalChildren.Insert(index, item);
             logicalParent.InvalidateMeasure();
         }
@@ -72,15 +69,11 @@ namespace MagicUI
             }
         }
 
+        // todo: only allow removing when stuff is destroyed and/or destroy stuff when elements are removed
         public void RemoveAt(int index)
         {
             ArrangableElement element = logicalChildren[index];
             logicalChildren.RemoveAt(index);
-            
-            if (element.VisualParent == logicalParent.VisualParent)
-            {
-                element.VisualParent = null;
-            }
             element.LogicalParent = null;
             logicalParent.InvalidateMeasure();
         }

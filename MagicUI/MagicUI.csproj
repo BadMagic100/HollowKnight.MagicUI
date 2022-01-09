@@ -317,10 +317,4 @@
 		<None Include=".gitignore" />
 		<None Include="Resources\.gitignore" />
 	</ItemGroup>
-	<ItemGroup><!-- For potential project references (other projects in the same solution) -->
-		<!--<ProjectReference Include="..\SFCore\SFCore.csproj" />-->
-	
-	  <Folder Include="Components\" />
-	  <Folder Include="Layouts\" />
-	</ItemGroup>
 </Project>

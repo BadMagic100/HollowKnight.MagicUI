@@ -1,8 +1,6 @@
-﻿using MagicUI.Behaviours;
-using Modding;
+﻿using Modding;
 using System;
 using UnityEngine;
-using USceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace MagicUI
 {
@@ -18,10 +16,7 @@ namespace MagicUI
 
         internal Rect PrevPlacementRect { get; private set; }
 
-        /// <summary>
-        /// The <see cref="UnityEngine.GameObject"/> underlying the arrangable. You shouldn't use this, but you can if you want to.
-        /// </summary>
-        public abstract GameObject GameObject { get; }
+        public LayoutRoot LayoutRoot { get; private set; }
 
         /// <summary>
         /// Whether the most recent measurement is accurate
@@ -80,59 +75,13 @@ namespace MagicUI
         /// <summary>
         /// This element's parent in the layout hierarchy, if any
         /// </summary>
-        public ArrangableElement? LogicalParent { get; internal set; } = null;
+        public ArrangableElement? LogicalParent { get; protected internal set; } = null;
 
-        /// <summary>
-        /// This element's parent in the visual hierarchy, if any
-        /// </summary>
-        public virtual GameObject? VisualParent {
-            get => GameObject.transform.parent.gameObject;
-            set
-            {
-                // if we're unparenting, hide it. It's not arrangable if it's not on our special canvas
-                if (value == null)
-                {
-                    GameObject.SetActive(false);
-                }
-                else
-                {
-                    // if we're not unparenting, validate that the new parent has a layout orchestrator we'd be able to use, and use it
-                    Canvas canvas = value.GetComponentInParent<Canvas>().rootCanvas;
-                    Canvas oldCanvas = GameObject.GetComponentInParent<Canvas>().rootCanvas;
-                    if (oldCanvas != canvas)
-                    {
-                        LayoutOrchestrator? orch = canvas.GetComponent<LayoutOrchestrator>();
-                        if (orch == null)
-                        {
-                            throw new ArgumentException("Visual parent must have a LayoutOrchestrator component to perform layout");
-                        }
-                        oldCanvas.GetComponent<LayoutOrchestrator>().RemoveElement(this);
-                        orch.RegisterElement(this);
-                    }
-                }
-
-                Persist? persist = GameObject.GetComponent<Persist>();
-                Persist? parentPersist = value?.GetComponent<Persist>();
-                // manage persistent state
-                if (parentPersist != null && persist == null)
-                {
-                    GameObject.AddComponent<Persist>();
-                }
-                else if (persist != null && parentPersist == null)
-                {
-                    UnityEngine.Object.Destroy(persist);
-                    //undo the don't destroy on load too
-                    USceneManager.MoveGameObjectToScene(GameObject, USceneManager.GetActiveScene());
-                }
-
-                // finally, set my own GameObject's parent
-                GameObject.transform.SetParent(value?.transform, false);
-            }
-        }
-
-        public ArrangableElement(string name = "New ArrangeableElement")
+        public ArrangableElement(LayoutRoot onLayout, string name = "New ArrangeableElement")
         {
             Name = name;
+            LayoutRoot = onLayout;
+            onLayout.layoutOrchestrator.RegisterElement(this);
         }
 
         /// <summary>
