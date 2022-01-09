@@ -315,7 +315,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
-    <None Include="ReadMe.md" />
+    <None Include="README.md" />
     <None Include="Resources\.gitignore" />
   </ItemGroup>
   <ItemGroup>
