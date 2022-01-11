@@ -1,4 +1,6 @@
-﻿using Modding;
+﻿using MagicUI.Core;
+using MagicUI.Core.Internal;
+using Modding;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;

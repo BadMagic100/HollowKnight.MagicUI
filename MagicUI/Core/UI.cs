@@ -1,8 +1,7 @@
 ﻿using Modding;
 using UnityEngine;
-using UObject = UnityEngine.Object;
 
-namespace MagicUI
+namespace MagicUI.Core
 {
     /// <summary>
     /// Class containing various UI utilities and constants
@@ -27,21 +26,6 @@ namespace MagicUI
         {
             return new((pos.x + elementSize.x / 2f) / parentSize.x,
                    (parentSize.y - (pos.y + elementSize.y / 2f)) / parentSize.y);
-        }
-
-        internal static void DestroyVisualHierarchy(GameObject root)
-        {
-            if (root.transform.childCount > 0)
-            {
-                foreach (Transform child in root.transform)
-                {
-                    DestroyVisualHierarchy(child.gameObject);
-                }
-            }
-            else
-            {
-                UObject.Destroy(root.gameObject);
-            }
         }
     }
 }

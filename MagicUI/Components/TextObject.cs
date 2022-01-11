@@ -1,14 +1,17 @@
-﻿using System;
+﻿using MagicUI.Core;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace MagicUI.Components
 {
-    public class TextObject : ArrangableElement
+    public sealed class TextObject : ArrangableElement, IGameObjectWrapper
     {
         private readonly GameObject textObj;
         private readonly Text textComponent;
         private readonly RectTransform tx;
+
+        public GameObject GameObject { get => textObj; }
 
         /// <summary>
         /// The text of this element
@@ -139,7 +142,7 @@ namespace MagicUI.Components
             tx.anchorMax = pos;
             tx.anchorMin = pos;
 
-            textObj.SetActive(true);
+            textObj.SetActive(IsEffectivelyVisible);
         }
     }
 }

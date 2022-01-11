@@ -1,9 +1,10 @@
 ﻿using MagicUI.Behaviours;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UObject = UnityEngine.Object;
 
-namespace MagicUI
+namespace MagicUI.Core
 {
     /// <summary>
     /// Entry point to create layouts
@@ -39,6 +40,7 @@ namespace MagicUI
             canvasComponent.renderMode = RenderMode.ScreenSpaceOverlay;
             CanvasScaler scale = rootCanvas.AddComponent<CanvasScaler>();
             scale.referenceResolution = UI.Screen.size;
+            scale.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             rootCanvas.AddComponent<GraphicRaycaster>();
             layoutOrchestrator = rootCanvas.AddComponent<LayoutOrchestrator>();
 
@@ -46,6 +48,22 @@ namespace MagicUI
             {
                 UObject.DontDestroyOnLoad(rootCanvas);
             }
+        }
+
+        /// <summary>
+        /// Initializes a hotkey listener that performs an action when a given key combination is pressed
+        /// </summary>
+        /// <param name="key">The keypress to listen for</param>
+        /// <param name="execute">The action to perform when the key is pressed</param>
+        /// <param name="modifiers">Other required modifier keys that must be held to trigger the event</param>
+        /// <param name="condition">The condition in which this hotkey should be enabled</param>
+        public void ListenForHotkey(KeyCode key, Action execute, ModifierKeys modifiers = ModifierKeys.None, Func<bool>? condition = null)
+        {
+            HotkeyListener listener = rootCanvas.AddComponent<HotkeyListener>();
+            listener.key = key;
+            listener.modifiers = modifiers;
+            listener.execute = execute;
+            listener.enableCondition = condition;
         }
 
         /// <summary>

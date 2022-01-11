@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace MagicUI
+namespace MagicUI.Core
 {
     /// <summary>
     /// A list of arrangable elements with reference to hierarchical parents

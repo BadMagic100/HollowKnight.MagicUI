@@ -1,4 +1,4 @@
-﻿namespace MagicUI
+﻿namespace MagicUI.Core
 {
     /// <summary>
     /// Root class for an arrangable element with multiple children

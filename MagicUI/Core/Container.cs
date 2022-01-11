@@ -1,4 +1,4 @@
-﻿namespace MagicUI
+﻿namespace MagicUI.Core
 {
     public abstract class Container : ArrangableElement
     {

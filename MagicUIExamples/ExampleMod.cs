@@ -1,7 +1,9 @@
-﻿using MagicUI;
+﻿using MagicUI.Behaviours;
 using MagicUI.Components;
-using MagicUI.Layouts;
+using MagicUI.Core;
 using Modding;
+using System;
+using UnityEngine;
 
 namespace MagicUIExamples
 {
@@ -42,13 +44,37 @@ namespace MagicUIExamples
                 Text = "This is a left-aligned text in the\nbottom center with big text"
             };
 
-            MakeStackChildren(new StackLayout(layout)
+            StackLayout visibilityTest = new(layout)
             {
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                Orientation = Orientation.Horizontal,
-                Spacing = 5
-            });
+                Spacing = 10
+            };
+            foreach (Visibility viz in Enum.GetValues(typeof(Visibility)))
+            {
+                StackLayout hzTextStack = new(layout)
+                {
+                    Orientation = Orientation.Horizontal,
+                    Spacing = 5
+                };
+                MakeStackChildren(hzTextStack);
+                hzTextStack.Children[1].Visibility = viz;
+                visibilityTest.Children.Add(hzTextStack);
+            }
+            layout.ListenForHotkey(KeyCode.V, () =>
+            {
+                foreach (Layout stack in visibilityTest.Children)
+                {
+                    Visibility currentViz = stack.Children[1].Visibility;
+                    stack.Children[1].Visibility = currentViz switch
+                    {
+                        Visibility.Visible => Visibility.Hidden,
+                        Visibility.Hidden => Visibility.Collapsed,
+                        Visibility.Collapsed => Visibility.Visible,
+                        _ => throw new NotImplementedException(),
+                    };
+                }
+            }, ModifierKeys.Ctrl | ModifierKeys.Alt);
 
             MakeStackChildren(new StackLayout(layout)
             {

@@ -1,8 +1,9 @@
-﻿using Modding;
+﻿using MagicUI.Core.Internal;
+using Modding;
 using System;
 using UnityEngine;
 
-namespace MagicUI
+namespace MagicUI.Core
 {
     /// <summary>
     /// Root class for arrangeable UI elements
@@ -64,6 +65,46 @@ namespace MagicUI
                     verticalAlignment = value;
                     InvalidateArrange();
                 }
+            }
+        }
+
+        private Visibility visibility = Visibility.Visible;
+        /// <summary>
+        /// The actual visibility of the element
+        /// </summary>
+        public Visibility Visibility
+        {
+            get => visibility;
+            set
+            {
+                if (visibility != value)
+                {
+                    // if we're going into or out of collapsed state, that may change our effective size
+                    if (visibility == Visibility.Collapsed || value == Visibility.Collapsed)
+                    {
+                        InvalidateMeasure();
+                    }
+                    // if we're going into or out of fully visible state, that may affect our arrangement/rendering even if no size change
+                    if (visibility == Visibility.Visible || value == Visibility.Visible)
+                    {
+                        InvalidateArrange();
+                    }
+                    visibility = value;
+                }
+            }
+        }
+
+        public bool IsEffectivelyVisible
+        {
+            get
+            {
+                ArrangableElement? next = this;
+                while (next != null)
+                {
+                    if (next.Visibility != Visibility) return false;
+                    next = next.LogicalParent;
+                }
+                return true;
             }
         }
 
@@ -136,7 +177,7 @@ namespace MagicUI
                 {
                     log.LogDebug($"Re-measure triggered for {Name}");
                 }
-                DesiredSize = MeasureOverride();
+                DesiredSize = Visibility == Visibility.Collapsed ? Vector2.zero : MeasureOverride();
                 MeasureIsValid = true;
                 neverMeasured = false;
                 InvalidateArrange();

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using MagicUI.Core;
+using UnityEngine;
 
-namespace MagicUI.Layouts
+namespace MagicUI.Components
 {
     public sealed class StackLayout : Layout
     {

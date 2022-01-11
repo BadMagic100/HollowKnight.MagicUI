@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MagicUI
+namespace MagicUI.Core
 {
     public static class UIExtensions
     {
