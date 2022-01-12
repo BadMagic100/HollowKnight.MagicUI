@@ -12,9 +12,6 @@ namespace MagicUI.Core
     {
         private static readonly Loggable log = LogHelper.GetLogger();
 
-        private bool neverMeasured = true;
-        private bool neverArranged = true;
-
         internal Rect PrevPlacementRect { get; private set; }
 
         public LayoutRoot LayoutRoot { get; private set; }
@@ -94,6 +91,21 @@ namespace MagicUI.Core
             }
         }
 
+        private Padding padding = Padding.Zero;
+        public Padding Padding
+        {
+            get => padding;
+            set
+            {
+                // note - default struct value comparison MAY be slow. I don't anticipate it's a huge issue though
+                if (!padding.Equals(value))
+                {
+                    padding = value;
+                    InvalidateMeasure();
+                }
+            }
+        }
+
         public bool IsEffectivelyVisible
         {
             get
@@ -109,9 +121,14 @@ namespace MagicUI.Core
         }
 
         /// <summary>
-        /// The cached desired size. Set from the last result in <see cref="Measure"/>.
+        /// The cached desired size. Set from the last result of <see cref="Measure"/>.
         /// </summary>
         public Vector2 DesiredSize { get; private set; }
+
+        /// <summary>
+        /// The cached effective size including padding and visibility. Set from the last result of <see cref="Measure"/>
+        /// </summary>
+        public Vector2 EffectiveSize { get; private set; }
 
         /// <summary>
         /// This element's parent in the layout hierarchy, if any
@@ -143,27 +160,29 @@ namespace MagicUI.Core
         }
 
         /// <summary>
-        /// Helper method to get the position of the top left corner during arrangement, given the component's vertical and horizontal alignments.
+        /// Helper method to get the position of the top left corner during arrangement, given the component's vertical and horizontal alignments and padding
         /// </summary>
-        protected Vector2 GetAlignedTopLeftCorner(Rect availableSpace)
+        private Vector2 GetAlignedTopLeftCorner(Rect availableSpace)
         {
             float x = horizontalAlignment switch
             {
-                HorizontalAlignment.Left => availableSpace.xMin,
-                HorizontalAlignment.Center => availableSpace.xMin + availableSpace.width / 2 - DesiredSize.x / 2,
-                HorizontalAlignment.Right => availableSpace.xMax - DesiredSize.x,
+                HorizontalAlignment.Left => availableSpace.xMin + Padding.Left,
+                HorizontalAlignment.Center => availableSpace.xMin + availableSpace.width / 2 - DesiredSize.x / 2 + Padding.AddedWidth / 2,
+                HorizontalAlignment.Right => availableSpace.xMax - DesiredSize.x - Padding.Right,
                 _ => throw new NotImplementedException("Can't handle the current horizontal alignment"),
             };
 
             float y = verticalAlignment switch
             {
-                VerticalAlignment.Top => availableSpace.yMin,
-                VerticalAlignment.Center => availableSpace.yMin + availableSpace.height / 2 - DesiredSize.y / 2,
-                VerticalAlignment.Bottom => availableSpace.yMax - DesiredSize.y,
+                VerticalAlignment.Top => availableSpace.yMin + Padding.Top,
+                VerticalAlignment.Center => availableSpace.yMin + availableSpace.height / 2 - DesiredSize.y / 2 + Padding.AddedHeight / 2,
+                VerticalAlignment.Bottom => availableSpace.yMax - DesiredSize.y - Padding.Bottom,
                 _ => throw new NotImplementedException("Can't handle the current horizontal alignment"),
             };
 
-            return new Vector2(x, y);
+            Vector2 vec = new(x, y);
+            log.LogDebug($"{Name} top-left corner aligned and adjusted to {vec}");
+            return vec;
         }
 
         /// <summary>
@@ -173,17 +192,18 @@ namespace MagicUI.Core
         {
             if (!MeasureIsValid)
             {
-                if (!neverMeasured)
+                log.LogDebug($"Measure triggered for {Name}");
+                DesiredSize = MeasureOverride();
+                EffectiveSize = DesiredSize + new Vector2(Padding.AddedWidth, Padding.AddedHeight);
+                if (Visibility == Visibility.Collapsed)
                 {
-                    log.LogDebug($"Re-measure triggered for {Name}");
+                    EffectiveSize = Vector2.zero;
                 }
-                DesiredSize = Visibility == Visibility.Collapsed ? Vector2.zero : MeasureOverride();
                 MeasureIsValid = true;
-                neverMeasured = false;
                 InvalidateArrange();
-                LogicalParent?.InvalidateMeasure();
+                log.LogDebug($"Computed {Name} size as {EffectiveSize}, adjusted from {DesiredSize}");
             }
-            return DesiredSize;
+            return EffectiveSize;
         }
 
         /// <summary>
@@ -200,12 +220,8 @@ namespace MagicUI.Core
             // only rearrange if we're either put into a new space or explicitly told to rearrange.
             if (!ArrangeIsValid || PrevPlacementRect != availableSpace)
             {
-                if (!neverArranged)
-                {
-                    log.LogDebug($"Re-arrange triggered for {Name}");
-                }
-                ArrangeOverride(availableSpace);
-                neverArranged = false;
+                log.LogDebug($"Arrange triggered for {Name} in {availableSpace}");
+                ArrangeOverride(GetAlignedTopLeftCorner(availableSpace));
                 PrevPlacementRect = availableSpace;
                 ArrangeIsValid = true;
             }
@@ -214,7 +230,7 @@ namespace MagicUI.Core
         /// <summary>
         /// Internal implementation to position the object within the allocated space.
         /// </summary>
-        /// <param name="availableSpace">The space available for the element.</param>
-        protected abstract void ArrangeOverride(Rect availableSpace);
+        /// <param name="alignedTopLeftCorner">The space available for the element.</param>
+        protected abstract void ArrangeOverride(Vector2 alignedTopLeftCorner);
     }
 }

@@ -1,5 +1,4 @@
-﻿using MagicUI.Behaviours;
-using MagicUI.Components;
+﻿using MagicUI.Components;
 using MagicUI.Core;
 using Modding;
 using System;
@@ -33,7 +32,8 @@ namespace MagicUIExamples
             new TextObject(layout)
             {
                 TextAlignment = HorizontalAlignment.Center,
-                Text = "This is center-aligned text in the\ntop-left"
+                Text = "This is center-aligned text in the\ntop-left",
+                Padding = new(10)
             };
             new TextObject(layout)
             {
@@ -44,11 +44,12 @@ namespace MagicUIExamples
                 Text = "This is a left-aligned text in the\nbottom center with big text"
             };
 
-            StackLayout visibilityTest = new(layout)
+            StackLayout visibilityTest = new(layout, "Visibility Panel")
             {
                 HorizontalAlignment = HorizontalAlignment.Right,
                 VerticalAlignment = VerticalAlignment.Center,
-                Spacing = 10
+                Spacing = 10,
+                Padding = new Padding(0, 500, 10, 0)
             };
             foreach (Visibility viz in Enum.GetValues(typeof(Visibility)))
             {
@@ -91,7 +92,8 @@ namespace MagicUIExamples
             stack.Children.Add(new TextObject(stack.LayoutRoot)
             {
                 Text = "top left text",
-                FontSize = 15
+                FontSize = 15,
+                Padding = new Padding(100, 0)
             });
             stack.Children.Add(new TextObject(stack.LayoutRoot)
             {

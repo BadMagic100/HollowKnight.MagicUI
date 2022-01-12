@@ -17,12 +17,12 @@ namespace MagicUI.Core
 
         public static Font TrajanBold { get => CanvasUtil.TrajanBold; }
 
-        public static Vector2 ScreenPosition(Vector2 pos, Vector2 elementSize)
+        public static Vector2 UnityScreenPosition(Vector2 pos, Vector2 elementSize)
         {
-            return ParentRelativePosition(pos, elementSize, Screen.size);
+            return UnityParentRelativePosition(pos, elementSize, Screen.size);
         }
 
-        public static Vector2 ParentRelativePosition(Vector2 pos, Vector2 elementSize, Vector2 parentSize)
+        public static Vector2 UnityParentRelativePosition(Vector2 pos, Vector2 elementSize, Vector2 parentSize)
         {
             return new((pos.x + elementSize.x / 2f) / parentSize.x,
                    (parentSize.y - (pos.y + elementSize.y / 2f)) / parentSize.y);

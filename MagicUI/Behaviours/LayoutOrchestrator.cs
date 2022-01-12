@@ -130,23 +130,25 @@ namespace MagicUI.Behaviours
                 .Take(measureBatch);
             foreach (ArrangableElement element in elementsToRemeasure)
             {
-                log.LogDebug($"Triggering remeasure/arrange for {element.Name} of type {element.GetType().Name}");
-                // tree roots should always be top-level layouts - we'll allocate the entire screen size for arrangement
-                // and allow the children to go where they need to go.
+                log.LogDebug($"Measure/Arrange starting for {element.Name} of type {element.GetType().Name}");
+                // tree roots should always be top-level stuff - we'll allocate the entire screen size for arrangement
+                // and allow them to go where they need to go.
                 element.Measure();
                 element.Arrange(UI.Screen);
+                log.LogDebug($"Measure/Arrange completed for {element.Name}");
             }
 
             // rearrange the specified number of elements. arrange invalidation does not propagate up the tree, so we can generally
             // process larger batches.
             IEnumerable<ArrangableElement> elementsToRearrange = elements
-                .Where(x => !x.ArrangeIsValid)
+                .Where(x => x.MeasureIsValid && !x.ArrangeIsValid) // ensure the element has been measured before arranging
                 .Take(arrangeBatch);
             foreach (ArrangableElement element in elementsToRearrange)
             {
-                log.LogDebug($"Triggering rearrange for {element.Name} of type {element.GetType().Name}");
+                log.LogDebug($"Arrange starting for {element.Name} of type {element.GetType().Name}");
                 // an invalidated arrange indicates the element wants to place itself in a different location within the same available space.
                 element.Arrange(element.PrevPlacementRect);
+                log.LogDebug($"Arrange completed for {element.Name}");
             }
         }
     }

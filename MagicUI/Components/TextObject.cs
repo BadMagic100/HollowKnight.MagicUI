@@ -101,7 +101,7 @@ namespace MagicUI.Components
 
             // note - it is (apparently) critically important to add the transform before the text.
             // Otherwise the text won't show (presumably because it's not transformed properly?)
-            Vector2 pos = UI.ScreenPosition(new(0, 0), UI.Screen.size);
+            Vector2 pos = UI.UnityScreenPosition(new(0, 0), UI.Screen.size);
             tx = textObj.AddComponent<RectTransform>();
             tx.anchorMin = pos;
             tx.anchorMax = pos;
@@ -136,9 +136,10 @@ namespace MagicUI.Components
             return MeasureText();
         }
 
-        protected override void ArrangeOverride(Rect availableSpace)
+        protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
-            Vector2 pos = UI.ScreenPosition(GetAlignedTopLeftCorner(availableSpace), DesiredSize);
+            // todo: this isn't parent-relative which could cause some problems using this as a building block
+            Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, DesiredSize);
             tx.anchorMax = pos;
             tx.anchorMin = pos;
 

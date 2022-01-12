@@ -72,12 +72,12 @@ namespace MagicUI.Components
             return RepackInFlowOrder(new Vector2(orientationFlowMeasure, nonFlowMeasure));
         }
 
-        protected override void ArrangeOverride(Rect availableSpace)
+        protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
-            (float flowStart, float nonFlowStart) = RepackInFlowOrder(GetAlignedTopLeftCorner(availableSpace));
+            (float flowStart, float nonFlowStart) = RepackInFlowOrder(alignedTopLeftCorner);
             foreach (ArrangableElement child in Children)
             {
-                (float childFlowSize, _) = RepackInFlowOrder(child.DesiredSize);
+                (float childFlowSize, _) = RepackInFlowOrder(child.EffectiveSize);
                 (_, float nonFlowSize) = RepackInFlowOrder(DesiredSize);
                 (float left, float top) = RepackInFlowOrder(new Vector2(flowStart, nonFlowStart));
                 (float width, float height) = RepackInFlowOrder(new Vector2(childFlowSize, nonFlowSize));
