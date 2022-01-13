@@ -14,17 +14,25 @@ namespace MagicUI.Core
 
         internal Rect PrevPlacementRect { get; private set; }
 
+        /// <summary>
+        /// The visual layout parent of this element
+        /// </summary>
         public LayoutRoot LayoutRoot { get; private set; }
 
         /// <summary>
-        /// Whether the most recent measurement is accurate
+        /// Whether the most recent measurement can be treated as accurate
         /// </summary>
         public bool MeasureIsValid { get; private set; } = false;
 
         /// <summary>
-        /// Whether the most recent arrangement is accurate
+        /// Whether the most recent arrangement can be treated as accurate
         /// </summary>
         public bool ArrangeIsValid { get; private set; } = false;
+
+        /// <summary>
+        /// Whether the element is currently in the process of being destroyed
+        /// </summary>
+        public bool DestroyInProgress { get; private set; } = false;
 
         /// <summary>
         /// The name of the arrangeable for lookup purposes
@@ -92,6 +100,9 @@ namespace MagicUI.Core
         }
 
         private Padding padding = Padding.Zero;
+        /// <summary>
+        /// The padding around 
+        /// </summary>
         public Padding Padding
         {
             get => padding;
@@ -106,6 +117,9 @@ namespace MagicUI.Core
             }
         }
 
+        /// <summary>
+        /// Whether the element's content will be rendered, i.e. if this elements ancestors in the logical tree are all visible
+        /// </summary>
         public bool IsEffectivelyVisible
         {
             get
@@ -113,7 +127,7 @@ namespace MagicUI.Core
                 ArrangableElement? next = this;
                 while (next != null)
                 {
-                    if (next.Visibility != Visibility) return false;
+                    if (next.Visibility != Visibility.Visible) return false;
                     next = next.LogicalParent;
                 }
                 return true;
@@ -121,12 +135,12 @@ namespace MagicUI.Core
         }
 
         /// <summary>
-        /// The cached desired size. Set from the last result of <see cref="Measure"/>.
+        /// The cached size of this element's actual content. Set from the last result of <see cref="Measure"/>.
         /// </summary>
-        public Vector2 DesiredSize { get; private set; }
+        public Vector2 ContentSize { get; private set; }
 
         /// <summary>
-        /// The cached effective size including padding and visibility. Set from the last result of <see cref="Measure"/>
+        /// The cached effective size in the layout system including padding and visibility. Set from the last result of <see cref="Measure"/>
         /// </summary>
         public Vector2 EffectiveSize { get; private set; }
 
@@ -167,16 +181,16 @@ namespace MagicUI.Core
             float x = horizontalAlignment switch
             {
                 HorizontalAlignment.Left => availableSpace.xMin + Padding.Left,
-                HorizontalAlignment.Center => availableSpace.xMin + availableSpace.width / 2 - DesiredSize.x / 2 + Padding.AddedWidth / 2,
-                HorizontalAlignment.Right => availableSpace.xMax - DesiredSize.x - Padding.Right,
+                HorizontalAlignment.Center => availableSpace.xMin + availableSpace.width / 2 - ContentSize.x / 2 + (Padding.Left - Padding.Right) / 2,
+                HorizontalAlignment.Right => availableSpace.xMax - ContentSize.x - Padding.Right,
                 _ => throw new NotImplementedException("Can't handle the current horizontal alignment"),
             };
 
             float y = verticalAlignment switch
             {
                 VerticalAlignment.Top => availableSpace.yMin + Padding.Top,
-                VerticalAlignment.Center => availableSpace.yMin + availableSpace.height / 2 - DesiredSize.y / 2 + Padding.AddedHeight / 2,
-                VerticalAlignment.Bottom => availableSpace.yMax - DesiredSize.y - Padding.Bottom,
+                VerticalAlignment.Center => availableSpace.yMin + availableSpace.height / 2 - ContentSize.y / 2 + (Padding.Top - Padding.Bottom) / 2,
+                VerticalAlignment.Bottom => availableSpace.yMax - ContentSize.y - Padding.Bottom,
                 _ => throw new NotImplementedException("Can't handle the current horizontal alignment"),
             };
 
@@ -186,22 +200,22 @@ namespace MagicUI.Core
         }
 
         /// <summary>
-        /// Calculates the desired size of the object and caches it in <see cref="DesiredSize"/> for later reference in this UI build cycle.
+        /// Calculates the desired size of the object and caches it in <see cref="ContentSize"/> for later reference in this UI build cycle.
         /// </summary>
         public Vector2 Measure()
         {
             if (!MeasureIsValid)
             {
                 log.LogDebug($"Measure triggered for {Name}");
-                DesiredSize = MeasureOverride();
-                EffectiveSize = DesiredSize + new Vector2(Padding.AddedWidth, Padding.AddedHeight);
+                ContentSize = MeasureOverride();
+                EffectiveSize = ContentSize + new Vector2(Padding.AddedWidth, Padding.AddedHeight);
                 if (Visibility == Visibility.Collapsed)
                 {
                     EffectiveSize = Vector2.zero;
                 }
                 MeasureIsValid = true;
                 InvalidateArrange();
-                log.LogDebug($"Computed {Name} size as {EffectiveSize}, adjusted from {DesiredSize}");
+                log.LogDebug($"Computed {Name} size as {EffectiveSize}, adjusted from {ContentSize}");
             }
             return EffectiveSize;
         }
@@ -232,5 +246,26 @@ namespace MagicUI.Core
         /// </summary>
         /// <param name="alignedTopLeftCorner">The space available for the element.</param>
         protected abstract void ArrangeOverride(Vector2 alignedTopLeftCorner);
+
+        public void Destroy()
+        {
+            if (!DestroyInProgress)
+            {
+                log.LogDebug($"Destroy triggered for {Name}");
+                DestroyInProgress = true;
+                // don't waste measure/arrange time on me while i'm destroying myself
+                MeasureIsValid = true;
+                ArrangeIsValid = true;
+                LayoutRoot.layoutOrchestrator.RemoveElement(this);
+                // additional custom handling for my specific type of component and my parent type
+                DestroyOverride();
+                if (LogicalParent is ILayoutParent layoutParent)
+                {
+                    layoutParent.HandleChildDestroyed(this);
+                }
+            }
+        }
+
+        protected abstract void DestroyOverride();
     }
 }

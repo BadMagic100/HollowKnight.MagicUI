@@ -52,28 +52,11 @@ namespace MagicUI.Behaviours
         }
 
         /// <summary>
-        /// Looks up an element by name
-        /// </summary>
-        /// <param name="name">The name to search for</param>
-        /// <returns>The first-registered element with the given name if any exists, otherwise null</returns>
-        public ArrangableElement? Find(string name)
-        {
-            if (elementLookup.ContainsKey(name))
-            {
-                return elementLookup[name].First();
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
         /// Looks up several elements by name
         /// </summary>
         /// <param name="name">The name to search for</param>
         /// <returns>All elements with the given name, if any exist</returns>
-        public IEnumerable<ArrangableElement> FindAll(string name)
+        public IEnumerable<ArrangableElement> Find(string name)
         {
             if (elementLookup.ContainsKey(name))
             {
@@ -86,30 +69,12 @@ namespace MagicUI.Behaviours
         }
 
         /// <summary>
-        /// Looks up an element with a given type by name
-        /// </summary>
-        /// <typeparam name="T">The type of element to search for</typeparam>
-        /// <param name="name">The name to search for</param>
-        /// <returns>The first element of the given type with the given name, if any exists, otherwise null</returns>
-        public T? Find<T>(string name) where T : ArrangableElement
-        {
-            if (elementLookup.ContainsKey(name))
-            {
-                return elementLookup[name].OfType<T>().FirstOrDefault();
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        /// <summary>
         /// Looks up several elements with a given type by name
         /// </summary>
         /// <typeparam name="T">The type of element to search for</typeparam>
         /// <param name="name">The name to search for</param>
         /// <returns>All elements of the given type with the given name, if any exist</returns>
-        public IEnumerable<T> FindAll<T>(string name) where T : ArrangableElement
+        public IEnumerable<T> Find<T>(string name) where T : ArrangableElement
         {
             if (elementLookup.ContainsKey(name))
             {

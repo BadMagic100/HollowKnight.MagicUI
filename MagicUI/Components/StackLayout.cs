@@ -78,12 +78,17 @@ namespace MagicUI.Components
             foreach (ArrangableElement child in Children)
             {
                 (float childFlowSize, _) = RepackInFlowOrder(child.EffectiveSize);
-                (_, float nonFlowSize) = RepackInFlowOrder(DesiredSize);
+                (_, float nonFlowSize) = RepackInFlowOrder(ContentSize);
                 (float left, float top) = RepackInFlowOrder(new Vector2(flowStart, nonFlowStart));
                 (float width, float height) = RepackInFlowOrder(new Vector2(childFlowSize, nonFlowSize));
                 child.Arrange(new Rect(left, top, width, height));
                 flowStart += childFlowSize + spacing;
             }
+        }
+
+        protected override void DestroyOverride()
+        {
+            Children.Clear();
         }
     }
 }

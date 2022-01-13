@@ -69,11 +69,11 @@ namespace MagicUI.Core
             }
         }
 
-        // todo: only allow removing when stuff is destroyed and/or destroy stuff when elements are removed
         public void RemoveAt(int index)
         {
             ArrangableElement element = logicalChildren[index];
             logicalChildren.RemoveAt(index);
+            element.Destroy();
             element.LogicalParent = null;
             logicalParent.InvalidateMeasure();
         }

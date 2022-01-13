@@ -27,62 +27,77 @@ namespace MagicUIExamples
 
         private void OnSaveOpened(On.HeroController.orig_Awake orig, HeroController self)
         {
-            layout = new(true, "Persistent layout");
+            if (layout == null)
+            {
+                layout = new(true, "Persistent layout");
 
-            new TextObject(layout)
-            {
-                TextAlignment = HorizontalAlignment.Center,
-                Text = "This is center-aligned text in the\ntop-left",
-                Padding = new(10)
-            };
-            new TextObject(layout)
-            {
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                FontSize = 20,
-                Font = UI.TrajanBold,
-                Text = "This is a left-aligned text in the\nbottom center with big text"
-            };
-
-            StackLayout visibilityTest = new(layout, "Visibility Panel")
-            {
-                HorizontalAlignment = HorizontalAlignment.Right,
-                VerticalAlignment = VerticalAlignment.Center,
-                Spacing = 10,
-                Padding = new Padding(0, 500, 10, 0)
-            };
-            foreach (Visibility viz in Enum.GetValues(typeof(Visibility)))
-            {
-                StackLayout hzTextStack = new(layout)
+                new TextObject(layout)
                 {
-                    Orientation = Orientation.Horizontal,
-                    Spacing = 5
+                    TextAlignment = HorizontalAlignment.Center,
+                    Text = "This is center-aligned text in the\ntop-left",
+                    Padding = new(10)
                 };
-                MakeStackChildren(hzTextStack);
-                hzTextStack.Children[1].Visibility = viz;
-                visibilityTest.Children.Add(hzTextStack);
-            }
-            layout.ListenForHotkey(KeyCode.V, () =>
-            {
-                foreach (Layout stack in visibilityTest.Children)
+                ArrangableElement bottomText = new TextObject(layout)
                 {
-                    Visibility currentViz = stack.Children[1].Visibility;
-                    stack.Children[1].Visibility = currentViz switch
-                    {
-                        Visibility.Visible => Visibility.Hidden,
-                        Visibility.Hidden => Visibility.Collapsed,
-                        Visibility.Collapsed => Visibility.Visible,
-                        _ => throw new NotImplementedException(),
-                    };
-                }
-            }, ModifierKeys.Ctrl | ModifierKeys.Alt);
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    FontSize = 20,
+                    Font = UI.TrajanBold,
+                    Text = "This is a left-aligned text in the\nbottom center with big text"
+                };
 
-            MakeStackChildren(new StackLayout(layout)
-            {
-                HorizontalAlignment = HorizontalAlignment.Right,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                Spacing = 2
-            });
+                StackLayout visibilityTest = new(layout, "Visibility Panel")
+                {
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Spacing = 10,
+                    Padding = new Padding(0, 500, 15, 0)
+                };
+                foreach (Visibility viz in Enum.GetValues(typeof(Visibility)))
+                {
+                    StackLayout hzTextStack = new(layout)
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Spacing = 5
+                    };
+                    MakeStackChildren(hzTextStack);
+                    hzTextStack.Children[1].Visibility = viz;
+                    visibilityTest.Children.Add(hzTextStack);
+                }
+
+                layout.ListenForHotkey(KeyCode.V, () =>
+                {
+                    foreach (Layout stack in visibilityTest.Children)
+                    {
+                        if (stack.Children.Count > 1)
+                        {
+                            Visibility currentViz = stack.Children[1].Visibility;
+                            stack.Children[1].Visibility = currentViz switch
+                            {
+                                Visibility.Visible => Visibility.Hidden,
+                                Visibility.Hidden => Visibility.Collapsed,
+                                Visibility.Collapsed => Visibility.Visible,
+                                _ => throw new NotImplementedException(),
+                            };
+                        }
+                    }
+                }, ModifierKeys.Ctrl | ModifierKeys.Alt);
+
+                MakeStackChildren(new StackLayout(layout)
+                {
+                    HorizontalAlignment = HorizontalAlignment.Right,
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    Spacing = 2
+                });
+
+                layout.ListenForHotkey(KeyCode.Delete, () =>
+                {
+                    (visibilityTest.Children[0] as Layout)?.Children.RemoveAt(0);
+                    (visibilityTest.Children[1] as Layout)?.Children[0].Destroy();
+                    (visibilityTest.Children[2] as Layout)?.Children.Clear();
+                    bottomText.Destroy();
+                });
+            }
 
             orig(self);
         }

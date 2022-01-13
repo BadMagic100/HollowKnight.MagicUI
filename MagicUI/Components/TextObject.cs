@@ -139,11 +139,16 @@ namespace MagicUI.Components
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
             // todo: this isn't parent-relative which could cause some problems using this as a building block
-            Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, DesiredSize);
+            Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, ContentSize);
             tx.anchorMax = pos;
             tx.anchorMin = pos;
 
             textObj.SetActive(IsEffectivelyVisible);
+        }
+
+        protected override void DestroyOverride()
+        {
+            UnityEngine.Object.Destroy(textObj);
         }
     }
 }

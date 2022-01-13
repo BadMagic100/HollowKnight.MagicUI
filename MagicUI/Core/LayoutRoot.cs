@@ -1,5 +1,7 @@
 ﻿using MagicUI.Behaviours;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using UObject = UnityEngine.Object;
@@ -64,6 +66,48 @@ namespace MagicUI.Core
             listener.modifiers = modifiers;
             listener.execute = execute;
             listener.enableCondition = condition;
+        }
+
+        /// <summary>
+        /// Gets an element in this layout by name
+        /// </summary>
+        /// <param name="name">The name to search for</param>
+        /// <returns>The first element in this layout with the given name if any exist, or else null</returns>
+        public ArrangableElement? GetElement(string name)
+        {
+            return GetElements(name).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets all elements in this layout by name
+        /// </summary>
+        /// <param name="name">The name to search for</param>
+        /// <returns>All elements in this layout with the given name if any exist, or else an empty enumerable</returns>
+        public IEnumerable<ArrangableElement> GetElements(string name)
+        {
+            return layoutOrchestrator.Find(name);
+        }
+
+        /// <summary>
+        /// Gets an element in this layout by name and type
+        /// </summary>
+        /// <typeparam name="T">The type of element to search for</typeparam>
+        /// <param name="name">The name to search for</param>
+        /// <returns>The first element in this layout with the given name and type if any exist, or else null</returns>
+        public T? GetElement<T>(string name) where T : ArrangableElement
+        {
+            return GetElements<T>(name).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Gets all elements in this layout by name and type
+        /// </summary>
+        /// <typeparam name="T">The type of element to search for</typeparam>
+        /// <param name="name">The name to search for</param>
+        /// <returns>All elements in this layout with the given name and type if any exist, or else an empty enumerable</returns>
+        public IEnumerable<T> GetElements<T>(string name) where T : ArrangableElement
+        {
+            return layoutOrchestrator.Find<T>(name);
         }
 
         /// <summary>
