@@ -10,11 +10,17 @@
         /// </summary>
         public ParentedElementList Children { get; }
 
+        /// <summary>
+        /// Creates a layout
+        /// </summary>
+        /// <param name="onLayout">The layout root to draw the layout on</param>
+        /// <param name="name">The name of the layout</param>
         public Layout(LayoutRoot onLayout, string name = "New Layout") : base(onLayout, name)
         {
             Children = new ParentedElementList(this);
         }
 
+        /// <inheritdoc/>
         public void HandleChildDestroyed(ArrangableElement child)
         {
             if (Children.Contains(child))

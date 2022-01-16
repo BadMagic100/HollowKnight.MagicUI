@@ -5,6 +5,10 @@
     /// </summary>
     public interface ILayoutParent
     {
-        public void HandleChildDestroyed(ArrangableElement child);
+        /// <summary>
+        /// Additional handling for when a child is being destroyed
+        /// </summary>
+        /// <param name="child">The child being destroyed</param>
+        void HandleChildDestroyed(ArrangableElement child);
     }
 }

@@ -25,6 +25,9 @@ namespace MagicUI.Core
         private readonly GameObject rootCanvas;
         internal readonly LayoutOrchestrator layoutOrchestrator;
 
+        /// <summary>
+        /// The unity <see cref="UnityEngine.Canvas"/> underlying the layout
+        /// </summary>
         public GameObject Canvas { get => rootCanvas; }
 
         /// <summary>
