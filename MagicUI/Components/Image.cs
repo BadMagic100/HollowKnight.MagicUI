@@ -10,7 +10,6 @@ namespace MagicUI.Components
     public sealed class Image : ArrangableElement, IGameObjectWrapper
     {
         private readonly GameObject imgObj;
-        private readonly UImage img;
         private readonly RectTransform tx;
 
         /// <inheritdoc/>
@@ -66,7 +65,7 @@ namespace MagicUI.Components
             tx.anchorMin = pos;
             tx.anchorMax = pos;
 
-            img = imgObj.AddComponent<UImage>();
+            UImage img = imgObj.AddComponent<UImage>();
             img.sprite = sprite;
             if (sprite.border != Vector4.zero)
             {

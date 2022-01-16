@@ -51,10 +51,10 @@
 	  <DocumentationFile>bin\Release\MagicUI.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Resources\RoundedCornerRect.png" />
+	  <None Remove="Resources\RoundedCornerRect-2.png" />
 	</ItemGroup>
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\RoundedCornerRect.png" />
+	  <EmbeddedResource Include="Resources\RoundedCornerRect-2.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp">

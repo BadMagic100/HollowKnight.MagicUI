@@ -1,6 +1,5 @@
 ﻿using MagicUI.Components;
 using MagicUI.Core;
-using MagicUI.Graphics;
 using Modding;
 using System;
 using UnityEngine;
@@ -32,13 +31,17 @@ namespace MagicUIExamples
             {
                 layout = new(true, "Persistent layout");
 
-                new Image(layout, BuiltInSprites.CreateSlicedBorderRect())
+                Button testButton = new Button(layout)
                 {
-                    Width = 1920 / 2,
-                    Height = 50,
                     VerticalAlignment = VerticalAlignment.Center,
+                    MinWidth = 100,
                     Padding = new(20)
                 };
+                testButton.Click += TestButton_Click;
+
+                layout.ListenForHotkey(KeyCode.A, () => testButton.Content += "A");
+                layout.ListenForHotkey(KeyCode.Return, () => testButton.Content += "\n");
+                layout.ListenForHotkey(KeyCode.Equals, () => testButton.Margin += 5, ModifierKeys.Shift);
 
                 new TextObject(layout)
                 {
@@ -124,6 +127,11 @@ namespace MagicUIExamples
             }
 
             orig(self);
+        }
+
+        private void TestButton_Click(Button sender)
+        {
+            sender.Content = "hivescream.";
         }
 
         private void MakeStackChildren(Layout stack)

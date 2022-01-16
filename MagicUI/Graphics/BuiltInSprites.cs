@@ -25,7 +25,7 @@ namespace MagicUI.Graphics
         /// </summary>
         public static Sprite CreateSlicedBorderRect()
         {
-            Texture2D tex = Loader.GetTexture("RoundedCornerRect.png");
+            Texture2D tex = Loader.GetTexture("RoundedCornerRect-2.png");
             return Sprite.Create(
                 tex, 
                 new Rect(0, 0, tex.width, tex.height),
@@ -34,7 +34,7 @@ namespace MagicUI.Graphics
                 0, 
                 SpriteMeshType.FullRect,
                 // not doc'd but this is left, bottom, right, top
-                new Vector4(6, 4, 6, 4)
+                new Vector4(6, 5, 6, 5)
             );
         }
     }
