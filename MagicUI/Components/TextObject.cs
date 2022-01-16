@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 namespace MagicUI.Components
 {
+    /// <summary>
+    /// A text display element
+    /// </summary>
     public sealed class TextObject : ArrangableElement, IGameObjectWrapper
     {
         private readonly GameObject textObj;
         private readonly Text textComponent;
         private readonly RectTransform tx;
 
+        /// <inheritdoc/>
         public GameObject GameObject { get => textObj; }
 
         /// <summary>
@@ -94,6 +98,11 @@ namespace MagicUI.Components
             }
         }
 
+        /// <summary>
+        /// Creates a text object
+        /// </summary>
+        /// <param name="onLayout">The layout to draw the text object on</param>
+        /// <param name="name">The name of the text object</param>
         public TextObject(LayoutRoot onLayout, string name = "New TextObject") : base(onLayout, name)
         {
             textObj = new GameObject(name);
@@ -131,11 +140,13 @@ namespace MagicUI.Components
             return new Vector2(width, height);
         }
 
+        /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
             return MeasureText();
         }
 
+        /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
             // todo: this isn't parent-relative which could cause some problems using this as a building block
@@ -146,6 +157,7 @@ namespace MagicUI.Components
             textObj.SetActive(IsEffectivelyVisible);
         }
 
+        /// <inheritdoc/>
         protected override void DestroyOverride()
         {
             UnityEngine.Object.Destroy(textObj);

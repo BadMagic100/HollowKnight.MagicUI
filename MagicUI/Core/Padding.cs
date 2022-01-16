@@ -3,17 +3,41 @@ using UnityEngine;
 
 namespace MagicUI.Core
 {
+    /// <summary>
+    /// Describes the padding around an element
+    /// </summary>
     public struct Padding
     {
+        /// <summary>
+        /// A uniform empty padding
+        /// </summary>
         public static Padding Zero = new(0);
 
+        /// <summary>
+        /// The left side padding
+        /// </summary>
         public float Left { get; private set; }
+        /// <summary>
+        /// The top side padding
+        /// </summary>
         public float Top { get; private set; }
+        /// <summary>
+        /// The right side padding
+        /// </summary>
         public float Right { get; private set; }
+        /// <summary>
+        /// The bottom side padding
+        /// </summary>
         public float Bottom { get; private set; }
 
+        /// <summary>
+        /// The total width added by the padding
+        /// </summary>
         public float AddedWidth { get => Left + Right; }
 
+        /// <summary>
+        /// The total height added by the padding
+        /// </summary>
         public float AddedHeight { get => Top + Bottom; }
 
         private static void ValidateComponentPositive(float value, string name)

@@ -17,6 +17,7 @@ namespace MagicUI.Core
             this.logicalParent = logicalParent;
         }
 
+        /// <inheritdoc/>
         public ArrangableElement this[int index] 
         { 
             get => logicalChildren[index];
@@ -27,12 +28,16 @@ namespace MagicUI.Core
             }
         }
 
+        /// <inheritdoc/>
         public int Count => logicalChildren.Count;
 
+        /// <inheritdoc/>
         public bool IsReadOnly => false;
 
+        /// <inheritdoc/>
         public void Add(ArrangableElement item) => Insert(logicalChildren.Count, item);
 
+        /// <inheritdoc/>
         public void Clear()
         {
             while (logicalChildren.Count > 0)
@@ -41,14 +46,19 @@ namespace MagicUI.Core
             }
         }
 
+        /// <inheritdoc/>
         public bool Contains(ArrangableElement item) => logicalChildren.Contains(item);
 
+        /// <inheritdoc/>
         public void CopyTo(ArrangableElement[] array, int arrayIndex) => logicalChildren.CopyTo(array, arrayIndex);
 
+        /// <inheritdoc/>
         public IEnumerator<ArrangableElement> GetEnumerator() => logicalChildren.GetEnumerator();
 
+        /// <inheritdoc/>
         public int IndexOf(ArrangableElement item) => logicalChildren.IndexOf(item);
 
+        /// <inheritdoc/>
         public void Insert(int index, ArrangableElement item)
         {
             item.LogicalParent = logicalParent;
@@ -56,6 +66,7 @@ namespace MagicUI.Core
             logicalParent.InvalidateMeasure();
         }
 
+        /// <inheritdoc/>
         public bool Remove(ArrangableElement item)
         {
             if (IndexOf(item) >= 0)
@@ -69,6 +80,7 @@ namespace MagicUI.Core
             }
         }
 
+        /// <inheritdoc/>
         public void RemoveAt(int index)
         {
             ArrangableElement element = logicalChildren[index];

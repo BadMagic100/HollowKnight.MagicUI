@@ -149,6 +149,16 @@ namespace MagicUI.Core
         /// </summary>
         public ArrangableElement? LogicalParent { get; protected internal set; } = null;
 
+        /// <summary>
+        /// Creates an arrangable element
+        /// </summary>
+        /// <param name="onLayout">The layout to draw the element on</param>
+        /// <param name="name">The name of the elemtent</param>
+        /// <remarks>
+        /// Arrangable elements should be placed on the same layout as their parents. This is not a hard requirement, so
+        /// in theory, it should work to put different parts of the logical tree in different layouts.
+        /// However, if you do this, know that it may cause unexpected behavior and use with caution.
+        /// </remarks>
         public ArrangableElement(LayoutRoot onLayout, string name = "New ArrangeableElement")
         {
             Name = name;
@@ -247,6 +257,14 @@ namespace MagicUI.Core
         /// <param name="alignedTopLeftCorner">The space available for the element.</param>
         protected abstract void ArrangeOverride(Vector2 alignedTopLeftCorner);
 
+        /// <summary>
+        /// Destroys this element
+        /// </summary>
+        /// <remarks>
+        /// Generally, it assumed when you destroy an element, it, its children, and any underlying <see cref="GameObject"/>s are not intended to be reused.
+        /// Accordingly, a destroyed element will be removed from its parent in most cases and unregistered from the layout system.
+        /// Attempting to use a destroyed element will result in undefined behavior and may give unwanted results.
+        /// </remarks>
         public void Destroy()
         {
             if (!DestroyInProgress)
@@ -266,6 +284,9 @@ namespace MagicUI.Core
             }
         }
 
+        /// <summary>
+        /// Internal implementation to perform any additional cleanup when the element is destroyed
+        /// </summary>
         protected abstract void DestroyOverride();
     }
 }

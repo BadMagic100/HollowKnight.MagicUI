@@ -1,5 +1,8 @@
 ﻿namespace MagicUI.Core
 {
+    /// <summary>
+    /// Types of element visibility
+    /// </summary>
     public enum Visibility
     {
         /// <summary>

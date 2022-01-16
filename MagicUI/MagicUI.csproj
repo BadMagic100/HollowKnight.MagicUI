@@ -25,9 +25,9 @@
 		<MakeDir Directories="$(ExportDir)/$(TargetName)/" />
 		<MakeDir Directories="$(ExportDir)/$(TargetName)/zip/" />
 		<MakeDir Condition="!Exists('$(HollowKnightRefs)/Mods/$(TargetName)/')" Directories="$(HollowKnightRefs)/Mods/$(TargetName)/" />
-		<Copy SourceFiles="$(TargetPath);$(TargetDir)/$(TargetName).pdb" DestinationFolder="$(HollowKnightRefs)/Mods/$(TargetName)/" />
+		<Copy SourceFiles="$(TargetPath);$(TargetDir)/$(TargetName).pdb;$(TargetDir)/$(TargetName).xml" DestinationFolder="$(HollowKnightRefs)/Mods/$(TargetName)/" />
 		<Copy SourceFiles="$(TargetPath)" DestinationFolder="$(ExportDir)/$(TargetName)/" />
-		<Copy SourceFiles="README.md;$(TargetPath);$(TargetDir)/$(TargetName).pdb" DestinationFolder="$(ExportDir)/$(TargetName)/zip/" />
+		<Copy SourceFiles="README.md;$(TargetPath);$(TargetDir)/$(TargetName).pdb;$(TargetDir)/$(TargetName).xml" DestinationFolder="$(ExportDir)/$(TargetName)/zip/" />
 		<ZipDirectory SourceDirectory="$(ExportDir)/$(TargetName)/zip/" DestinationFile="$(ExportDir)/$(TargetName)/$(TargetName).zip" />
 		<RemoveDir Directories="$(ExportDir)/$(TargetName)/zip/" />
 
@@ -35,12 +35,27 @@
 			<Output TaskParameter="Items" ItemName="FilesWithHashes" />
 		</GetFileHash>
 		<WriteLinesToFile File="$(ExportDir)/$(TargetName)/SHA.txt" Lines="@(FilesWithHashes->'%(FileHash)')" Overwrite="true" Encoding="UTF-8" />
+
+		<GetAssemblyIdentity AssemblyFiles="$(TargetPath)">
+			<Output TaskParameter="Assemblies" ItemName="Targets" />
+		</GetAssemblyIdentity>
+		<ItemGroup>
+			<VersionNumber Include="@(Targets->'%(Version)')" />
+		</ItemGroup>
+		<WriteLinesToFile File="$(ExportDir)/$(TargetName)/version.txt" Lines="@(VersionNumber)" Overwrite="true" Encoding="UTF-8" />
 	</Target>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-		<!-- Uncomment this to enabled strong name key signing for releases -->
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' "><!-- Uncomment this to enabled strong name key signing for releases -->
 		<!--<SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>sgKey.snk</AssemblyOriginatorKeyFile>-->
+	
+	  <DocumentationFile>bin\Release\MagicUI.xml</DocumentationFile>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Resources\RoundedCornerRect.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\RoundedCornerRect.png" />
+	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp">
 			<HintPath>$(HollowKnightRefs)/Assembly-CSharp.dll</HintPath>

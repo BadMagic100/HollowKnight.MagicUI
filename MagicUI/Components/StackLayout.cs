@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace MagicUI.Components
 {
+    /// <summary>
+    /// A layout that places elements adjacent to each other with optional spacing between each element
+    /// </summary>
     public sealed class StackLayout : Layout
     {
         private float spacing = 0;
@@ -39,6 +42,11 @@ namespace MagicUI.Components
             }
         }
 
+        /// <summary>
+        /// Creates a stack layout
+        /// </summary>
+        /// <param name="onLayout">The layout root to draw the stack layout on</param>
+        /// <param name="name">The name of the stack layout</param>
         public StackLayout(LayoutRoot onLayout, string name = "New StackLayout") : base(onLayout, name) { }
 
         /// <summary>
@@ -55,6 +63,7 @@ namespace MagicUI.Components
             return new Vector2(flow, nonFlow);
         }
 
+        /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
             if (Children.Count == 0) return Vector2.zero;
@@ -72,6 +81,7 @@ namespace MagicUI.Components
             return RepackInFlowOrder(new Vector2(orientationFlowMeasure, nonFlowMeasure));
         }
 
+        /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
             (float flowStart, float nonFlowStart) = RepackInFlowOrder(alignedTopLeftCorner);
@@ -86,6 +96,7 @@ namespace MagicUI.Components
             }
         }
 
+        /// <inheritdoc/>
         protected override void DestroyOverride()
         {
             Children.Clear();

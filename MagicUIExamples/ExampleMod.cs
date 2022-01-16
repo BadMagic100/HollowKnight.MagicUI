@@ -1,5 +1,6 @@
 ﻿using MagicUI.Components;
 using MagicUI.Core;
+using MagicUI.Graphics;
 using Modding;
 using System;
 using UnityEngine;
@@ -30,6 +31,14 @@ namespace MagicUIExamples
             if (layout == null)
             {
                 layout = new(true, "Persistent layout");
+
+                new Image(layout, BuiltInSprites.CreateSlicedBorderRect())
+                {
+                    Width = 1920 / 2,
+                    Height = 50,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    Padding = new(20)
+                };
 
                 new TextObject(layout)
                 {
@@ -92,11 +101,26 @@ namespace MagicUIExamples
 
                 layout.ListenForHotkey(KeyCode.Delete, () =>
                 {
+                    // children.removeat(0) and children[0].destroy do effectively the same thing, it's just a matter of preference
                     (visibilityTest.Children[0] as Layout)?.Children.RemoveAt(0);
                     (visibilityTest.Children[1] as Layout)?.Children[0].Destroy();
                     (visibilityTest.Children[2] as Layout)?.Children.Clear();
                     bottomText.Destroy();
                 });
+
+                layout.ListenForHotkey(KeyCode.N, () =>
+                {
+                    // this particular hook happens before the scene actually begins - so be careful when you
+                    // create non-persistent stuff as it may go away before you ever see it
+                    LayoutRoot noPersist = new(false);
+                    new TextObject(noPersist)
+                    {
+                        Text = "This text will go away when you leave the scene",
+                        FontSize = 20,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center
+                    };
+                }, ModifierKeys.Ctrl);
             }
 
             orig(self);
