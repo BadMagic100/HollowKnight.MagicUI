@@ -52,6 +52,15 @@ namespace MagicUI.Behaviours
         }
 
         /// <summary>
+        /// Cleans up the orchestrator
+        /// </summary>
+        public void Clear()
+        {
+            elements.Clear();
+            elementLookup.Clear();
+        }
+
+        /// <summary>
         /// Looks up several elements by name
         /// </summary>
         /// <param name="name">The name to search for</param>

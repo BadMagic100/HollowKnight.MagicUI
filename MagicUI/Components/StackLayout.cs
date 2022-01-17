@@ -6,6 +6,10 @@ namespace MagicUI.Components
     /// <summary>
     /// A layout that places elements adjacent to each other with optional spacing between each element
     /// </summary>
+    /// <remarks>
+    /// Each panel will be as large as the largest child in one direction, and as large as the child in the panel
+    /// in the other direction. The panel will be as large as needed to fit each child with the specified spacing and orientation
+    /// </remarks>
     public sealed class StackLayout : Layout
     {
         private float spacing = 0;

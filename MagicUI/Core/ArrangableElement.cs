@@ -159,7 +159,7 @@ namespace MagicUI.Core
         /// in theory, it should work to put different parts of the logical tree in different layouts.
         /// However, if you do this, know that it may cause unexpected behavior and use with caution.
         /// </remarks>
-        public ArrangableElement(LayoutRoot onLayout, string name = "New ArrangeableElement")
+        public ArrangableElement(LayoutRoot onLayout, string name = "New ArrangableElement")
         {
             Name = name;
             LayoutRoot = onLayout;

@@ -9,6 +9,9 @@ using UImage = UnityEngine.UI.Image;
 
 namespace MagicUI.Components
 {
+    /// <summary>
+    /// A button element
+    /// </summary>
     public sealed class Button : ArrangableElement, IGameObjectWrapper
     {
         private readonly GameObject imgObj;
@@ -18,6 +21,9 @@ namespace MagicUI.Components
         private readonly UButton btn;
         private readonly Text textComponent;
 
+        /// <summary>
+        /// Event that fires when the button is clicked
+        /// </summary>
         public event UnityAction<Button>? Click;
 
         private void InvokeClick()
@@ -26,6 +32,9 @@ namespace MagicUI.Components
         }
 
         private float margin = 10;
+        /// <summary>
+        /// The internal margin between the button's content and its border
+        /// </summary>
         public float Margin
         {
             get => margin;
@@ -39,6 +48,9 @@ namespace MagicUI.Components
             }
         }
 
+        /// <summary>
+        /// The button's content
+        /// </summary>
         public string Content
         {
             get => textComponent.text;
@@ -53,7 +65,26 @@ namespace MagicUI.Components
             }
         }
 
+        /// <summary>
+        /// The color of the text in the button
+        /// </summary>
+        public Color ContentColor
+        {
+            get => textComponent.color;
+            set
+            {
+                if (textComponent.color != value)
+                {
+                    textComponent.color = value;
+                    InvalidateArrange();
+                }
+            }
+        }
+
         private float minWidth = 10;
+        /// <summary>
+        /// The minimum width of the button
+        /// </summary>
         public float MinWidth
         {
             get => minWidth;
@@ -68,6 +99,9 @@ namespace MagicUI.Components
         }
 
         private float minHeight = 10;
+        /// <summary>
+        /// The minimum height of the button
+        /// </summary>
         public float MinHeight
         {
             get => minHeight;
@@ -81,6 +115,11 @@ namespace MagicUI.Components
             }
         }
 
+        /// <summary>
+        /// Creates a button
+        /// </summary>
+        /// <param name="onLayout">The layout root to draw the button on</param>
+        /// <param name="name">The name of the button</param>
         public Button(LayoutRoot onLayout, string name = "New Button") : base(onLayout, name)
         {
             //todo: this should get rebuilt as a composition of a TextObject and an image - but the API support for that is not amazing right

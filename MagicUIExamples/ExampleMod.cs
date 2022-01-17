@@ -29,19 +29,56 @@ namespace MagicUIExamples
         {
             if (layout == null)
             {
-                layout = new(true, "Persistent layout");
+                layout = new(true, false, "Persistent layout");
 
-                Button testButton = new Button(layout)
+                StackLayout buttonLayout = new(layout)
                 {
+                    HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Center,
-                    MinWidth = 100,
+                    Spacing = 10,
+                    Orientation = Orientation.Vertical,
                     Padding = new(20)
                 };
+                Button testButton = new(layout)
+                {
+                    MinWidth = 100
+                };
                 testButton.Click += TestButton_Click;
+                Button toggleButton = new(layout)
+                {
+                    Content = "Toggle is on",
+                    ContentColor = Color.green,
+                    Margin = 20
+                };
+                toggleButton.Click += ToggleButton_Click;
+                buttonLayout.Children.Add(testButton);
+                buttonLayout.Children.Add(toggleButton);
 
                 layout.ListenForHotkey(KeyCode.A, () => testButton.Content += "A");
                 layout.ListenForHotkey(KeyCode.Return, () => testButton.Content += "\n");
                 layout.ListenForHotkey(KeyCode.Equals, () => testButton.Margin += 5, ModifierKeys.Shift);
+
+                Layout dynamicGrid = new DynamicUniformGrid(layout)
+                {
+                    VerticalAlignment = VerticalAlignment.Top,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalSpacing = 10,
+                    HorizontalSpacing = 5,
+                    ChildrenBeforeRollover = 2,
+                    Orientation = Orientation.Vertical
+                };
+                dynamicGrid.Children.Add(new TextObject(layout)
+                {
+                    Text = "Test1"
+                });
+                dynamicGrid.Children.Add(new TextObject(layout)
+                {
+                    Text = "Test2"
+                });
+                dynamicGrid.Children.Add(new TextObject(layout)
+                {
+                    Text = "Beeeeeeg"
+                });
 
                 new TextObject(layout)
                 {
@@ -115,7 +152,7 @@ namespace MagicUIExamples
                 {
                     // this particular hook happens before the scene actually begins - so be careful when you
                     // create non-persistent stuff as it may go away before you ever see it
-                    LayoutRoot noPersist = new(false);
+                    LayoutRoot noPersist = new(false, false);
                     new TextObject(noPersist)
                     {
                         Text = "This text will go away when you leave the scene",
@@ -127,6 +164,20 @@ namespace MagicUIExamples
             }
 
             orig(self);
+        }
+
+        private void ToggleButton_Click(Button sender)
+        {
+            if (sender.ContentColor == Color.green)
+            {
+                sender.ContentColor = Color.red;
+                sender.Content = "Toggle is off";
+            }
+            else
+            {
+                sender.ContentColor = Color.green;
+                sender.Content = "Toggle is on";
+            }
         }
 
         private void TestButton_Click(Button sender)

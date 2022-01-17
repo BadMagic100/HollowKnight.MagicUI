@@ -33,9 +33,10 @@ namespace MagicUI.Core
         /// <summary>
         /// Creates a new layout root
         /// </summary>
-        /// <param name="persist">Whether the layout will persist across scene transitions.</param>
+        /// <param name="persist">Whether the layout will persist across scene transitions</param>
+        /// <param name="pauseOnly">Whether the layout will be visible only while the game is paused</param>
         /// <param name="name">The name of the layout root and underlying canvas</param>
-        public LayoutRoot(bool persist, string name = "New LayoutRoot")
+        public LayoutRoot(bool persist, bool pauseOnly, string name = "New LayoutRoot")
         {
             Name = name;
             IsPersistent = persist;
@@ -43,15 +44,23 @@ namespace MagicUI.Core
             rootCanvas = new(name);
             Canvas canvasComponent = rootCanvas.AddComponent<Canvas>();
             canvasComponent.renderMode = RenderMode.ScreenSpaceOverlay;
+
             CanvasScaler scale = rootCanvas.AddComponent<CanvasScaler>();
             scale.referenceResolution = UI.Screen.size;
             scale.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+
             rootCanvas.AddComponent<GraphicRaycaster>();
+            rootCanvas.AddComponent<CanvasGroup>();
+
             layoutOrchestrator = rootCanvas.AddComponent<LayoutOrchestrator>();
 
             if (persist)
             {
                 UObject.DontDestroyOnLoad(rootCanvas);
+            }
+            if (pauseOnly)
+            {
+                rootCanvas.AddComponent<VisibleWhilePaused>();
             }
         }
 
@@ -118,6 +127,8 @@ namespace MagicUI.Core
         /// </summary>
         public void Destroy()
         {
+            rootCanvas.SetActive(false);
+            layoutOrchestrator.Clear();
             UObject.Destroy(rootCanvas);
             UObject.Destroy(layoutOrchestrator);
             // todo: a bit concerned about memory here - pretty sure we still hold reference to the orchestrator which holds
