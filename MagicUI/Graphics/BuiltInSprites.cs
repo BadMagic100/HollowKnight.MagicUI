@@ -37,5 +37,35 @@ namespace MagicUI.Graphics
                 new Vector4(6, 5, 6, 5)
             );
         }
+
+        /// <summary>
+        /// Creates a sliced sprite for a scalable underline
+        /// </summary>
+        public static Sprite CreateSlicedUnderline()
+        {
+            Texture2D tex = Loader.GetTexture("Underline-2.png");
+            return Sprite.Create(
+                tex,
+                new Rect(0, 0, tex.width, tex.height),
+                new Vector2(0.5f, 0.5f),
+                100,
+                0,
+                SpriteMeshType.FullRect,
+                new Vector4(6, 5, 6, 5)
+            );
+        }
+
+        /// <summary>
+        /// Creates a standard sprite of the a white quill
+        /// </summary>
+        public static Sprite CreateQuill()
+        {
+            Texture2D tex = Loader.GetTexture("inv_item__0004_quill-white.png");
+            return Sprite.Create(
+                tex,
+                new Rect(0, 0, tex.width, tex.height),
+                new Vector2(0.5f, 0.5f)
+            );
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace MagicUI.Components
     /// <summary>
     /// A button element
     /// </summary>
-    public sealed class Button : ArrangableElement, IGameObjectWrapper
+    public sealed class Button : ArrangableElement, IGameObjectWrapper, IControllerInteractable
     {
         private readonly GameObject imgObj;
         private readonly GameObject textObj;
@@ -124,7 +124,7 @@ namespace MagicUI.Components
         {
             //todo: this should get rebuilt as a composition of a TextObject and an image - but the API support for that is not amazing right
             //      now, so it'll happen in v2.
-            imgObj = new GameObject(name + "Border");
+            imgObj = new GameObject(name + "-Border");
             imgObj.AddComponent<CanvasRenderer>();
 
             Sprite sprite = BuiltInSprites.CreateSlicedBorderRect();
@@ -206,6 +206,12 @@ namespace MagicUI.Components
         {
             Object.Destroy(imgObj);
             Object.Destroy(textObj);
+        }
+
+        /// <inheritdoc/>
+        public Selectable GetSelectable()
+        {
+            return btn;
         }
     }
 }

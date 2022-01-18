@@ -51,10 +51,14 @@
 	  <DocumentationFile>bin\Release\MagicUI.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Resources\inv_item__0004_quill-white.png" />
 	  <None Remove="Resources\RoundedCornerRect-2.png" />
+	  <None Remove="Resources\Underline-2.png" />
 	</ItemGroup>
 	<ItemGroup>
+	  <EmbeddedResource Include="Resources\inv_item__0004_quill-white.png" />
 	  <EmbeddedResource Include="Resources\RoundedCornerRect-2.png" />
+	  <EmbeddedResource Include="Resources\Underline-2.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp">

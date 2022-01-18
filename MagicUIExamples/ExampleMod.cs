@@ -31,7 +31,7 @@ namespace MagicUIExamples
             {
                 layout = new(true, false, "Persistent layout");
 
-                StackLayout buttonLayout = new(layout)
+                StackLayout interactionLayout = new(layout)
                 {
                     HorizontalAlignment = HorizontalAlignment.Left,
                     VerticalAlignment = VerticalAlignment.Center,
@@ -50,13 +50,28 @@ namespace MagicUIExamples
                     ContentColor = Color.green,
                     Margin = 20
                 };
+                TextInput input = new(layout, "TestInput")
+                {
+                    FontSize = 22,
+                    Text = "Sample input"
+                };
+                Button inputButton = new(layout)
+                {
+                    Content = "Click to capture input",
+                    Margin = 20
+                };
+                inputButton.Click += (sender) => sender.Content = input.Text;
+
                 toggleButton.Click += ToggleButton_Click;
-                buttonLayout.Children.Add(testButton);
-                buttonLayout.Children.Add(toggleButton);
+                interactionLayout.Children.Add(testButton);
+                interactionLayout.Children.Add(toggleButton);
+                interactionLayout.Children.Add(input);
+                interactionLayout.Children.Add(inputButton);
 
                 layout.ListenForHotkey(KeyCode.A, () => testButton.Content += "A");
                 layout.ListenForHotkey(KeyCode.Return, () => testButton.Content += "\n");
                 layout.ListenForHotkey(KeyCode.Equals, () => testButton.Margin += 5, ModifierKeys.Shift);
+                layout.ListenForHotkey(KeyCode.B, () => input.Font = UI.TrajanBold);
 
                 Layout dynamicGrid = new DynamicUniformGrid(layout)
                 {
@@ -183,6 +198,11 @@ namespace MagicUIExamples
         private void TestButton_Click(Button sender)
         {
             sender.Content = "hivescream.";
+            TextInput? input = layout?.GetElement<TextInput>("TestInput");
+            if (input != null)
+            {
+                input.Placeholder = "Enter text!";
+            }
         }
 
         private void MakeStackChildren(Layout stack)
