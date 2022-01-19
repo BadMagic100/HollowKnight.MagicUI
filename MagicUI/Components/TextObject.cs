@@ -28,7 +28,6 @@ namespace MagicUI.Components
                 if (value != textComponent.text)
                 {
                     textComponent.text = value;
-                    tx.sizeDelta = MeasureText();
                     InvalidateMeasure();
                 }
             }
@@ -58,7 +57,6 @@ namespace MagicUI.Components
                 if (newAlignment != textComponent.alignment)
                 {
                     textComponent.alignment = newAlignment;
-                    tx.sizeDelta = MeasureText();
                     InvalidateMeasure();
                 }
             }
@@ -75,7 +73,6 @@ namespace MagicUI.Components
                 if (value != textComponent.font)
                 {
                     textComponent.font = value;
-                    tx.sizeDelta = MeasureText();
                     InvalidateMeasure();
                 }
             }
@@ -92,8 +89,23 @@ namespace MagicUI.Components
                 if (value != textComponent.fontSize)
                 {
                     textComponent.fontSize = value;
-                    tx.sizeDelta = MeasureText();
                     InvalidateMeasure();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The color of the text
+        /// </summary>
+        public Color ContentColor
+        {
+            get => textComponent.color;
+            set
+            {
+                if (value != textComponent.color)
+                {
+                    textComponent.color = value;
+                    InvalidateArrange();
                 }
             }
         }
@@ -151,6 +163,7 @@ namespace MagicUI.Components
         {
             // todo: this isn't parent-relative which could cause some problems using this as a building block
             Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, ContentSize);
+            tx.sizeDelta = ContentSize;
             tx.anchorMax = pos;
             tx.anchorMin = pos;
 

@@ -1,8 +1,8 @@
 ﻿using MagicUI.Behaviours;
 using MagicUI.Core;
 using MagicUI.Graphics;
+using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 using UButton = UnityEngine.UI.Button;
 using UImage = UnityEngine.UI.Image;
@@ -24,7 +24,7 @@ namespace MagicUI.Components
         /// <summary>
         /// Event that fires when the button is clicked
         /// </summary>
-        public event UnityAction<Button>? Click;
+        public event Action<Button>? Click;
 
         private void InvokeClick()
         {
@@ -204,8 +204,8 @@ namespace MagicUI.Components
         /// <inheritdoc/>
         protected override void DestroyOverride()
         {
-            Object.Destroy(imgObj);
-            Object.Destroy(textObj);
+            UnityEngine.Object.Destroy(imgObj);
+            UnityEngine.Object.Destroy(textObj);
         }
 
         /// <inheritdoc/>

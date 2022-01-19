@@ -1,5 +1,6 @@
 ﻿using MagicUI.Core;
 using MagicUI.Graphics;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UImage = UnityEngine.UI.Image;
@@ -23,10 +24,64 @@ namespace MagicUI.Components
         private readonly Text placeholder;
         private readonly Text textComponent;
 
+        /// <summary>
+        /// Event that fires when the edit is completed, e.g. by clicking off the element. Sends this input and its current text.
+        /// </summary>
+        public event Action<TextInput, string>? TextEditFinished;
+
+        /// <summary>
+        /// Event that fires when the text changes, e.g. when a key is entered. Sends this input and its current text.
+        /// </summary>
+        public event Action<TextInput, string>? TextChanged;
+
+        private void InvokeEditFinished(string text)
+        {
+            TextEditFinished?.Invoke(this, text);
+        }
+
+        private void InvokeTextChanged(string text)
+        {
+            TextChanged?.Invoke(this, text);
+        }
+
         /// <inheritdoc/>
         public GameObject GameObject => underlineObj;
 
+        private const TextAnchor TEXT_ALIGN_DEFAULT = TextAnchor.MiddleLeft;
+        /// <summary>
+        /// The alignment of the text within this element
+        /// </summary>
+        public HorizontalAlignment TextAlignment
+        {
+            get => textComponent.alignment switch
+            {
+                TextAnchor.MiddleLeft => HorizontalAlignment.Left,
+                TextAnchor.MiddleCenter => HorizontalAlignment.Center,
+                TextAnchor.MiddleRight => HorizontalAlignment.Right,
+                _ => throw new NotImplementedException()
+            };
+            set
+            {
+                TextAnchor newAlignment = value switch
+                {
+                    HorizontalAlignment.Left => TextAnchor.MiddleLeft,
+                    HorizontalAlignment.Right => TextAnchor.MiddleRight,
+                    HorizontalAlignment.Center => TextAnchor.MiddleCenter,
+                    _ => throw new NotImplementedException(),
+                };
+                if (newAlignment != textComponent.alignment)
+                {
+                    textComponent.alignment = newAlignment;
+                    placeholder.alignment = newAlignment;
+                    InvalidateMeasure();
+                }
+            }
+        }
+
         private const int FONT_SIZE_DEFAULT = 12;
+        /// <summary>
+        /// The font size for the text
+        /// </summary>
         public int FontSize
         {
             get => textComponent.fontSize;
@@ -41,6 +96,10 @@ namespace MagicUI.Components
             }
         }
 
+        private readonly Font FONT_DEFAULT = UI.TrajanNormal;
+        /// <summary>
+        /// The font to use to draw text
+        /// </summary>
         public Font Font
         {
             get => textComponent.font;
@@ -55,6 +114,9 @@ namespace MagicUI.Components
             }
         }
 
+        /// <summary>
+        /// The placeholder text shown when the input is empty
+        /// </summary>
         public string Placeholder
         {
             get => placeholder.text;
@@ -68,6 +130,9 @@ namespace MagicUI.Components
             }
         }
 
+        /// <summary>
+        /// The content of the text input
+        /// </summary>
         public string Text
         {
             get => input.text;
@@ -77,6 +142,89 @@ namespace MagicUI.Components
                 {
                     input.text = value;
                     InvalidateArrange();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The content type of the input. MagicUI does not provide API support for <see cref="InputField.ContentType.Custom"/>
+        /// at this time.
+        /// </summary>
+        public InputField.ContentType ContentType
+        {
+            get => input.contentType;
+            set
+            {
+                if (value != input.contentType)
+                {
+                    input.contentType = value;
+                    InvalidateArrange();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The color of the text
+        /// </summary>
+        public Color ContentColor
+        {
+            get => textComponent.color;
+            set
+            {
+                if (value != textComponent.color)
+                {
+                    textComponent.color = value;
+                    InvalidateArrange();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The color of the placeholder
+        /// </summary>
+        public Color PlaceholderColor
+        {
+            get => placeholder.color;
+            set
+            {
+                if (value != placeholder.color)
+                {
+                    placeholder.color = value;
+                    InvalidateArrange();
+                }
+            }
+        }
+
+        private float minWidth = 10;
+        /// <summary>
+        /// The minimum width of the text input
+        /// </summary>
+        public float MinWidth
+        {
+            get => minWidth;
+            set
+            {
+                if (value != minWidth)
+                {
+                    minWidth = value;
+                    InvalidateMeasure();
+                }
+            }
+        }
+
+        private float iconSpacing = 5;
+        /// <summary>
+        /// The spacing between the quill icon
+        /// </summary>
+        public float IconSpacing
+        {
+            get => iconSpacing;
+            set
+            {
+                if (value != iconSpacing)
+                {
+                    iconSpacing = value;
+                    InvalidateMeasure();
                 }
             }
         }
@@ -129,11 +277,11 @@ namespace MagicUI.Components
             textObj.transform.SetParent(underlineObj.transform, false);
 
             textComponent = textObj.AddComponent<Text>();
-            textComponent.font = UI.TrajanNormal;
+            textComponent.font = FONT_DEFAULT;
             textComponent.fontSize = FONT_SIZE_DEFAULT;
+            textComponent.alignment = TEXT_ALIGN_DEFAULT;
             textComponent.horizontalOverflow = HorizontalWrapMode.Overflow;
             textComponent.verticalOverflow = VerticalWrapMode.Overflow;
-            textComponent.alignment = TextAnchor.MiddleLeft;
 
             placeholderObj = new GameObject(name + "-Placeholder");
             placeholderTx = placeholderObj.AddComponent<RectTransform>();
@@ -142,22 +290,23 @@ namespace MagicUI.Components
             placeholderObj.transform.SetParent(underlineObj.transform, false);
 
             placeholder = placeholderObj.AddComponent<Text>();
-            placeholder.font = UI.TrajanNormal;
+            placeholder.font = FONT_DEFAULT;
             placeholder.fontSize = FONT_SIZE_DEFAULT;
-            placeholder.fontStyle = FontStyle.Italic;
-            placeholder.text = "Enter text...";
-            placeholder.color = Color.grey;
+            placeholder.alignment = TEXT_ALIGN_DEFAULT;
             placeholder.horizontalOverflow = HorizontalWrapMode.Overflow;
             placeholder.verticalOverflow = VerticalWrapMode.Overflow;
-            placeholder.alignment = TextAnchor.MiddleLeft;
+            placeholder.color = Color.grey;
+            placeholder.fontStyle = FontStyle.Italic;
 
             input = underlineObj.AddComponent<InputField>();
             input.targetGraphic = underlineImg;
             input.textComponent = textComponent;
             input.placeholder = placeholder;
+            input.onEndEdit.AddListener(InvokeEditFinished);
+            input.onValueChanged.AddListener(InvokeTextChanged);
         }
 
-        private Vector2 MeasureText()
+        private Vector2 MeasurePlaceholder()
         {
             TextGenerator textGen = new();
             // have as much space as the screen for the text; otherwise we risk unwanted clipping
@@ -173,8 +322,9 @@ namespace MagicUI.Components
         /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
-            Vector2 size = MeasureText();
-            size += new Vector2(size.y + 5, 2);
+            Vector2 size = MeasurePlaceholder();
+            size += new Vector2(size.y + IconSpacing, 2);
+            size.x = Math.Max(size.x, minWidth);
 
             return size;
         }
@@ -189,8 +339,11 @@ namespace MagicUI.Components
             underlineTx.anchorMin = underlinePos;
             underlineTx.anchorMax = underlinePos;
 
-            Vector2 textSize = MeasureText();
-            Vector2 textPos = UI.UnityParentRelativePosition(new Vector2(textSize.y + 5, 0), textSize, ContentSize);
+            Vector2 textSize = MeasurePlaceholder();
+            Vector2 iconSize = new(textSize.y, textSize.y);
+            textSize.x = ContentSize.x - iconSize.x - IconSpacing;
+
+            Vector2 textPos = UI.UnityParentRelativePosition(new Vector2(textSize.y + IconSpacing, 0), textSize, ContentSize);
             textTx.sizeDelta = textSize;
             textTx.anchorMin = textPos;
             textTx.anchorMax = textPos;
@@ -198,7 +351,6 @@ namespace MagicUI.Components
             placeholderTx.anchorMin = textPos;
             placeholderTx.anchorMax = textPos;
 
-            Vector2 iconSize = new(textSize.y, textSize.y);
             Vector2 iconPos = UI.UnityParentRelativePosition(Vector2.zero, iconSize, ContentSize);
             iconTx.sizeDelta = iconSize;
             iconTx.anchorMin = iconPos;
@@ -210,9 +362,9 @@ namespace MagicUI.Components
         /// <inheritdoc/>
         protected override void DestroyOverride()
         {
-            Object.Destroy(underlineObj);
-            Object.Destroy(textObj);
-            Object.Destroy(placeholderObj);
+            UnityEngine.Object.Destroy(underlineObj);
+            UnityEngine.Object.Destroy(textObj);
+            UnityEngine.Object.Destroy(placeholderObj);
         }
 
         /// <inheritdoc/>

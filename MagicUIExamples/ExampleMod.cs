@@ -53,7 +53,7 @@ namespace MagicUIExamples
                 TextInput input = new(layout, "TestInput")
                 {
                     FontSize = 22,
-                    Text = "Sample input"
+                    Placeholder = "Enter text here...",
                 };
                 Button inputButton = new(layout)
                 {
