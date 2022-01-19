@@ -44,7 +44,7 @@ jobs:
       - name: Download DocFX
         working-directory: MagicUI/docs
         run: |
-          wget https://github.com/dotnet/docfx/releases/latest/download/docfx.zip -O docfx.zip
+          wget https://github.com/dotnet/docfx/releases/download/v2.58.9/docfx.zip -O docfx.zip
           unzip docfx.zip -d docfx
       
       # Build and publish docs
