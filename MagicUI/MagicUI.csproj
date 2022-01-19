@@ -13,9 +13,8 @@
 		<Nullable>enable</Nullable>
 		<OutputPath>bin\$(Configuration)\</OutputPath>
 		<LangVersion>latest</LangVersion>
-		<!-- Change this to the path of your modded HK installation -->
-		<HollowKnightRefs>D:\Program Files\Steam\steamapps\common\Hollow Knight\hollow_knight_Data\Managed\</HollowKnightRefs>
-		<!-- Change this to the path where you want the ready-to-upload exports to be -->
+		<!-- Locally, this should be a symlink to hollow_knight_Data\Managed - on github actions we'll extract a zip here -->
+		<HollowKnightRefs>..\API\</HollowKnightRefs>
 		<ExportDir>bin\Publish</ExportDir>
 		<Authors>BadMagic</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -50,6 +49,11 @@
 	
 	  <DocumentationFile>bin\Release\MagicUI.xml</DocumentationFile>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="API\**" />
+	  <EmbeddedResource Remove="API\**" />
+	  <None Remove="API\**" />
+	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Resources\inv_item__0004_quill-white.png" />
 	  <None Remove="Resources\RoundedCornerRect-2.png" />
@@ -334,6 +338,5 @@
 	</ItemGroup>
 	<ItemGroup>
 		<None Include=".gitignore" />
-		<None Include="Resources\.gitignore" />
 	</ItemGroup>
 </Project>
