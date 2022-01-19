@@ -38,7 +38,7 @@ jobs:
         run: dotnet restore
 
       - name: Build
-        run: dotnet build
+        run: dotnet build -c Release
         
       # Install DocFX
       - name: Setup DocFX
