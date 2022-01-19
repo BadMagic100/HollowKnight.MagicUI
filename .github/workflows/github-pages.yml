@@ -41,15 +41,16 @@ jobs:
         run: dotnet build -c Release
         
       # Install DocFX
-      - name: Setup DocFX
-        uses: crazy-max/ghaction-chocolatey@v1
-        with:
-          args: install docfx
+      - name: Download DocFX
+        working-directory: MagicUI/docs
+        run: |
+          wget https://github.com/dotnet/docfx/releases/latest/download/docfx.zip -O docfx.zip
+          unzip docfx.zip -d docfx
       
       # Build and publish docs
       - name: DocFX build
         working-directory: MagicUI/docs
-        run: docfx docfx.json
+        run: mono docfx/docfx.exe docfx.json
         continue-on-error: false
 
       - name: Publish
