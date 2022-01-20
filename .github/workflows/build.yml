@@ -54,11 +54,21 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           path: artifacts
+      - name: Get build details
+        id: details
+        run: |
+          $sha = Get-Content artifacts/Publish/SHA.txt
+          $ver = Get-Content artifacts/Publish/version.txt
+          echo "::set-output name=archiveHash::$sha"
+          echo "::set-output name=buildVersion::$ver"
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
           draft: true
           generate_release_notes: true
-          tag_name: v1.0
+          fail_on_unmatched_files: true
+          tag_name: v${{ steps.details.outputs.buildVersion }}
+          body: |
+            SHA256: ${{ steps.details.outputs.archiveHash }}
           files: |
             artifacts/Publish/MagicUI.zip
