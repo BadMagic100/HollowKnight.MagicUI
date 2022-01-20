@@ -39,7 +39,7 @@ jobs:
       - name: Prepare artifacts for release
         uses: actions/upload-artifact@v2
         # only make a release if we manually request the build - other builds will be handled automatically with a push
-        if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == true
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == 'true'
         with:
           name: Publish
           path: MagicUI/bin/Publish/MagicUI
@@ -48,7 +48,7 @@ jobs:
       - build
     runs-on: windows-latest
     # only make a release if we manually request the build - other builds will be handled automatically with a push
-    if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == true
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == 'true'
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
