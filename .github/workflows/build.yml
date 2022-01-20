@@ -37,6 +37,8 @@ jobs:
 
       - name: Prepare artifacts for release
         uses: actions/upload-artifact@v2
+        # only make a release if we manually request the build - other builds will be handled automatically with a push
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release
         with:
           name: Publish
           path: MagicUI/bin/Publish/MagicUI
