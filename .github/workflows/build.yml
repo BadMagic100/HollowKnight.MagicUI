@@ -17,8 +17,8 @@ jobs:
 
       - name: Setup MAPI
         run: |
-            wget https://files.catbox.moe/ut01ee.zip -O API.zip
-            unzip API.zip -d API
+            Invoke-WebRequest -Uri "https://files.catbox.moe/ut01ee.zip" -OutFile API.zip
+            Expand-Archive -Path API.zip -DestinationPath API
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
