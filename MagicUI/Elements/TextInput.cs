@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UImage = UnityEngine.UI.Image;
 
-namespace MagicUI.Components
+namespace MagicUI.Elements
 {
     /// <summary>
     /// A text input element
@@ -332,6 +332,11 @@ namespace MagicUI.Components
         /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
+            // hacky way to deal with the overline issue on half-pixel positions:
+            // just make sure we don't ever go on a half-pixel - specifically an issue for the underline image
+            // since it's not symmetric; the problem is not as noticable on other images
+            alignedTopLeftCorner.y = Mathf.Round(alignedTopLeftCorner.y);
+
             underlineTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ContentSize.x);
             underlineTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ContentSize.y);
 

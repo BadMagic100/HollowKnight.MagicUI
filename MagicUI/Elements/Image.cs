@@ -2,7 +2,7 @@
 using UnityEngine;
 using UImage = UnityEngine.UI.Image;
 
-namespace MagicUI.Components
+namespace MagicUI.Elements
 {
     /// <summary>
     /// A simple image element

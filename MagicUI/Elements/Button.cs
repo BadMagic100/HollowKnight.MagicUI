@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using UButton = UnityEngine.UI.Button;
 using UImage = UnityEngine.UI.Image;
 
-namespace MagicUI.Components
+namespace MagicUI.Elements
 {
     /// <summary>
     /// A button element

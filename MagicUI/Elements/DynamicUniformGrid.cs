@@ -2,7 +2,7 @@
 using System;
 using UnityEngine;
 
-namespace MagicUI.Components
+namespace MagicUI.Elements
 {
     /// <summary>
     /// A layout that places elements adjacent to each other in a grid with a dynamic number of rows/columns

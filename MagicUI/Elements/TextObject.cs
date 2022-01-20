@@ -3,7 +3,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MagicUI.Components
+namespace MagicUI.Elements
 {
     /// <summary>
     /// A text display element

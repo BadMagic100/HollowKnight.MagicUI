@@ -1,7 +1,7 @@
 ﻿using MagicUI.Core;
 using UnityEngine;
 
-namespace MagicUI.Components
+namespace MagicUI.Elements
 {
     /// <summary>
     /// A layout that places elements adjacent to each other with optional spacing between each element
