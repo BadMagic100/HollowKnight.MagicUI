@@ -9,7 +9,7 @@ on:
 
 jobs:
   generate-docs:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
@@ -17,14 +17,11 @@ jobs:
 
       - name: Setup MAPI
         run: |
-            wget https://files.catbox.moe/felhio.zip -O API.zip
+            wget https://files.catbox.moe/ut01ee.zip -O API.zip
             unzip API.zip -d API
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
-
-      - name: Setup ms-build
-        run: sudo apt-get install -y nuget mono-devel mono-xbuild
       
       - name: Install dependencies
         run: dotnet restore

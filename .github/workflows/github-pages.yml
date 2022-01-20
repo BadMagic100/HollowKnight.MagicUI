@@ -8,7 +8,7 @@ on:
 
 jobs:
   generate-docs:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
@@ -16,7 +16,7 @@ jobs:
 
       - name: Setup MAPI
         run: |
-            wget https://files.catbox.moe/felhio.zip -O API.zip
+            wget https://files.catbox.moe/ut01ee.zip -O API.zip
             unzip API.zip -d API
         
       # setup .NET
@@ -30,16 +30,15 @@ jobs:
         run: dotnet restore
         
       # Install DocFX
-      - name: Download DocFX
-        working-directory: MagicUI/docs
-        run: |
-          wget https://github.com/dotnet/docfx/releases/download/v2.58.9/docfx.zip -O docfx.zip
-          unzip docfx.zip -d docfx
+      - name: Setup DocFX
+        uses: crazy-max/ghaction-chocolatey@v1
+        with:
+          args: install docfx
       
       # Build and publish docs
       - name: DocFX build
         working-directory: MagicUI/docs
-        run: mono docfx/docfx.exe docfx.json
+        run: docfx docfx.json
         continue-on-error: false
 
       - name: Publish
