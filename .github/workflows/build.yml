@@ -7,6 +7,11 @@ on:
   pull_request:
     branches: [ master ]
   workflow_dispatch:
+    inputs:
+      should_release:
+        description: "Create release?"
+        required: true
+        default: false
 
 jobs:
   build:
@@ -34,13 +39,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Publish
-          path: MagicUI/bin/Publish
+          path: MagicUI/bin/Publish/MagicUI
   release:
     needs:
       - build
     runs-on: windows-latest
     # only make a release if we manually request the build - other builds will be handled automatically with a push
-    if: github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release
     steps:
       - name: Download Artifacts
         uses: actions/download-artifact@v2
