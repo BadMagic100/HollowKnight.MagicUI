@@ -52,4 +52,4 @@ jobs:
           draft: true
           generate_release_notes: true
           files: |
-            artifacts/MagicUI.zip
+            artifacts/Publish/MagicUI.zip
