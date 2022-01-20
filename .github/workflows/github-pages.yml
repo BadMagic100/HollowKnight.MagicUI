@@ -36,9 +36,6 @@ jobs:
       
       - name: Install dependencies
         run: dotnet restore
-
-      - name: Build
-        run: dotnet build -c Release
         
       # Install DocFX
       - name: Download DocFX
