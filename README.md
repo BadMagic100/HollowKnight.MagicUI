@@ -1,7 +1,7 @@
 # MagicUI
 
-![GitHub Build Workflow Status](https://img.shields.io/github/workflow/status/BadMagic100/HollowKnight.MagicUI/Build)
-![GitHub Docs Workflow Status](https://img.shields.io/github/workflow/status/BadMagic100/HollowKnight.MagicUI/Docs?label=docs)
+![GitHub Build Workflow Status](https://github.com/BadMagic100/HollowKnight.MagicUI/actions/workflows/build.yml/badge.svg)
+![GitHub Build Workflow Status](https://github.com/BadMagic100/HollowKnight.MagicUI/actions/workflows/github-pages.yml/badge.svg)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/BadMagic100/HollowKnight.MagicUI)
 ![Downloads GitHub all releases](https://img.shields.io/github/downloads/BadMagic100/HollowKnight.MagicUI/total)
 
