@@ -230,6 +230,22 @@ namespace MagicUI.Elements
         }
 
         /// <summary>
+        /// Whether the input is enabled
+        /// </summary>
+        public bool Enabled
+        {
+            get => input.interactable;
+            set
+            {
+                if (value != input.interactable)
+                {
+                    input.interactable = value;
+                    InvalidateArrange();
+                }
+            }
+        }
+
+        /// <summary>
         /// Creates a text input
         /// </summary>
         /// <param name="onLayout">The layout to draw the input on</param>

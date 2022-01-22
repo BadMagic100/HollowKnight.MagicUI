@@ -59,7 +59,6 @@ namespace MagicUI.Elements
                 if (textComponent.text != value)
                 {
                     textComponent.text = value;
-                    textTx.sizeDelta = MeasureText();
                     InvalidateMeasure();
                 }
             }
@@ -111,6 +110,54 @@ namespace MagicUI.Elements
                 {
                     minHeight = value;
                     InvalidateMeasure();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The font to use to display the content
+        /// </summary>
+        public Font Font
+        {
+            get => textComponent.font;
+            set
+            {
+                if (value != textComponent.font)
+                {
+                    textComponent.font = value;
+                    InvalidateMeasure();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The font size of the content
+        /// </summary>
+        public int FontSize
+        {
+            get => textComponent.fontSize;
+            set
+            {
+                if (value != textComponent.fontSize)
+                {
+                    textComponent.fontSize = value;
+                    InvalidateMeasure();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Whether the button is enabled
+        /// </summary>
+        public bool Enabled
+        {
+            get => btn.interactable;
+            set
+            {
+                if (value != btn.interactable)
+                {
+                    btn.interactable = value;
+                    InvalidateArrange();
                 }
             }
         }
@@ -193,6 +240,8 @@ namespace MagicUI.Elements
         {
             imgTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ContentSize.x);
             imgTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ContentSize.y);
+
+            textTx.sizeDelta = MeasureText();
 
             Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, ContentSize);
             imgTx.anchorMin = pos;
