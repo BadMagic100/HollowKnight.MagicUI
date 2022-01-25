@@ -3,8 +3,6 @@ name: Docs
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   generate-docs:
@@ -34,14 +32,13 @@ jobs:
       
       # Build and publish docs
       - name: DocFX build
-        working-directory: MagicUI/docs
+        working-directory: docs
         run: docfx docfx.json
         continue-on-error: false
 
       - name: Publish
-        if: github.event_name == 'push'
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: MagicUI/docs/_site
+          publish_dir: docs/_site
           force_orphan: true
