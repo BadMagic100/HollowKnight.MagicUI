@@ -14,7 +14,7 @@
 		<OutputPath>bin\$(Configuration)\</OutputPath>
 		<LangVersion>latest</LangVersion>
 		<!-- Locally, this should be a symlink to hollow_knight_Data\Managed - on github actions we'll extract a zip here -->
-		<HollowKnightRefs>..\API\</HollowKnightRefs>
+		<HollowKnightRefs>..\HKManaged\</HollowKnightRefs>
 		<ExportDir>bin\Publish</ExportDir>
 		<Authors>BadMagic</Authors>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
