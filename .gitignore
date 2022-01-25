@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /API
 /HKManaged
+/docs
