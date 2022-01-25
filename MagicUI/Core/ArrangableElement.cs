@@ -1,5 +1,4 @@
 ﻿using MagicUI.Core.Internal;
-using Modding;
 using System;
 using UnityEngine;
 
@@ -10,7 +9,7 @@ namespace MagicUI.Core
     /// </summary>
     public abstract class ArrangableElement
     {
-        private static readonly Loggable log = LogHelper.GetLogger();
+        private static readonly SettingsBoundLogger log = LogHelper.GetLogger();
 
         internal Rect PrevPlacementRect { get; private set; }
 
@@ -205,7 +204,7 @@ namespace MagicUI.Core
             };
 
             Vector2 vec = new(x, y);
-            log.LogDebug($"{Name} top-left corner aligned and adjusted to {vec}");
+            log.Log($"{Name} top-left corner aligned and adjusted to {vec}");
             return vec;
         }
 
@@ -216,7 +215,7 @@ namespace MagicUI.Core
         {
             if (!MeasureIsValid)
             {
-                log.LogDebug($"Measure triggered for {Name}");
+                log.Log($"Measure triggered for {Name}");
                 ContentSize = MeasureOverride();
                 EffectiveSize = ContentSize + new Vector2(Padding.AddedWidth, Padding.AddedHeight);
                 if (Visibility == Visibility.Collapsed)
@@ -225,7 +224,7 @@ namespace MagicUI.Core
                 }
                 MeasureIsValid = true;
                 InvalidateArrange();
-                log.LogDebug($"Computed {Name} size as {EffectiveSize}, adjusted from {ContentSize}");
+                log.Log($"Computed {Name} size as {EffectiveSize}, adjusted from {ContentSize}");
             }
             return EffectiveSize;
         }
@@ -244,7 +243,7 @@ namespace MagicUI.Core
             // only rearrange if we're either put into a new space or explicitly told to rearrange.
             if (!ArrangeIsValid || PrevPlacementRect != availableSpace)
             {
-                log.LogDebug($"Arrange triggered for {Name} in {availableSpace}");
+                log.Log($"Arrange triggered for {Name} in {availableSpace}");
                 ArrangeOverride(GetAlignedTopLeftCorner(availableSpace));
                 PrevPlacementRect = availableSpace;
                 ArrangeIsValid = true;
@@ -269,7 +268,7 @@ namespace MagicUI.Core
         {
             if (!DestroyInProgress)
             {
-                log.LogDebug($"Destroy triggered for {Name}");
+                log.Log($"Destroy triggered for {Name}");
                 DestroyInProgress = true;
                 // don't waste measure/arrange time on me while i'm destroying myself
                 MeasureIsValid = true;

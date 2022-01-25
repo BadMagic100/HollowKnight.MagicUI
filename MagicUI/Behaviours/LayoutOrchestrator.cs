@@ -1,6 +1,5 @@
 ﻿using MagicUI.Core;
 using MagicUI.Core.Internal;
-using Modding;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace MagicUI.Behaviours
 {
     internal class LayoutOrchestrator : MonoBehaviour
     {
-        private static readonly Loggable log = LogHelper.GetLogger();
+        private static readonly SettingsBoundLogger log = LogHelper.GetLogger();
 
         private readonly List<ArrangableElement> elements = new();
         private readonly Dictionary<string, List<ArrangableElement>> elementLookup = new();
@@ -104,12 +103,12 @@ namespace MagicUI.Behaviours
                 .Take(measureBatch);
             foreach (ArrangableElement element in elementsToRemeasure)
             {
-                log.LogDebug($"Measure/Arrange starting for {element.Name} of type {element.GetType().Name}");
+                log.Log($"Measure/Arrange starting for {element.Name} of type {element.GetType().Name}");
                 // tree roots should always be top-level stuff - we'll allocate the entire screen size for arrangement
                 // and allow them to go where they need to go.
                 element.Measure();
                 element.Arrange(UI.Screen);
-                log.LogDebug($"Measure/Arrange completed for {element.Name}");
+                log.Log($"Measure/Arrange completed for {element.Name}");
             }
 
             // rearrange the specified number of elements. arrange invalidation does not propagate up the tree, so we can generally
@@ -119,10 +118,10 @@ namespace MagicUI.Behaviours
                 .Take(arrangeBatch);
             foreach (ArrangableElement element in elementsToRearrange)
             {
-                log.LogDebug($"Arrange starting for {element.Name} of type {element.GetType().Name}");
+                log.Log($"Arrange starting for {element.Name} of type {element.GetType().Name}");
                 // an invalidated arrange indicates the element wants to place itself in a different location within the same available space.
                 element.Arrange(element.PrevPlacementRect);
-                log.LogDebug($"Arrange completed for {element.Name}");
+                log.Log($"Arrange completed for {element.Name}");
             }
         }
     }
