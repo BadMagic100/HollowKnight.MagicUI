@@ -31,12 +31,28 @@ namespace MagicUI.Core
         public GameObject Canvas { get => rootCanvas; }
 
         /// <summary>
+        /// A predicate that determines whether the layout should be visible. By default (i.e. when there is no condition), the layout is
+        /// always visible.
+        /// </summary>
+        public Func<bool>? VisibilityCondition
+        {
+            get => rootCanvas.GetComponent<ConditionalVisibility>()?.condition;
+            set
+            {
+                ConditionalVisibility? viz = rootCanvas.GetComponent<ConditionalVisibility>();
+                if (viz != null)
+                {
+                    viz.condition = value;
+                }
+            }
+        }
+
+        /// <summary>
         /// Creates a new layout root
         /// </summary>
         /// <param name="persist">Whether the layout will persist across scene transitions</param>
-        /// <param name="pauseOnly">Whether the layout will be visible only while the game is paused</param>
         /// <param name="name">The name of the layout root and underlying canvas</param>
-        public LayoutRoot(bool persist, bool pauseOnly, string name = "New LayoutRoot")
+        public LayoutRoot(bool persist, string name = "New LayoutRoot")
         {
             Name = name;
             IsPersistent = persist;
@@ -51,6 +67,7 @@ namespace MagicUI.Core
 
             rootCanvas.AddComponent<GraphicRaycaster>();
             rootCanvas.AddComponent<CanvasGroup>();
+            rootCanvas.AddComponent<ConditionalVisibility>();
 
             layoutOrchestrator = rootCanvas.AddComponent<LayoutOrchestrator>();
 
@@ -58,9 +75,21 @@ namespace MagicUI.Core
             {
                 UObject.DontDestroyOnLoad(rootCanvas);
             }
+        }
+
+        /// <summary>
+        /// Creates a new layout root
+        /// </summary>
+        /// <param name="persist">Whether the layout will persist across scene transitions</param>
+        /// <param name="pauseOnly">Whether the layout will be visible only while the game is paused</param>
+        /// <param name="name">The name of the layout root and underlying canvas</param>
+        [Obsolete("This constructor provides a flag to set the layout conditionally visible while the game is paused. Please use the (string, bool) constructor "
+            + "and VisibilityCondition property instead. You can set VisibilityCondition to GameManager.instance.IsGamePaused for equivalent behavior.")]
+        public LayoutRoot(bool persist, bool pauseOnly, string name = "New LayoutRoot") : this(persist, name)
+        {
             if (pauseOnly)
             {
-                rootCanvas.AddComponent<VisibleWhilePaused>();
+                VisibilityCondition = GameManager.instance.IsGamePaused;
             }
         }
 

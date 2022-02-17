@@ -26,8 +26,9 @@ namespace MagicUIExamples
         {
             if (layout == null)
             {
-                layout = new(true, false, "Persistent layout");
+                layout = new(true, "Persistent layout");
 
+                // comment out examples as needed to see only the specific ones you want
                 SimpleLayoutExample.Setup(layout);
                 InteractivityAndDynamicSizingExample.Setup(layout);
                 ComplexLayoutExample.Setup(layout);

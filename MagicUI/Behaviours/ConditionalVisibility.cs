@@ -1,13 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace MagicUI.Behaviours
 {
-    internal class VisibleWhilePaused : MonoBehaviour
+    internal class ConditionalVisibility : MonoBehaviour
     {
+        public Func<bool>? condition;
+
         private void Update()
         {
             CanvasGroup grp = GetComponent<CanvasGroup>();
-            if (GameManager.instance.IsGamePaused())
+            if (condition == null || condition())
             {
                 grp.alpha = 1;
                 grp.interactable = true;
