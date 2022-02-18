@@ -1,5 +1,6 @@
 ﻿using MagicUI.Core;
 using MagicUI.Core.Internal;
+using MagicUI.Graphics.Internal;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace MagicUI.Behaviours
 
         public int measureBatch = 2;
         public int arrangeBatch = 5;
+        public bool shouldRenderDebugBounds = false;
 
         /// <summary>
         /// Registers an element in layout for arrangement and later lookup
@@ -122,6 +124,61 @@ namespace MagicUI.Behaviours
                 // an invalidated arrange indicates the element wants to place itself in a different location within the same available space.
                 element.Arrange(element.PrevPlacementRect);
                 log.Log($"Arrange completed for {element.Name}");
+            }
+        }
+
+        private Vector2 LocalToScreenPoint(Vector2 point)
+        {
+            Canvas c = GetComponent<Canvas>();
+            Vector2 result = c.transform.TransformPoint(point - UI.Screen.size / 2);
+            return new Vector2(Mathf.Round(result.x), Mathf.Round(result.y));
+        }
+
+        private void DrawRect(Rect rect, Color color)
+        {
+            float width = Mathf.Max(1, GetComponent<Canvas>().transform.GetScaleX());
+
+            float left = rect.xMin;
+            float right = rect.xMax;
+            float top = rect.yMin;
+            float bottom = rect.yMax;
+
+            Vector2 topLeft = LocalToScreenPoint(new(left, top));
+            Vector2 topRight = LocalToScreenPoint(new(right, top));
+            Vector2 bottomRight = LocalToScreenPoint(new(right, bottom));
+            Vector2 bottomLeft = LocalToScreenPoint(new(left, bottom));
+
+            Drawing.DrawLine(topLeft, topRight, color, width, true);
+            Drawing.DrawLine(topRight, bottomRight, color, width, true);
+            Drawing.DrawLine(bottomRight, bottomLeft, color, width, true);
+            Drawing.DrawLine(bottomLeft, topLeft, color, width, true);
+        }
+
+        private void OnGUI()
+        {
+            if (Event.current?.type != EventType.Repaint || !shouldRenderDebugBounds)
+            {
+                return;
+            }
+
+            GUI.depth = int.MaxValue;
+            foreach (ArrangableElement element in elements)
+            {
+                if (element.EffectiveSize.magnitude > 0 && element.ArrangeIsValid)
+                {
+                    Rect placementRect = element.PrevPlacementRect;
+                    Rect contentRect = new(element.GetAlignedTopLeftCorner(placementRect), element.ContentSize);
+
+                    Rect effectiveRect = contentRect;
+                    effectiveRect.xMin -= element.Padding.Left;
+                    effectiveRect.xMax += element.Padding.Right;
+                    effectiveRect.yMin -= element.Padding.Top;
+                    effectiveRect.yMax += element.Padding.Bottom;
+
+                    DrawRect(placementRect, Color.green);
+                    DrawRect(effectiveRect, Color.yellow);
+                    DrawRect(contentRect, Color.magenta);
+                }
             }
         }
     }

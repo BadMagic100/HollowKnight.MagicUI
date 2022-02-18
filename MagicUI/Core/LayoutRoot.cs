@@ -48,6 +48,15 @@ namespace MagicUI.Core
         }
 
         /// <summary>
+        /// Whether to render the layout system bounds of elements in this layout for debugging purposes
+        /// </summary>
+        public bool RenderDebugLayoutBounds
+        {
+            get => layoutOrchestrator.shouldRenderDebugBounds;
+            set => layoutOrchestrator.shouldRenderDebugBounds = value;
+        }
+
+        /// <summary>
         /// Creates a new layout root
         /// </summary>
         /// <param name="persist">Whether the layout will persist across scene transitions</param>
@@ -160,9 +169,6 @@ namespace MagicUI.Core
             layoutOrchestrator.Clear();
             UObject.Destroy(rootCanvas);
             UObject.Destroy(layoutOrchestrator);
-            // todo: a bit concerned about memory here - pretty sure we still hold reference to the orchestrator which holds
-            // references to the objects even though they've been destroyed - user needs to set their reference to null
-            // to even have a chance to GC
         }
     }
 }

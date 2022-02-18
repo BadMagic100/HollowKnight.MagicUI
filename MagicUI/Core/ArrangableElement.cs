@@ -185,7 +185,7 @@ namespace MagicUI.Core
         /// <summary>
         /// Helper method to get the position of the top left corner during arrangement, given the component's vertical and horizontal alignments and padding
         /// </summary>
-        private Vector2 GetAlignedTopLeftCorner(Rect availableSpace)
+        internal Vector2 GetAlignedTopLeftCorner(Rect availableSpace)
         {
             float x = horizontalAlignment switch
             {

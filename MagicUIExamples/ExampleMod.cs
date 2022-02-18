@@ -27,6 +27,7 @@ namespace MagicUIExamples
             if (layout == null)
             {
                 layout = new(true, "Persistent layout");
+                layout.RenderDebugLayoutBounds = true;
 
                 // comment out examples as needed to see only the specific ones you want
                 SimpleLayoutExample.Setup(layout);

@@ -49,7 +49,7 @@
 	  <DocumentationFile>bin\Release\MagicUI.xml</DocumentationFile>
 	</PropertyGroup>
 	<ItemGroup>
-		<None Include="..\README.md"/>
+		<None Include="..\README.md" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Compile Remove="API\**" />
