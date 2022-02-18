@@ -177,7 +177,7 @@ namespace MagicUI.Behaviours
 
                     DrawRect(placementRect, Color.green);
                     DrawRect(effectiveRect, Color.yellow);
-                    DrawRect(contentRect, Color.magenta);
+                    DrawRect(contentRect, Color.cyan);
                 }
             }
         }
