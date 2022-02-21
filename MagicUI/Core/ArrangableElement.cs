@@ -11,8 +11,6 @@ namespace MagicUI.Core
     {
         private static readonly SettingsBoundLogger log = LogHelper.GetLogger();
 
-        internal Rect PrevPlacementRect { get; private set; }
-
         /// <summary>
         /// The visual layout parent of this element
         /// </summary>
@@ -37,6 +35,12 @@ namespace MagicUI.Core
         /// The name of the arrangeable for lookup purposes
         /// </summary>
         public string Name { get; private set; }
+
+        /// <summary>
+        /// The current rect this element is placed in. This is set before <see cref="ArrangeOverride(Vector2)"/> is called, so you can access the placement
+        /// space for custom implementations of the aligned top-left corner if needed
+        /// </summary>
+        public Rect PlacementRect { get; private set; }
 
         private HorizontalAlignment horizontalAlignment = HorizontalAlignment.Left;
         /// <summary>
@@ -241,11 +245,11 @@ namespace MagicUI.Core
         public void Arrange(Rect availableSpace)
         {
             // only rearrange if we're either put into a new space or explicitly told to rearrange.
-            if (!ArrangeIsValid || PrevPlacementRect != availableSpace)
+            if (!ArrangeIsValid || PlacementRect != availableSpace)
             {
                 log.Log($"Arrange triggered for {Name} in {availableSpace}");
+                PlacementRect = availableSpace;
                 ArrangeOverride(GetAlignedTopLeftCorner(availableSpace));
-                PrevPlacementRect = availableSpace;
                 ArrangeIsValid = true;
             }
         }

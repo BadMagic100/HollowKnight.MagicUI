@@ -122,7 +122,7 @@ namespace MagicUI.Behaviours
             {
                 log.Log($"Arrange starting for {element.Name} of type {element.GetType().Name}");
                 // an invalidated arrange indicates the element wants to place itself in a different location within the same available space.
-                element.Arrange(element.PrevPlacementRect);
+                element.Arrange(element.PlacementRect);
                 log.Log($"Arrange completed for {element.Name}");
             }
         }
@@ -166,7 +166,7 @@ namespace MagicUI.Behaviours
             {
                 if (element.EffectiveSize.magnitude > 0 && element.ArrangeIsValid)
                 {
-                    Rect placementRect = element.PrevPlacementRect;
+                    Rect placementRect = element.PlacementRect;
                     Rect contentRect = new(element.GetAlignedTopLeftCorner(placementRect), element.ContentSize);
 
                     Rect effectiveRect = contentRect;
