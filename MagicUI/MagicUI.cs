@@ -24,15 +24,9 @@ namespace MagicUI
         }
 
         /// <inheritdoc/>
-        public void OnLoadGlobal(MagicUIGlobalSettings s)
-        {
-            GlobalSettings = s;
-        }
+        public void OnLoadGlobal(MagicUIGlobalSettings s) => GlobalSettings = s;
 
         /// <inheritdoc/>
-        public MagicUIGlobalSettings OnSaveGlobal()
-        {
-            return GlobalSettings;
-        }
+        public MagicUIGlobalSettings OnSaveGlobal() => GlobalSettings;
     }
 }

@@ -175,7 +175,10 @@ namespace MagicUI.Behaviours
                     effectiveRect.yMin -= element.Padding.Top;
                     effectiveRect.yMax += element.Padding.Bottom;
 
-                    DrawRect(placementRect, Color.green);
+                    if (!placementRect.Equals(UI.Screen))
+                    {
+                        DrawRect(placementRect, Color.green);
+                    }
                     DrawRect(effectiveRect, Color.yellow);
                     DrawRect(contentRect, Color.cyan);
                 }
