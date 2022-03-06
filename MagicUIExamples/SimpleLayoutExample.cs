@@ -23,7 +23,7 @@ namespace MagicUIExamples
                 Text = "This is a left-aligned text in the\nbottom center with big text"
             };
 
-            new TextObject(layout, "Problem child")
+            new TextObject(layout)
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Top,
