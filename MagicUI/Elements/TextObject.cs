@@ -110,6 +110,48 @@ namespace MagicUI.Elements
             }
         }
 
+        private float maxWidth = float.PositiveInfinity;
+        /// <summary>
+        /// The max width of the text. If text exceeds this width, it will roll to the next line.
+        /// </summary>
+        public float MaxWidth
+        {
+            get => maxWidth;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Value can't be negative", nameof(MaxWidth));
+                }
+                if (value != maxWidth)
+                {
+                    maxWidth = value;
+                    InvalidateMeasure();
+                }
+            }
+        }
+
+        private float maxHeight = float.PositiveInfinity;
+        /// <summary>
+        /// The max height of the text. If text exceeds this height, it will be clipped.
+        /// </summary>
+        public float MaxHeight
+        {
+            get => maxHeight;
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException("Value can't be negative", nameof(MaxHeight));
+                }
+                if (value != maxHeight)
+                {
+                    maxHeight = value;
+                    InvalidateMeasure();
+                }
+            }
+        }
+
         /// <summary>
         /// Creates a text object
         /// </summary>
@@ -131,8 +173,6 @@ namespace MagicUI.Elements
             textComponent.font = UI.TrajanNormal;
             textComponent.text = "";
             textComponent.fontSize = 12;
-            textComponent.horizontalOverflow = HorizontalWrapMode.Overflow;
-            textComponent.verticalOverflow = VerticalWrapMode.Overflow;
             textComponent.alignment = TextAnchor.MiddleLeft;
             tx.sizeDelta = MeasureText();
 
@@ -142,14 +182,17 @@ namespace MagicUI.Elements
         private Vector2 MeasureText()
         {
             TextGenerator textGen = new();
-            // have as much space as the screen for the text; otherwise we risk unwanted clipping
-            TextGenerationSettings settings = textComponent.GetGenerationSettings(UI.Screen.size);
+            float availableWidth = Mathf.Min(UI.Screen.width, MaxWidth);
+            float availableHeight = Mathf.Min(UI.Screen.height, MaxHeight);
+            TextGenerationSettings settings = textComponent.GetGenerationSettings(new Vector2(availableWidth, availableHeight));
             // by default, this will inherit the parent canvas's scale factor, which is set to scale with screen space.
             // however, since we're functioning in an unscaled coordinate system we should get the unscaled size to measure correctly.
             settings.scaleFactor = 1;
-            float width = textGen.GetPreferredWidth(textComponent.text, settings);
-            float height = textGen.GetPreferredHeight(textComponent.text, settings);
-            return new Vector2(width, height);
+            float preferredWidth = textGen.GetPreferredWidth(textComponent.text, settings);
+            float preferredHeight = textGen.GetPreferredHeight(textComponent.text, settings);
+            float width = Mathf.Min(preferredWidth, MaxWidth);
+            float height = Mathf.Min(preferredHeight, MaxHeight);
+            return new Vector2(Mathf.Ceil(width) + 1, Mathf.Ceil(height) + 1);
         }
 
         /// <inheritdoc/>

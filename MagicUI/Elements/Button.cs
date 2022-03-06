@@ -201,8 +201,6 @@ namespace MagicUI.Elements
             textComponent.font = UI.TrajanNormal;
             textComponent.text = "";
             textComponent.fontSize = 12;
-            textComponent.horizontalOverflow = HorizontalWrapMode.Overflow;
-            textComponent.verticalOverflow = VerticalWrapMode.Overflow;
             textComponent.alignment = TextAnchor.MiddleCenter;
             textTx.sizeDelta = MeasureText();
 
@@ -222,7 +220,7 @@ namespace MagicUI.Elements
             settings.scaleFactor = 1;
             float width = textGen.GetPreferredWidth(textComponent.text, settings);
             float height = textGen.GetPreferredHeight(textComponent.text, settings);
-            return new Vector2(width, height);
+            return new Vector2(Mathf.Ceil(width) + 1, Mathf.Ceil(height) + 1);
         }
 
         /// <inheritdoc/>

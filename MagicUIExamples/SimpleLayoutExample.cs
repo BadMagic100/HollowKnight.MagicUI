@@ -22,6 +22,15 @@ namespace MagicUIExamples
                 Font = UI.TrajanBold,
                 Text = "This is a left-aligned text in the\nbottom center with big text"
             };
+
+            new TextObject(layout, "Problem child")
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Top,
+                MaxWidth = 200,
+                MaxHeight = 80,
+                Text = "This text is really really really really really really really really really really really really really really reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeaally long!"
+            };
         }
     }
 }
