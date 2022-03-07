@@ -209,6 +209,9 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
+            // a great deal of spaghetti to work around text's desire to be placed pixel-perfectly
+            // basically, we'll allow unity to set the sizing for us, unless we've explicitly set a max size.
+            // this will prevent the text from clipping at unwanted times.
             if (!float.IsPositiveInfinity(MaxWidth))
             {
                 fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
