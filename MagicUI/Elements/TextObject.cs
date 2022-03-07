@@ -13,6 +13,7 @@ namespace MagicUI.Elements
         private readonly GameObject textObj;
         private readonly Text textComponent;
         private readonly RectTransform tx;
+        private readonly ContentSizeFitter fitter;
 
         /// <inheritdoc/>
         public GameObject GameObject { get => textObj; }
@@ -176,6 +177,10 @@ namespace MagicUI.Elements
             textComponent.alignment = TextAnchor.MiddleLeft;
             tx.sizeDelta = MeasureText();
 
+            fitter = textObj.AddComponent<ContentSizeFitter>();
+            fitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
             textObj.transform.SetParent(onLayout.Canvas.transform, false);
         }
 
@@ -192,7 +197,7 @@ namespace MagicUI.Elements
             float preferredHeight = textGen.GetPreferredHeight(textComponent.text, settings);
             float width = Mathf.Min(preferredWidth, MaxWidth);
             float height = Mathf.Min(preferredHeight, MaxHeight);
-            return new Vector2(Mathf.Ceil(width) + 1, Mathf.Ceil(height) + 1);
+            return new Vector2(width, height);
         }
 
         /// <inheritdoc/>
@@ -204,9 +209,28 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
+            if (!float.IsPositiveInfinity(MaxWidth))
+            {
+                fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+                tx.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ContentSize.x);
+            }
+            else
+            {
+                fitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+            }
+
+            if (!float.IsPositiveInfinity(MaxHeight))
+            {
+                fitter.verticalFit = ContentSizeFitter.FitMode.Unconstrained;
+                tx.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ContentSize.y);
+            }
+            else
+            {
+                fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            }
+
             // todo: this isn't parent-relative which could cause some problems using this as a building block
             Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, ContentSize);
-            tx.sizeDelta = ContentSize;
             tx.anchorMax = pos;
             tx.anchorMin = pos;
 
