@@ -19,7 +19,7 @@ namespace MagicUIExamples
             // to work around this, we'll create a keybind for it.
             rootPersistentLayout.ListenForHotkey(KeyCode.N, () =>
             {
-                LayoutRoot noPersist = new(false, false);
+                LayoutRoot noPersist = new(false);
                 new TextObject(noPersist)
                 {
                     Text = "This text will go away when you leave the scene",
