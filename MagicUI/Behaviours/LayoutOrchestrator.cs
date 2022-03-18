@@ -14,8 +14,6 @@ namespace MagicUI.Behaviours
         private readonly List<ArrangableElement> elements = new();
         private readonly Dictionary<string, List<ArrangableElement>> elementLookup = new();
 
-        public int measureBatch = 2;
-        public int arrangeBatch = 5;
         public bool shouldRenderDebugBounds = false;
 
         /// <summary>
@@ -98,11 +96,10 @@ namespace MagicUI.Behaviours
 
         private void Update()
         {
-            // remeasure the specified number of elements. since measure invalidation propagates up the visual tree,
+            // since measure invalidation propagates up the visual tree,
             // we can take only elements that have no parents (i.e. are roots of trees).
             IEnumerable<ArrangableElement> elementsToRemeasure = elements
-                .Where(x => x.LogicalParent == null && !x.MeasureIsValid)
-                .Take(measureBatch);
+                .Where(x => x.LogicalParent == null && !x.MeasureIsValid);
             foreach (ArrangableElement element in elementsToRemeasure)
             {
                 log.Log($"Measure/Arrange starting for {element.Name} of type {element.GetType().Name}");
@@ -113,11 +110,8 @@ namespace MagicUI.Behaviours
                 log.Log($"Measure/Arrange completed for {element.Name}");
             }
 
-            // rearrange the specified number of elements. arrange invalidation does not propagate up the tree, so we can generally
-            // process larger batches.
             IEnumerable<ArrangableElement> elementsToRearrange = elements
-                .Where(x => x.MeasureIsValid && !x.ArrangeIsValid) // ensure the element has been measured before arranging
-                .Take(arrangeBatch);
+                .Where(x => x.MeasureIsValid && !x.ArrangeIsValid); // ensure the element has been measured before arranging
             foreach (ArrangableElement element in elementsToRearrange)
             {
                 log.Log($"Arrange starting for {element.Name} of type {element.GetType().Name}");
