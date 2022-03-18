@@ -5,11 +5,11 @@
     /// </summary>
     public abstract class Container : ArrangableElement, ILayoutParent
     {
-        private LayoutRoot? child;
+        private ArrangableElement? child;
         /// <summary>
         /// The child of this container
         /// </summary>
-        public LayoutRoot? Child 
+        public ArrangableElement? Child 
         {
             get => child; 
             set
