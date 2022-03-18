@@ -16,6 +16,10 @@
             {
                 child?.Destroy();
                 child = value;
+                if (child != null)
+                {
+                    child.LogicalParent = this;
+                }
             }
         }
 
