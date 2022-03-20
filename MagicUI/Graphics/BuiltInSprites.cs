@@ -26,16 +26,7 @@ namespace MagicUI.Graphics
         public static Sprite CreateSlicedBorderRect()
         {
             Texture2D tex = Loader.GetTexture("RoundedCornerRect-2.png");
-            return Sprite.Create(
-                tex, 
-                new Rect(0, 0, tex.width, tex.height),
-                new Vector2(0.5f, 0.5f), 
-                100, 
-                0, 
-                SpriteMeshType.FullRect,
-                // not doc'd but this is left, bottom, right, top
-                new Vector4(6, 5, 6, 5)
-            );
+            return tex.ToSlicedSprite(6, 5, 6, 5);
         }
 
         /// <summary>
@@ -44,15 +35,7 @@ namespace MagicUI.Graphics
         public static Sprite CreateSlicedUnderline()
         {
             Texture2D tex = Loader.GetTexture("Underline-2.png");
-            return Sprite.Create(
-                tex,
-                new Rect(0, 0, tex.width, tex.height),
-                new Vector2(0.5f, 0.5f),
-                100,
-                0,
-                SpriteMeshType.FullRect,
-                new Vector4(6, 5, 6, 5)
-            );
+            return tex.ToSlicedSprite(6, 5, 6, 5);
         }
 
         /// <summary>
@@ -61,11 +44,7 @@ namespace MagicUI.Graphics
         public static Sprite CreateQuill()
         {
             Texture2D tex = Loader.GetTexture("inv_item__0004_quill-white.png");
-            return Sprite.Create(
-                tex,
-                new Rect(0, 0, tex.width, tex.height),
-                new Vector2(0.5f, 0.5f)
-            );
+            return tex.ToSprite();
         }
     }
 }
