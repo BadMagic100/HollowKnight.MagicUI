@@ -7,7 +7,7 @@
     {
         private ArrangableElement? child;
         /// <summary>
-        /// The child of this container
+        /// The child of this container.Replacing or removing the child will destroy it.
         /// </summary>
         public ArrangableElement? Child 
         {

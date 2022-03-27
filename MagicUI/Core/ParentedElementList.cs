@@ -37,6 +37,9 @@ namespace MagicUI.Core
         /// <inheritdoc/>
         public void Add(ArrangableElement item) => Insert(logicalChildren.Count, item);
 
+        /// <summary>
+        /// Removes and destroys all elements in the list.
+        /// </summary>
         /// <inheritdoc/>
         public void Clear()
         {
@@ -66,12 +69,16 @@ namespace MagicUI.Core
             logicalParent.InvalidateMeasure();
         }
 
+        /// <summary>
+        /// Removes and destroys the first occurrence of a specific element from the list.
+        /// </summary>
         /// <inheritdoc/>
         public bool Remove(ArrangableElement item)
         {
-            if (IndexOf(item) >= 0)
+            int idx = IndexOf(item);
+            if (idx >= 0)
             {
-                RemoveAt(IndexOf(item));
+                RemoveAt(idx);
                 return true;
             }
             else
@@ -80,6 +87,9 @@ namespace MagicUI.Core
             }
         }
 
+        /// <summary>
+        /// Removes and destroys the element at the specified index.
+        /// </summary>
         /// <inheritdoc/>
         public void RemoveAt(int index)
         {
