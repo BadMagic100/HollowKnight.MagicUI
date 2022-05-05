@@ -66,7 +66,7 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-          draft: true
+          draft: false
           generate_release_notes: true
           fail_on_unmatched_files: true
           tag_name: v${{ steps.details.outputs.buildVersion }}
