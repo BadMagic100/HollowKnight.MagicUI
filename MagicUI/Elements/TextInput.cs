@@ -20,6 +20,8 @@ namespace MagicUI.Elements
         private readonly RectTransform iconTx;
         private readonly RectTransform textTx;
         private readonly RectTransform placeholderTx;
+        private readonly UImage underline;
+        private readonly UImage icon;
         private readonly InputField input;
         private readonly Text placeholder;
         private readonly Text textComponent;
@@ -164,6 +166,38 @@ namespace MagicUI.Elements
         }
 
         /// <summary>
+        /// The color of the quill icon
+        /// </summary>
+        public Color IconColor
+        {
+            get => icon.color;
+            set
+            {
+                if (value != icon.color)
+                {
+                    icon.color = value;
+                    InvalidateArrange();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The color of the underline
+        /// </summary>
+        public Color UnderlineColor
+        {
+            get => underline.color;
+            set
+            {
+                if (value != underline.color)
+                {
+                    underline.color = value;
+                    InvalidateArrange();
+                }
+            }
+        }
+
+        /// <summary>
         /// The color of the text
         /// </summary>
         public Color ContentColor
@@ -264,9 +298,9 @@ namespace MagicUI.Elements
             underlineTx.anchorMin = underlinePos;
             underlineTx.anchorMax = underlinePos;
 
-            UImage underlineImg = underlineObj.AddComponent<UImage>();
-            underlineImg.sprite = underlineSprite;
-            underlineImg.type = UImage.Type.Sliced;
+            underline = underlineObj.AddComponent<UImage>();
+            underline.sprite = underlineSprite;
+            underline.type = UImage.Type.Sliced;
 
             underlineObj.transform.SetParent(onLayout.Canvas.transform, false);
 
@@ -281,8 +315,8 @@ namespace MagicUI.Elements
             iconTx.anchorMin = iconPos;
             iconTx.anchorMax = iconPos;
 
-            UImage iconImage = iconObj.AddComponent<UImage>();
-            iconImage.sprite = iconSprite;
+            icon = iconObj.AddComponent<UImage>();
+            icon.sprite = iconSprite;
             iconObj.transform.SetParent(underlineObj.transform, false);
 
             textObj = new GameObject(name + "-Content");
@@ -315,7 +349,7 @@ namespace MagicUI.Elements
             placeholder.fontStyle = FontStyle.Italic;
 
             input = underlineObj.AddComponent<InputField>();
-            input.targetGraphic = underlineImg;
+            input.targetGraphic = underline;
             input.textComponent = textComponent;
             input.placeholder = placeholder;
             input.onEndEdit.AddListener(InvokeEditFinished);

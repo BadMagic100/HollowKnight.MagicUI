@@ -24,6 +24,11 @@ namespace MagicUI.Core
         public static Font TrajanBold { get => CanvasUtil.TrajanBold; }
 
         /// <summary>
+        /// The Perpetua font
+        /// </summary>
+        public static Font Perpetua { get => CanvasUtil.GetFont("Perpetua"); }
+
+        /// <summary>
         /// Converts a position in reference screen space to a unity position
         /// </summary>
         /// <param name="pos">The position in screen space</param>

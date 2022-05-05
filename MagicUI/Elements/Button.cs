@@ -19,6 +19,7 @@ namespace MagicUI.Elements
         private readonly RectTransform imgTx;
         private readonly RectTransform textTx;
         private readonly UButton btn;
+        private readonly UImage borderImage;
         private readonly Text textComponent;
 
         /// <summary>
@@ -60,6 +61,22 @@ namespace MagicUI.Elements
                 {
                     textComponent.text = value;
                     InvalidateMeasure();
+                }
+            }
+        }
+
+        /// <summary>
+        /// The border color of the button
+        /// </summary>
+        public Color BorderColor
+        {
+            get => borderImage.color;
+            set 
+            {
+                if (borderImage.color != value)
+                {
+                    borderImage.color = value;
+                    InvalidateArrange();
                 }
             }
         }
@@ -183,9 +200,9 @@ namespace MagicUI.Elements
             imgTx.anchorMin = pos;
             imgTx.anchorMax = pos;
 
-            UImage img = imgObj.AddComponent<UImage>();
-            img.sprite = sprite;
-            img.type = UImage.Type.Sliced;
+            borderImage = imgObj.AddComponent<UImage>();
+            borderImage.sprite = sprite;
+            borderImage.type = UImage.Type.Sliced;
             btn = imgObj.AddComponent<MultiGraphicButton>();
             btn.onClick.AddListener(InvokeClick);
 

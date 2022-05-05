@@ -30,6 +30,7 @@ namespace MagicUIExamples
             Button toggleButton = new(layout)
             {
                 Content = "Toggle is on",
+                BorderColor = Color.blue,
                 ContentColor = Color.green,
                 Margin = 20
             };

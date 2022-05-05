@@ -10,6 +10,7 @@ namespace MagicUI.Elements
     public sealed class Image : ArrangableElement, IGameObjectWrapper
     {
         private readonly GameObject imgObj;
+        private readonly UImage img;
         private readonly RectTransform tx;
 
         /// <inheritdoc/>
@@ -48,6 +49,22 @@ namespace MagicUI.Elements
         }
 
         /// <summary>
+        /// A color to apply over top of the image
+        /// </summary>
+        public Color Tint
+        {
+            get => img.color;
+            set
+            {
+                if (img.color != value)
+                {
+                    img.color = value;
+                    InvalidateArrange();
+                }
+            }
+        }
+
+        /// <summary>
         /// Creates an image
         /// </summary>
         /// <param name="onLayout">The layout root to draw the image on</param>
@@ -65,7 +82,7 @@ namespace MagicUI.Elements
             tx.anchorMin = pos;
             tx.anchorMax = pos;
 
-            UImage img = imgObj.AddComponent<UImage>();
+            img = imgObj.AddComponent<UImage>();
             img.sprite = sprite;
             if (sprite.border != Vector4.zero)
             {
