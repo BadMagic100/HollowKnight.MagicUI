@@ -26,6 +26,9 @@ namespace MagicUI.Elements
         private readonly Text placeholder;
         private readonly Text textComponent;
 
+        private Sprite? borderSprite;
+        private Sprite? borderlessSprite;
+
         /// <summary>
         /// Event that fires when the edit is completed, e.g. by clicking off the element. Sends this input and its current text.
         /// </summary>
@@ -197,6 +200,23 @@ namespace MagicUI.Elements
             }
         }
 
+        private bool borderless = false;
+        /// <summary>
+        /// Whether the text input should be displayed in a borderless style.
+        /// </summary>
+        public bool Borderless
+        {
+            get => borderless;
+            set
+            {
+                if (borderless != value)
+                {
+                    borderless = value;
+                    InvalidateArrange();
+                }
+            }
+        }
+
         /// <summary>
         /// The color of the text
         /// </summary>
@@ -289,7 +309,7 @@ namespace MagicUI.Elements
             underlineObj = new GameObject(name + "-Underline");
             underlineObj.AddComponent<CanvasRenderer>();
 
-            Sprite underlineSprite = BuiltInSprites.CreateSlicedUnderline();
+            Sprite underlineSprite = ChooseBorderStyle();
 
             Vector2 underlineSize = underlineSprite.textureRect.size;
             Vector2 underlinePos = UI.UnityScreenPosition(new Vector2(0, 0), underlineSize);
@@ -356,6 +376,10 @@ namespace MagicUI.Elements
             input.onValueChanged.AddListener(InvokeTextChanged);
         }
 
+        private Sprite ChooseBorderStyle() => Borderless
+            ? (borderlessSprite ??= BuiltInSprites.CreateSlicedTransparentRect())
+            : (borderSprite ??= BuiltInSprites.CreateSlicedUnderline());
+
         private Vector2 MeasurePlaceholder()
         {
             TextGenerator textGen = new();
@@ -405,6 +429,8 @@ namespace MagicUI.Elements
             placeholderTx.sizeDelta = textSize;
             placeholderTx.anchorMin = textPos;
             placeholderTx.anchorMax = textPos;
+
+            underline.sprite = ChooseBorderStyle();
 
             Vector2 iconPos = UI.UnityParentRelativePosition(Vector2.zero, iconSize, ContentSize);
             iconTx.sizeDelta = iconSize;

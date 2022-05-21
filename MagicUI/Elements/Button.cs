@@ -22,6 +22,9 @@ namespace MagicUI.Elements
         private readonly UImage borderImage;
         private readonly Text textComponent;
 
+        private Sprite? borderlessSprite;
+        private Sprite? borderSprite;
+
         /// <summary>
         /// Event that fires when the button is clicked
         /// </summary>
@@ -61,6 +64,23 @@ namespace MagicUI.Elements
                 {
                     textComponent.text = value;
                     InvalidateMeasure();
+                }
+            }
+        }
+
+        private bool borderless = false;
+        /// <summary>
+        /// Whether the button should be displayed in a borderless style.
+        /// </summary>
+        public bool Borderless
+        {
+            get => borderless;
+            set
+            {
+                if (borderless != value)
+                {
+                    borderless = value;
+                    InvalidateArrange();
                 }
             }
         }
@@ -191,7 +211,7 @@ namespace MagicUI.Elements
             imgObj = new GameObject(name + "-Border");
             imgObj.AddComponent<CanvasRenderer>();
 
-            Sprite sprite = BuiltInSprites.CreateSlicedBorderRect();
+            Sprite sprite = ChooseBorderStyle();
 
             Vector2 size = sprite.textureRect.size;
             Vector2 pos = UI.UnityScreenPosition(new Vector2(0, 0), size);
@@ -227,6 +247,10 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         public GameObject GameObject => imgObj;
 
+        private Sprite ChooseBorderStyle() => Borderless 
+            ? (borderlessSprite ??= BuiltInSprites.CreateSlicedTransparentRect())
+            : (borderSprite ??= BuiltInSprites.CreateSlicedBorderRect());
+
         private Vector2 MeasureText()
         {
             TextGenerator textGen = new();
@@ -261,6 +285,8 @@ namespace MagicUI.Elements
             Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, ContentSize);
             imgTx.anchorMin = pos;
             imgTx.anchorMax = pos;
+
+            borderImage.sprite = ChooseBorderStyle();
 
             imgObj.SetActive(IsEffectivelyVisible);
         }

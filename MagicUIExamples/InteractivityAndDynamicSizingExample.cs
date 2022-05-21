@@ -69,7 +69,15 @@ namespace MagicUIExamples
 
         private static void ToggleButtonState(Button sender)
         {
-            if (sender.ContentColor == Color.green)
+            // realistally you would make a custom element to handle the toggle logic rather than managing state this way
+            bool currentState = sender.ContentColor == Color.green;
+            TextInput? input = layout?.GetElement<TextInput>("TestInput");
+            if (input != null)
+            {
+                input.Borderless = currentState;
+            }
+
+            if (currentState)
             {
                 sender.ContentColor = Color.red;
                 sender.Content = "Toggle is off";

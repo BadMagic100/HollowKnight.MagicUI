@@ -30,6 +30,15 @@ namespace MagicUI.Graphics
         }
 
         /// <summary>
+        /// Creates a sliced sprite for a scalable transparent border
+        /// </summary>
+        public static Sprite CreateSlicedTransparentRect()
+        {
+            Texture2D tex = Loader.GetTexture("BorderlessButton.png");
+            return tex.ToSlicedSprite(6, 5, 6, 5);
+        }
+
+        /// <summary>
         /// Creates a sliced sprite for a scalable underline
         /// </summary>
         public static Sprite CreateSlicedUnderline()

@@ -8,15 +8,15 @@
     <Description>A Hollow Knight Mod</Description>
     <Copyright>Copyright ©  2022</Copyright>
     <AssemblyVersion>1.1.*</AssemblyVersion>
-	<Deterministic>false</Deterministic>
-	<Nullable>enable</Nullable>
+    <Deterministic>false</Deterministic>
+    <Nullable>enable</Nullable>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <LangVersion>latest</LangVersion>
-	<!-- Locally, this should be a symlink to hollow_knight_Data\Managed - on github actions we'll extract a zip here -->
-	<HollowKnightRefs>..\HKManaged\</HollowKnightRefs>
-	<ExportDir>bin\Publish</ExportDir>
-	<Authors>BadMagic</Authors>
-	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <!-- Locally, this should be a symlink to hollow_knight_Data\Managed - on github actions we'll extract a zip here -->
+    <HollowKnightRefs>..\HKManaged\</HollowKnightRefs>
+    <ExportDir>bin\Publish</ExportDir>
+    <Authors>BadMagic</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
   <Target Name="CopyMod" AfterTargets="PostBuildEvent">
     <RemoveDir Directories="$(ExportDir)/$(TargetName)/" />
@@ -313,12 +313,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitignore" />
-	<None Include="README.md" />
+    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MagicUI\MagicUI.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
 </Project>

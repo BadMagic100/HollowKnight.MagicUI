@@ -8,9 +8,9 @@ namespace MagicUI.Elements
     /// An element that formats an underlying <see cref="TextObject"/> according to a formatter for an immutable data type
     /// </summary>
     /// <typeparam name="T">The type of data to format</typeparam>
-    public sealed class TextFormatter<T> : ArrangableElement
+    public sealed class TextFormatter<T> : ArrangableElement, ILayoutParent
     {
-        private Func<T, string> formatter;
+        private readonly Func<T, string> formatter;
 
         private T data;
         /// <summary>
@@ -84,6 +84,16 @@ namespace MagicUI.Elements
         {
             Text?.Destroy();
             Text = null;
+        }
+
+        /// <inheritdoc/>
+        public void HandleChildDestroyed(ArrangableElement child)
+        {
+            if (child.Equals(Text))
+            {
+                child.LogicalParent = null;
+                Text = null;
+            }
         }
     }
 }

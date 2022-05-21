@@ -57,11 +57,13 @@
       <None Remove="API\**" />
     </ItemGroup>
     <ItemGroup>
+      <None Remove="Resources\BorderlessButton.png" />
       <None Remove="Resources\inv_item__0004_quill-white.png" />
       <None Remove="Resources\RoundedCornerRect-2.png" />
       <None Remove="Resources\Underline-2.png" />
     </ItemGroup>
     <ItemGroup>
+      <EmbeddedResource Include="Resources\BorderlessButton.png" />
       <EmbeddedResource Include="Resources\inv_item__0004_quill-white.png" />
       <EmbeddedResource Include="Resources\RoundedCornerRect-2.png" />
       <EmbeddedResource Include="Resources\Underline-2.png" />
