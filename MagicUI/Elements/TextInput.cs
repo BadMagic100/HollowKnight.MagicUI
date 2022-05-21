@@ -52,13 +52,13 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         public GameObject GameObject => underlineObj;
 
-        private const TextAnchor TEXT_ALIGN_DEFAULT = TextAnchor.MiddleLeft;
+        private TextAnchor textAlignment = TextAnchor.MiddleLeft;
         /// <summary>
         /// The alignment of the text within this element
         /// </summary>
         public HorizontalAlignment TextAlignment
         {
-            get => textComponent.alignment switch
+            get => textAlignment switch
             {
                 TextAnchor.MiddleLeft => HorizontalAlignment.Left,
                 TextAnchor.MiddleCenter => HorizontalAlignment.Center,
@@ -74,127 +74,129 @@ namespace MagicUI.Elements
                     HorizontalAlignment.Center => TextAnchor.MiddleCenter,
                     _ => throw new NotImplementedException(),
                 };
-                if (newAlignment != textComponent.alignment)
+                if (newAlignment != textAlignment)
                 {
-                    textComponent.alignment = newAlignment;
-                    placeholder.alignment = newAlignment;
+                    textAlignment = newAlignment;
                     InvalidateMeasure();
                 }
             }
         }
 
-        private const int FONT_SIZE_DEFAULT = 12;
+        private int fontSize = 12;
         /// <summary>
         /// The font size for the text
         /// </summary>
         public int FontSize
         {
-            get => textComponent.fontSize;
+            get => fontSize;
             set 
             {
-                if (value != textComponent.fontSize)
+                if (value != fontSize)
                 {
-                    textComponent.fontSize = value;
-                    placeholder.fontSize = value;
+                    fontSize = value;
                     InvalidateMeasure();
                 }
             }
         }
 
-        private readonly Font FONT_DEFAULT = UI.TrajanNormal;
+        private Font font = UI.TrajanNormal;
         /// <summary>
         /// The font to use to draw text
         /// </summary>
         public Font Font
         {
-            get => textComponent.font;
+            get => font;
             set
             {
-                if (value != textComponent.font)
+                if (value != font)
                 {
-                    textComponent.font = value;
-                    placeholder.font = value;
+                    font = value;
                     InvalidateMeasure();
                 }
             }
         }
 
+        private string placeholderText = "";
         /// <summary>
         /// The placeholder text shown when the input is empty
         /// </summary>
         public string Placeholder
         {
-            get => placeholder.text;
+            get => placeholderText;
             set
             {
-                if (value != placeholder.text)
+                if (value != placeholderText)
                 {
-                    placeholder.text = value;
+                    placeholderText = value;
                     InvalidateMeasure();
                 }
             }
         }
 
+        private string text = "";
         /// <summary>
         /// The content of the text input
         /// </summary>
         public string Text
         {
-            get => input.text;
+            get => text;
             set
             {
-                if (value != input.text)
+                if (value != text)
                 {
-                    input.text = value;
+                    text = value;
                     InvalidateArrange();
                 }
             }
         }
 
+        private InputField.ContentType contentType = InputField.ContentType.Standard;
         /// <summary>
         /// The content type of the input. MagicUI does not provide API support for <see cref="InputField.ContentType.Custom"/>
         /// at this time.
         /// </summary>
         public InputField.ContentType ContentType
         {
-            get => input.contentType;
+            get => contentType;
             set
             {
-                if (value != input.contentType)
+                if (value != contentType)
                 {
-                    input.contentType = value;
+                    contentType = value;
                     InvalidateArrange();
                 }
             }
         }
 
+        private Color iconColor = Color.white;
         /// <summary>
         /// The color of the quill icon
         /// </summary>
         public Color IconColor
         {
-            get => icon.color;
+            get => iconColor;
             set
             {
-                if (value != icon.color)
+                if (value != iconColor)
                 {
-                    icon.color = value;
+                    iconColor = value;
                     InvalidateArrange();
                 }
             }
         }
 
+        private Color underlineColor = Color.white;
         /// <summary>
         /// The color of the underline
         /// </summary>
         public Color UnderlineColor
         {
-            get => underline.color;
+            get => underlineColor;
             set
             {
-                if (value != underline.color)
+                if (value != underlineColor)
                 {
-                    underline.color = value;
+                    underlineColor = value;
                     InvalidateArrange();
                 }
             }
@@ -217,33 +219,35 @@ namespace MagicUI.Elements
             }
         }
 
+        private Color contentColor = Color.white;
         /// <summary>
         /// The color of the text
         /// </summary>
         public Color ContentColor
         {
-            get => textComponent.color;
+            get => contentColor;
             set
             {
-                if (value != textComponent.color)
+                if (value != contentColor)
                 {
-                    textComponent.color = value;
+                    contentColor = value;
                     InvalidateArrange();
                 }
             }
         }
 
+        private Color placeholderColor = Color.gray;
         /// <summary>
         /// The color of the placeholder
         /// </summary>
         public Color PlaceholderColor
         {
-            get => placeholder.color;
+            get => placeholderColor;
             set
             {
-                if (value != placeholder.color)
+                if (value != placeholderColor)
                 {
-                    placeholder.color = value;
+                    placeholderColor = value;
                     InvalidateArrange();
                 }
             }
@@ -283,17 +287,18 @@ namespace MagicUI.Elements
             }
         }
 
+        private bool enabled = true;
         /// <summary>
         /// Whether the input is enabled
         /// </summary>
         public bool Enabled
         {
-            get => input.interactable;
+            get => enabled;
             set
             {
-                if (value != input.interactable)
+                if (value != enabled)
                 {
-                    input.interactable = value;
+                    enabled = value;
                     InvalidateArrange();
                 }
             }
@@ -320,6 +325,7 @@ namespace MagicUI.Elements
 
             underline = underlineObj.AddComponent<UImage>();
             underline.sprite = underlineSprite;
+            underline.color = underlineColor;
             underline.type = UImage.Type.Sliced;
 
             underlineObj.transform.SetParent(onLayout.Canvas.transform, false);
@@ -337,6 +343,7 @@ namespace MagicUI.Elements
 
             icon = iconObj.AddComponent<UImage>();
             icon.sprite = iconSprite;
+            icon.color = iconColor;
             iconObj.transform.SetParent(underlineObj.transform, false);
 
             textObj = new GameObject(name + "-Content");
@@ -347,9 +354,11 @@ namespace MagicUI.Elements
             textObj.transform.SetParent(underlineObj.transform, false);
 
             textComponent = textObj.AddComponent<Text>();
-            textComponent.font = FONT_DEFAULT;
-            textComponent.fontSize = FONT_SIZE_DEFAULT;
-            textComponent.alignment = TEXT_ALIGN_DEFAULT;
+            textComponent.text = text;
+            textComponent.font = font;
+            textComponent.fontSize = fontSize;
+            textComponent.alignment = textAlignment;
+            textComponent.color = contentColor;
             textComponent.horizontalOverflow = HorizontalWrapMode.Overflow;
             textComponent.verticalOverflow = VerticalWrapMode.Overflow;
 
@@ -360,15 +369,17 @@ namespace MagicUI.Elements
             placeholderObj.transform.SetParent(underlineObj.transform, false);
 
             placeholder = placeholderObj.AddComponent<Text>();
-            placeholder.font = FONT_DEFAULT;
-            placeholder.fontSize = FONT_SIZE_DEFAULT;
-            placeholder.alignment = TEXT_ALIGN_DEFAULT;
+            placeholder.text = placeholderText;
+            placeholder.font = font;
+            placeholder.fontSize = fontSize;
+            placeholder.alignment = textAlignment;
+            placeholder.color = placeholderColor;
+            placeholder.fontStyle = FontStyle.Italic;
             placeholder.horizontalOverflow = HorizontalWrapMode.Overflow;
             placeholder.verticalOverflow = VerticalWrapMode.Overflow;
-            placeholder.color = Color.grey;
-            placeholder.fontStyle = FontStyle.Italic;
 
             input = underlineObj.AddComponent<InputField>();
+            input.interactable = enabled;
             input.targetGraphic = underline;
             input.textComponent = textComponent;
             input.placeholder = placeholder;
@@ -391,8 +402,14 @@ namespace MagicUI.Elements
             // by default, this will inherit the parent canvas's scale factor, which is set to scale with screen space.
             // however, since we're functioning in an unscaled coordinate system we should get the unscaled size to measure correctly.
             settings.scaleFactor = 1;
-            float width = textGen.GetPreferredWidth(placeholder.text, settings);
-            float height = textGen.GetPreferredHeight(placeholder.text, settings);
+            // use the staged backing fields instead of the actual current property of the text.
+            // in other words, the value it will be after measure/arrange rather than the value it currently is.
+            settings.textAnchor = textAlignment;
+            settings.font = font;
+            settings.fontSize = fontSize;
+
+            float width = textGen.GetPreferredWidth(placeholderText, settings);
+            float height = textGen.GetPreferredHeight(placeholderText, settings);
             return new Vector2(width, height);
         }
 
@@ -409,10 +426,22 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
-            // hacky way to deal with the overline issue on half-pixel positions:
-            // just make sure we don't ever go on a half-pixel - specifically an issue for the underline image
-            // since it's not symmetric; the problem is not as noticable on other images
-            alignedTopLeftCorner.y = Mathf.Round(alignedTopLeftCorner.y);
+            input.contentType = contentType;
+            input.interactable = enabled;
+            icon.color = iconColor;
+            underline.color = underlineColor;
+
+            textComponent.text = text;
+            textComponent.alignment = textAlignment;
+            textComponent.font = font;
+            textComponent.fontSize = fontSize;
+            textComponent.color = contentColor;
+
+            placeholder.text = placeholderText;
+            placeholder.alignment = textAlignment;
+            placeholder.font = font;
+            placeholder.fontSize = fontSize;
+            placeholder.color = placeholderColor;
 
             underlineTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ContentSize.x);
             underlineTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ContentSize.y);
