@@ -16,49 +16,52 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         public GameObject GameObject => imgObj;
 
+        private float width;
         /// <summary>
         /// The desired width of the image; it will be scaled as needed
         /// </summary>
         public float Width
         {
-            get => tx.rect.width;
+            get => width;
             set
             {
-                if (tx.rect.width != value)
+                if (width != value)
                 {
-                    tx.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, value);
+                    width = value;
                     InvalidateMeasure();
                 }
             }
         }
 
+        private float height;
         /// <summary>
         /// The desired height of the image; it will be scaled as needed
         /// </summary>
         public float Height
         {
-            get => tx.rect.height;
+            get => height;
             set
             {
-                if (tx.rect.height != value)
+                if (height != value)
                 {
-                    tx.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, value);
+                    height = value;
                     InvalidateMeasure();
                 }
             }
         }
 
+        private Color color = Color.white;
         /// <summary>
         /// A color to apply over top of the image
         /// </summary>
         public Color Tint
         {
-            get => img.color;
+            get => color;
             set
             {
-                if (img.color != value)
+                if (color != value)
                 {
-                    img.color = value;
+                    color = value;
                     InvalidateArrange();
                 }
             }
@@ -81,9 +84,12 @@ namespace MagicUI.Elements
             tx.sizeDelta = size;
             tx.anchorMin = pos;
             tx.anchorMax = pos;
+            width = size.x;
+            height = size.y;
 
             img = imgObj.AddComponent<UImage>();
             img.sprite = sprite;
+            img.color = color;
             if (sprite.border != Vector4.zero)
             {
                 img.type = UImage.Type.Sliced;
@@ -97,12 +103,17 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
-            return tx.rect.size;
+            return new Vector2(width, height);
         }
 
         /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
+            tx.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, width);
+            tx.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
+
+            img.color = color;
+
             Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, ContentSize);
             tx.anchorMin = pos;
             tx.anchorMax = pos;
