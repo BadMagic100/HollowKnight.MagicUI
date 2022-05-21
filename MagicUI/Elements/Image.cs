@@ -90,6 +90,8 @@ namespace MagicUI.Elements
             }
 
             imgObj.transform.SetParent(onLayout.Canvas.transform, false);
+            // hide the GO until the first arrange cycle takes control
+            imgObj.SetActive(false);
         }
 
         /// <inheritdoc/>

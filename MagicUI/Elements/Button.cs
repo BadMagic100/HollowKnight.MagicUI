@@ -242,6 +242,9 @@ namespace MagicUI.Elements
             textTx.sizeDelta = MeasureText();
 
             textObj.transform.SetParent(imgObj.transform, false);
+
+            // hide the GO until the first arrange cycle takes control
+            imgObj.SetActive(false);
         }
 
         /// <inheritdoc/>

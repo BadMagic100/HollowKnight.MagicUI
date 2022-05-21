@@ -374,6 +374,9 @@ namespace MagicUI.Elements
             input.placeholder = placeholder;
             input.onEndEdit.AddListener(InvokeEditFinished);
             input.onValueChanged.AddListener(InvokeTextChanged);
+
+            // hide the GO until the first arrange cycle takes control
+            underlineObj.SetActive(false);
         }
 
         private Sprite ChooseBorderStyle() => Borderless

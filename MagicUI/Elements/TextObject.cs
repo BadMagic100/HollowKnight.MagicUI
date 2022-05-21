@@ -189,6 +189,8 @@ namespace MagicUI.Elements
             fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
             textObj.transform.SetParent(onLayout.Canvas.transform, false);
+            // hide the GO until the first arrange cycle takes control
+            textObj.SetActive(false);
         }
 
         private Vector2 MeasureText()
