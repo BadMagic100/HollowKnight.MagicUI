@@ -17,6 +17,7 @@
         <ExportDir>bin\Publish</ExportDir>
         <Authors>BadMagic</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
     <Target Name="CopyMod" AfterTargets="PostBuildEvent">
         <RemoveDir Directories="$(ExportDir)/$(TargetName)/" />
@@ -46,7 +47,7 @@
         <!--<SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>sgKey.snk</AssemblyOriginatorKeyFile>-->
     
-      <DocumentationFile>bin\Release\MagicUI.xml</DocumentationFile>
+      <DocumentationFile></DocumentationFile>
     </PropertyGroup>
     <ItemGroup>
         <None Include="..\README.md" />
