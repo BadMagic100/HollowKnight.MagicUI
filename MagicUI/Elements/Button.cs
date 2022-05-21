@@ -52,17 +52,18 @@ namespace MagicUI.Elements
             }
         }
 
+        private string content = "";
         /// <summary>
         /// The button's content
         /// </summary>
         public string Content
         {
-            get => textComponent.text;
+            get => content;
             set
             {
-                if (textComponent.text != value)
+                if (content != value)
                 {
-                    textComponent.text = value;
+                    content = value;
                     InvalidateMeasure();
                 }
             }
@@ -85,33 +86,35 @@ namespace MagicUI.Elements
             }
         }
 
+        private Color borderColor = Color.white;
         /// <summary>
         /// The border color of the button
         /// </summary>
         public Color BorderColor
         {
-            get => borderImage.color;
+            get => borderColor;
             set 
             {
-                if (borderImage.color != value)
+                if (borderColor != value)
                 {
-                    borderImage.color = value;
+                    borderColor = value;
                     InvalidateArrange();
                 }
             }
         }
 
+        private Color contentColor = Color.white;
         /// <summary>
         /// The color of the text in the button
         /// </summary>
         public Color ContentColor
         {
-            get => textComponent.color;
+            get => contentColor;
             set
             {
-                if (textComponent.color != value)
+                if (contentColor != value)
                 {
-                    textComponent.color = value;
+                    contentColor = value;
                     InvalidateArrange();
                 }
             }
@@ -151,49 +154,52 @@ namespace MagicUI.Elements
             }
         }
 
+        private Font font = UI.TrajanNormal;
         /// <summary>
         /// The font to use to display the content
         /// </summary>
         public Font Font
         {
-            get => textComponent.font;
+            get => font;
             set
             {
-                if (value != textComponent.font)
+                if (value != font)
                 {
-                    textComponent.font = value;
+                    font = value;
                     InvalidateMeasure();
                 }
             }
         }
 
+        private int fontSize = 12;
         /// <summary>
         /// The font size of the content
         /// </summary>
         public int FontSize
         {
-            get => textComponent.fontSize;
+            get => fontSize;
             set
             {
-                if (value != textComponent.fontSize)
+                if (value != fontSize)
                 {
-                    textComponent.fontSize = value;
+                    fontSize = value;
                     InvalidateMeasure();
                 }
             }
         }
 
+        bool enabled = true;
         /// <summary>
         /// Whether the button is enabled
         /// </summary>
         public bool Enabled
         {
-            get => btn.interactable;
+            get => enabled;
             set
             {
-                if (value != btn.interactable)
+                if (value != enabled)
                 {
-                    btn.interactable = value;
+                    enabled = value;
                     InvalidateArrange();
                 }
             }
@@ -222,8 +228,10 @@ namespace MagicUI.Elements
 
             borderImage = imgObj.AddComponent<UImage>();
             borderImage.sprite = sprite;
+            borderImage.color = contentColor;
             borderImage.type = UImage.Type.Sliced;
             btn = imgObj.AddComponent<MultiGraphicButton>();
+            btn.interactable = enabled;
             btn.onClick.AddListener(InvokeClick);
 
             imgObj.transform.SetParent(onLayout.Canvas.transform, false);
@@ -235,10 +243,11 @@ namespace MagicUI.Elements
             textTx.anchorMax = textCenter;
 
             textComponent = textObj.AddComponent<Text>();
-            textComponent.font = UI.TrajanNormal;
-            textComponent.text = "";
-            textComponent.fontSize = 12;
+            textComponent.font = font;
+            textComponent.text = content;
+            textComponent.fontSize = fontSize;
             textComponent.alignment = TextAnchor.MiddleCenter;
+            textComponent.color = contentColor;
             textTx.sizeDelta = MeasureText();
 
             textObj.transform.SetParent(imgObj.transform, false);
@@ -262,8 +271,13 @@ namespace MagicUI.Elements
             // by default, this will inherit the parent canvas's scale factor, which is set to scale with screen space.
             // however, since we're functioning in an unscaled coordinate system we should get the unscaled size to measure correctly.
             settings.scaleFactor = 1;
-            float width = textGen.GetPreferredWidth(textComponent.text, settings);
-            float height = textGen.GetPreferredHeight(textComponent.text, settings);
+            // use the staged backing fields instead of the actual current property of the text.
+            // in other words, the value it will be after measure/arrange rather than the value it currently is.
+            settings.font = font;
+            settings.fontSize = fontSize;
+
+            float width = textGen.GetPreferredWidth(content, settings);
+            float height = textGen.GetPreferredHeight(content, settings);
             return new Vector2(Mathf.Ceil(width) + 1, Mathf.Ceil(height) + 1);
         }
 
@@ -280,6 +294,13 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
+            btn.interactable = enabled;
+
+            textComponent.text = content;
+            textComponent.font = font;
+            textComponent.fontSize = fontSize;
+            textComponent.color = contentColor;
+
             imgTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ContentSize.x);
             imgTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ContentSize.y);
 
@@ -290,6 +311,7 @@ namespace MagicUI.Elements
             imgTx.anchorMax = pos;
 
             borderImage.sprite = ChooseBorderStyle();
+            borderImage.color = borderColor;
 
             imgObj.SetActive(IsEffectivelyVisible);
         }

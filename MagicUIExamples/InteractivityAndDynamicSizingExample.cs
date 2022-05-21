@@ -44,6 +44,7 @@ namespace MagicUIExamples
             Button inputButton = new(layout)
             {
                 Content = "Click to capture input",
+                FontSize = 15,
                 Margin = 20
             };
             inputButton.Click += CaptureInputContentForButton;

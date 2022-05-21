@@ -47,6 +47,8 @@ namespace MagicUI.Elements
         private void InvokeTextChanged(string text)
         {
             TextChanged?.Invoke(this, text);
+            // don't go through the property - we don't need a rearrange for this, we are just syncing the value from the input
+            this.text = text;
         }
 
         /// <inheritdoc/>
@@ -426,10 +428,10 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
+            icon.color = iconColor;
+
             input.contentType = contentType;
             input.interactable = enabled;
-            icon.color = iconColor;
-            underline.color = underlineColor;
 
             textComponent.text = text;
             textComponent.alignment = textAlignment;
@@ -463,6 +465,7 @@ namespace MagicUI.Elements
             placeholderTx.anchorMax = textPos;
 
             underline.sprite = ChooseBorderStyle();
+            underline.color = underlineColor;
 
             Vector2 iconPos = UI.UnityParentRelativePosition(Vector2.zero, iconSize, ContentSize);
             iconTx.sizeDelta = iconSize;
