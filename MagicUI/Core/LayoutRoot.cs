@@ -69,9 +69,11 @@ namespace MagicUI.Core
             rootCanvas = new(name);
             Canvas canvasComponent = rootCanvas.AddComponent<Canvas>();
             canvasComponent.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvasComponent.pixelPerfect = true;
 
             CanvasScaler scale = rootCanvas.AddComponent<CanvasScaler>();
             scale.referenceResolution = UI.Screen.size;
+            scale.dynamicPixelsPerUnit = 1000;
             scale.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             // workaround to force a rescale on the first frame
             scale.enabled = false;
