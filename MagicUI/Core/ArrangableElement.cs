@@ -27,6 +27,11 @@ namespace MagicUI.Core
         public bool ArrangeIsValid { get; private set; } = false;
 
         /// <summary>
+        /// Whether the element was successfully arranged at any point
+        /// </summary>
+        public bool WasEverArranged { get; private set; } = false;
+
+        /// <summary>
         /// Whether the element is currently in the process of being destroyed
         /// </summary>
         public bool DestroyInProgress { get; private set; } = false;
@@ -130,7 +135,11 @@ namespace MagicUI.Core
                 ArrangableElement? next = this;
                 while (next != null)
                 {
-                    if (next.Visibility != Visibility.Visible) return false;
+                    if (next.Visibility != Visibility.Visible)
+                    {
+                        return false;
+                    }
+
                     next = next.LogicalParent;
                 }
                 return true;
@@ -251,6 +260,7 @@ namespace MagicUI.Core
                 PlacementRect = availableSpace;
                 ArrangeOverride(GetAlignedTopLeftCorner(availableSpace));
                 ArrangeIsValid = true;
+                WasEverArranged = true;
             }
         }
 

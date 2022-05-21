@@ -73,6 +73,9 @@ namespace MagicUI.Core
             CanvasScaler scale = rootCanvas.AddComponent<CanvasScaler>();
             scale.referenceResolution = UI.Screen.size;
             scale.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            // workaround to force a rescale on the first frame
+            scale.enabled = false;
+            scale.enabled = true;
 
             rootCanvas.AddComponent<GraphicRaycaster>();
             rootCanvas.AddComponent<CanvasGroup>();
