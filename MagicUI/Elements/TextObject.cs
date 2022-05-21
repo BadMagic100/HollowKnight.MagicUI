@@ -18,28 +18,30 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         public GameObject GameObject { get => textObj; }
 
+        private string text = "";
         /// <summary>
         /// The text of this element
         /// </summary>
         public string Text
         {
-            get => textComponent.text;
+            get => text;
             set
             {
-                if (value != textComponent.text)
+                if (value != text)
                 {
-                    textComponent.text = value;
+                    text = value;
                     InvalidateMeasure();
                 }
             }
         }
 
+        private TextAnchor textAlignment = TextAnchor.MiddleLeft;
         /// <summary>
         /// The alignment of the text within this element
         /// </summary>
         public HorizontalAlignment TextAlignment
         {
-            get => textComponent.alignment switch
+            get => textAlignment switch
             {
                 TextAnchor.MiddleLeft => HorizontalAlignment.Left,
                 TextAnchor.MiddleCenter => HorizontalAlignment.Center,
@@ -55,57 +57,61 @@ namespace MagicUI.Elements
                     HorizontalAlignment.Center => TextAnchor.MiddleCenter,
                     _ => throw new NotImplementedException(),
                 };
-                if (newAlignment != textComponent.alignment)
+                if (newAlignment != textAlignment)
                 {
-                    textComponent.alignment = newAlignment;
+                    textAlignment = newAlignment;
                     InvalidateMeasure();
                 }
             }
         }
 
+
+        private Font font = UI.TrajanNormal;
         /// <summary>
         /// The font to use to draw text
         /// </summary>
         public Font Font
         {
-            get => textComponent.font;
+            get => font;
             set
             {
-                if (value != textComponent.font)
+                if (value != font)
                 {
-                    textComponent.font = value;
+                    font = value;
                     InvalidateMeasure();
                 }
             }
         }
 
+        private int fontSize = 12;
         /// <summary>
         /// The font size for the text
         /// </summary>
         public int FontSize
         {
-            get => textComponent.fontSize;
+            get => fontSize;
             set
             {
-                if (value != textComponent.fontSize)
+                if (value != fontSize)
                 {
-                    textComponent.fontSize = value;
+                    fontSize = value;
                     InvalidateMeasure();
                 }
             }
         }
 
+        private Color color = Color.white;
         /// <summary>
         /// The color of the text
         /// </summary>
         public Color ContentColor
         {
-            get => textComponent.color;
+            get => color;
             set
             {
-                if (value != textComponent.color)
+                if (value != color)
                 {
-                    textComponent.color = value;
+                    color = value;
                     InvalidateArrange();
                 }
             }
@@ -171,10 +177,11 @@ namespace MagicUI.Elements
             tx.anchorMax = pos;
 
             textComponent = textObj.AddComponent<Text>();
-            textComponent.font = UI.TrajanNormal;
-            textComponent.text = "";
-            textComponent.fontSize = 12;
-            textComponent.alignment = TextAnchor.MiddleLeft;
+            textComponent.font = font;
+            textComponent.text = text;
+            textComponent.fontSize = fontSize;
+            textComponent.alignment = textAlignment;
+            textComponent.color = color;
             tx.sizeDelta = MeasureText();
 
             fitter = textObj.AddComponent<ContentSizeFitter>();
@@ -193,8 +200,14 @@ namespace MagicUI.Elements
             // by default, this will inherit the parent canvas's scale factor, which is set to scale with screen space.
             // however, since we're functioning in an unscaled coordinate system we should get the unscaled size to measure correctly.
             settings.scaleFactor = 1;
-            float preferredWidth = textGen.GetPreferredWidth(textComponent.text, settings);
-            float preferredHeight = textGen.GetPreferredHeight(textComponent.text, settings);
+            // use the staged backing fields instead of the actual current property of the text.
+            // in other words, the value it will be after measure/arrange rather than the value it currently is.
+            settings.textAnchor = textAlignment;
+            settings.font = font;
+            settings.fontSize = fontSize;
+
+            float preferredWidth = textGen.GetPreferredWidth(text, settings);
+            float preferredHeight = textGen.GetPreferredHeight(text, settings);
             float width = Mathf.Min(preferredWidth, MaxWidth);
             float height = Mathf.Min(preferredHeight, MaxHeight);
             return new Vector2(width, height);
@@ -209,6 +222,12 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
+            textComponent.text = text;
+            textComponent.alignment = textAlignment;
+            textComponent.font = font;
+            textComponent.fontSize = fontSize;
+            textComponent.color = color;
+
             // a great deal of spaghetti to work around text's desire to be placed pixel-perfectly
             // basically, we'll allow unity to set the sizing for us, unless we've explicitly set a max size.
             // this will prevent the text from clipping at unwanted times.
