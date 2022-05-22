@@ -1,4 +1,5 @@
 ﻿using MagicUI.Core;
+using MagicUI.Core.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,11 +30,11 @@ namespace MagicUI.Elements
         /// <summary>
         /// The size of the dimension
         /// </summary>
-        public float Size { get; set; }
+        public float Size { get; init; }
         /// <summary>
         /// The unit of the dimension
         /// </summary>
-        public GridUnit Unit { get; set; }
+        public GridUnit Unit { get; init; }
 
         /// <summary>
         /// Convenience constructor to initialize a GridDimension
@@ -42,6 +43,12 @@ namespace MagicUI.Elements
         {
             Size = size;
             Unit = unit;
+        }
+
+        /// <inheritdoc/>
+        public override string ToString()
+        {
+            return $"{Size:G3}{(Unit == GridUnit.Proportional ? "*" : "px")}";
         }
     }
 
@@ -56,6 +63,8 @@ namespace MagicUI.Elements
     /// </remarks>
     public class GridLayout : Layout
     {
+        private static readonly SettingsBoundLogger log = LogHelper.GetLogger();
+
         private static bool PositiveIntValidator(int x) => x > 0;
         private static bool UintValidator(int x) => x >= 0;
 
@@ -85,37 +94,13 @@ namespace MagicUI.Elements
         /// <summary>
         /// Definition of the number of rows, their sizes, and their types
         /// </summary>
-        public ICollection<GridDimension> RowDefinitions
-        {
-            get => rowDefs;
-            init
-            {
-                rowDefs = new NotifyingCollection<GridDimension>(this, ChangeAction.Measure);
-                foreach (GridDimension def in value)
-                {
-                    rowDefs.Add(def);
-                }
-                InvalidateMeasure();
-            }
-        }
+        public ICollection<GridDimension> RowDefinitions => rowDefs;
 
         private NotifyingCollection<GridDimension> colDefs;
         /// <summary>
         /// Definition of the number of columns, their sizes, and their types
         /// </summary>
-        public ICollection<GridDimension> ColumnDefinitions
-        {
-            get => colDefs;
-            set
-            {
-                colDefs = new NotifyingCollection<GridDimension>(this, ChangeAction.Measure);
-                foreach (GridDimension def in value)
-                {
-                    colDefs.Add(def);
-                }
-                InvalidateMeasure();
-            }
-        }
+        public ICollection<GridDimension> ColumnDefinitions => colDefs;
 
         private float minWidth = 0;
         /// <summary>
@@ -158,11 +143,11 @@ namespace MagicUI.Elements
         /// <param name="name">the name of the grid layout</param>
         public GridLayout(LayoutRoot onLayout, string name = "New GridLayout") : base(onLayout, name)
         {
-            rowDefs = new(this, ChangeAction.Measure) { new GridDimension(0, GridUnit.AbsoluteMin) };
-            colDefs = new(this, ChangeAction.Measure) { new GridDimension(0, GridUnit.AbsoluteMin) };
+            rowDefs = new(this, ChangeAction.Measure);
+            colDefs = new(this, ChangeAction.Measure);
 
-            rowSizes = new float[1];
-            colSizes = new float[1];
+            rowSizes = new float[0];
+            colSizes = new float[0];
         }
 
         private IEnumerable<int> SpannedIndices(int start, int span, int maxExclusive)
@@ -178,8 +163,8 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
-            float[] rowSizes = new float[rowDefs.Count];
-            float[] colSizes = new float[colDefs.Count];
+            rowSizes = new float[rowDefs.Count];
+            colSizes = new float[colDefs.Count];
             float[] rowProportions = new float[rowDefs.Count];
             float rowProportionSum = 0;
             float[] colProportions = new float[colDefs.Count];
@@ -232,6 +217,14 @@ namespace MagicUI.Elements
                 }
             }
 
+            log.Log($"Grid property precompute");
+            log.Log($"Rows: {string.Join(", ", rowDefs)}");
+            log.Log($"Row sizes: {string.Join(", ", rowSizes)}");
+            log.Log($"Row proportions: {string.Join(", ", rowProportions)}");
+            log.Log($"Cols: {string.Join(", ", colDefs)}");
+            log.Log($"Col sizes: {string.Join(", ", colSizes)}");
+            log.Log($"Col proportions: {string.Join(", ", colProportions)}");
+
             // measure each child and sort it in a way that we can access each child of a given row/column easily. for children that span
             // multiple rows/columns, include it in both/all.
             foreach (ArrangableElement child in Children)
@@ -254,13 +247,17 @@ namespace MagicUI.Elements
                 }
             }
 
+            log.Log($"Grid property post child measure");
+            log.Log($"Row sizes: {string.Join(", ", rowSizes)}");
+            log.Log($"Col sizes: {string.Join(", ", colSizes)}");
+
             // so each child is accessible by the rows and columns it occupies, and the width/height of each absolutemin col/row is computed.
             // now we still need to handle proportional rows/columns
             // specifically, we need to:
             // 1. maximize the ratio between the required minimum size and the proportion to find the largest needed "pixels per unit"
             // 2. find the new minimum space needed for a panel by multiplying the discovered ppu with the proportional size
             // 3. find the actual width/height of the grid now - if it's less than the min, divide up the remaining space amongst the proportional cols
-            float rowRequiredPpu = rowProportions.Where(p => p != 0).Select((p, i) => rowSizes[i] / p).Max();
+            float rowRequiredPpu = rowProportions.Select((p, i) => p > 0f ? rowSizes[i] / p : 0).Max();
             for (int row = 0; row < rowDefs.Count; row++)
             {
                 if (rowProportions[row] != 0)
@@ -268,7 +265,7 @@ namespace MagicUI.Elements
                     rowSizes[row] = rowRequiredPpu * rowProportions[row];
                 }
             }
-            float colRequiredPpu = colProportions.Where(p => p != 0).Select((p, i) => colSizes[i] / p).Max();
+            float colRequiredPpu = colProportions.Select((p, i) => p > 0f ? colSizes[i] / p : 0).Max();
             for (int col = 0; col < colDefs.Count; col++)
             {
                 if (colProportions[col] != 0)
@@ -279,6 +276,10 @@ namespace MagicUI.Elements
 
             float requiredWidth = colSizes.Sum();
             float requiredHeight = rowSizes.Sum();
+
+            log.Log($"Grid property post resolve proportions");
+            log.Log($"Row sizes: {string.Join(", ", rowSizes)}");
+            log.Log($"Col sizes: {string.Join(", ", colSizes)}");
 
             float remainingWidth = minWidth - requiredWidth;
             if (remainingWidth > 0)
@@ -298,6 +299,10 @@ namespace MagicUI.Elements
                 }
             }
 
+            log.Log($"Grid property post fill space");
+            log.Log($"Row sizes: {string.Join(", ", rowSizes)}");
+            log.Log($"Col sizes: {string.Join(", ", colSizes)}");
+
             return new Vector2(colSizes.Sum(), rowSizes.Sum());
         }
 
@@ -306,18 +311,18 @@ namespace MagicUI.Elements
         {
             float accum = alignedTopLeftCorner.y;
             float[] rowStarts = new float[rowDefs.Count];
-            for (int row = 1; row < rowDefs.Count; row++)
+            for (int row = 0; row < rowDefs.Count; row++)
             {
-                accum += rowSizes[row - 1];
                 rowStarts[row] = accum;
+                accum += rowSizes[row];
             }
 
             accum = alignedTopLeftCorner.x;
             float[] colStarts = new float[colDefs.Count];
-            for (int col = 1; col < colDefs.Count; col++)
+            for (int col = 0; col < colDefs.Count; col++)
             {
-                accum += colSizes[col - 1];
                 colStarts[col] = accum;
+                accum += colSizes[col];
             }
 
             foreach (ArrangableElement child in Children)
