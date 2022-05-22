@@ -364,3 +364,5 @@ FodyWeavers.xsd
 /API
 /HKManaged
 /docs
+/MagicUI/LocalOverrides.targets
+/MagicUIExamples/LocalOverrides.targets
