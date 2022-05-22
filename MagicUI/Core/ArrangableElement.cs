@@ -159,7 +159,28 @@ namespace MagicUI.Core
         /// <summary>
         /// This element's parent in the layout hierarchy, if any
         /// </summary>
-        public ArrangableElement? LogicalParent { get; protected internal set; } = null;
+        public ArrangableElement? LogicalParent { get; private set; } = null;
+
+        /// <summary>
+        /// Sets the logical parent of the provided child to this element. Usable by any derived arrangable.
+        /// </summary>
+        /// <param name="child">The new child object</param>
+        protected internal void SetLogicalChild(ArrangableElement child)
+        {
+            child.LogicalParent = this;
+        }
+
+        /// <summary>
+        /// Detaches a child from this element in the logical tree if this element is its parent.
+        /// </summary>
+        /// <param name="child">The child object</param>
+        protected internal void DetachLogicalChild(ArrangableElement child)
+        {
+            if (child.LogicalParent == this)
+            {
+                child.LogicalParent = null;
+            }
+        }
 
         /// <summary>
         /// Creates an arrangable element

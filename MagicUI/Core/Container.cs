@@ -18,7 +18,7 @@
                 child = value;
                 if (child != null)
                 {
-                    child.LogicalParent = this;
+                    SetLogicalChild(child);
                 }
             }
         }
@@ -37,7 +37,7 @@
         {
             if (child.Equals(Child))
             {
-                child.LogicalParent = null;
+                DetachLogicalChild(child);
                 Child = null;
             }
         }

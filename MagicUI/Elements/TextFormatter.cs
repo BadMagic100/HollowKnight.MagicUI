@@ -47,7 +47,7 @@ namespace MagicUI.Elements
                 text = value;
                 if (text != null)
                 {
-                    text.LogicalParent = this;
+                    SetLogicalChild(text);
                     text.Text = formatter.Invoke(data) ?? string.Empty;
                 }
             }
@@ -91,7 +91,7 @@ namespace MagicUI.Elements
         {
             if (child.Equals(Text))
             {
-                child.LogicalParent = null;
+                DetachLogicalChild(child);
                 Text = null;
             }
         }

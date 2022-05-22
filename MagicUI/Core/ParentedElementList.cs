@@ -64,7 +64,7 @@ namespace MagicUI.Core
         /// <inheritdoc/>
         public void Insert(int index, ArrangableElement item)
         {
-            item.LogicalParent = logicalParent;
+            logicalParent.SetLogicalChild(item);
             logicalChildren.Insert(index, item);
             logicalParent.InvalidateMeasure();
         }
