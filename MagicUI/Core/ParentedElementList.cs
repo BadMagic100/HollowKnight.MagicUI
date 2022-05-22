@@ -96,7 +96,7 @@ namespace MagicUI.Core
             ArrangableElement element = logicalChildren[index];
             logicalChildren.RemoveAt(index);
             element.Destroy();
-            element.LogicalParent = null;
+            logicalParent.DetachLogicalChild(element);
             logicalParent.InvalidateMeasure();
         }
 

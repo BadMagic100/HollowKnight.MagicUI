@@ -102,6 +102,7 @@ namespace MagicUI.Core
                     {
                         InvalidateArrange();
                     }
+                    selfEffectiveVisibilityMayChange = true;
                     visibility = value;
                 }
             }
@@ -143,6 +144,16 @@ namespace MagicUI.Core
                     next = next.LogicalParent;
                 }
                 return true;
+            }
+        }
+
+        private bool selfEffectiveVisibilityMayChange = false;
+        // lifecycle check for propagating visibility changes to children
+        private bool EffectiveVisibilityMayChange
+        {
+            get
+            {
+                return selfEffectiveVisibilityMayChange || LogicalParent?.EffectiveVisibilityMayChange == true;
             }
         }
 
@@ -274,14 +285,15 @@ namespace MagicUI.Core
         /// <param name="availableSpace">The space available for the element.</param>
         public void Arrange(Rect availableSpace)
         {
-            // only rearrange if we're either put into a new space or explicitly told to rearrange.
-            if (!ArrangeIsValid || PlacementRect != availableSpace)
+            // only rearrange if we're put into a new space, changing visibility, or explicitly told to rearrange.
+            if (!ArrangeIsValid || EffectiveVisibilityMayChange || PlacementRect != availableSpace)
             {
                 log.Log($"Arrange triggered for {Name} in {availableSpace}");
                 PlacementRect = availableSpace;
                 ArrangeOverride(GetAlignedTopLeftCorner(availableSpace));
                 ArrangeIsValid = true;
                 WasEverArranged = true;
+                selfEffectiveVisibilityMayChange = false;
             }
         }
 
