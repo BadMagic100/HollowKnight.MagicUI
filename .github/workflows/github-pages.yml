@@ -16,11 +16,6 @@ jobs:
         with:
           ref: docs-source
           path: docs
-
-      - name: Setup MAPI
-        run: |
-            Invoke-WebRequest -Uri "https://files.catbox.moe/ut01ee.zip" -OutFile API.zip
-            Expand-Archive -Path API.zip -DestinationPath HKManaged
         
       # setup .NET
       - name: Setup .NET
