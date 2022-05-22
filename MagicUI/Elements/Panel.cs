@@ -76,9 +76,10 @@ namespace MagicUI.Elements
             SetLogicalChild(backgroundObj);
 
             minWidth = background.rect.width;
-            minHeight = background.rect.width;
+            minHeight = background.rect.height;
         }
 
+        /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
             Child?.Measure();
@@ -97,6 +98,7 @@ namespace MagicUI.Elements
             return backgroundObj.Measure();
         }
 
+        /// <inheritdoc/>
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
         {
             Child?.Arrange(new Rect
@@ -108,6 +110,7 @@ namespace MagicUI.Elements
             backgroundObj.Arrange(new Rect(alignedTopLeftCorner, ContentSize));
         }
 
+        /// <inheritdoc/>
         protected override void DestroyOverride()
         {
             Child?.Destroy();

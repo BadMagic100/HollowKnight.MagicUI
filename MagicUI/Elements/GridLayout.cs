@@ -59,37 +59,68 @@ namespace MagicUI.Elements
         private static bool PositiveIntValidator(int x) => x > 0;
         private static bool UintValidator(int x) => x >= 0;
 
+        /// <summary>
+        /// Attached property for row. This is the first row that the item will appear in the grid. Defaults to 0 and is capped
+        /// at the last row.
+        /// </summary>
         public static AttachedProperty<int> Row = new(0, ChangeAction.ParentMeasure, UintValidator);
+        /// <summary>
+        /// Attached property for column. This is the first column that the item will appear in the grid. Defaults to 0 and is capped
+        /// at the last column.
+        /// </summary>
         public static AttachedProperty<int> Column = new(0, ChangeAction.ParentMeasure, UintValidator);
+        /// <summary>
+        /// Attached property for row span. This is the maximum number of rows that an item will occupy. Defaults to 1.
+        /// </summary>
         public static AttachedProperty<int> RowSpan = new(1, ChangeAction.ParentMeasure, PositiveIntValidator);
+        /// <summary>
+        /// Attached property for column span. This is the maximum number of columns that an item will occupy. Defaults to 1.
+        /// </summary>
         public static AttachedProperty<int> ColumnSpan = new(1, ChangeAction.ParentMeasure, PositiveIntValidator);
 
         private float[] rowSizes;
         private float[] colSizes;
 
         private NotifyingCollection<GridDimension> rowDefs;
-        public NotifyingCollection<GridDimension> RowDefinitions
+        /// <summary>
+        /// Definition of the number of rows, their sizes, and their types
+        /// </summary>
+        public ICollection<GridDimension> RowDefinitions
         {
             get => rowDefs;
-            set
+            init
             {
-                rowDefs = value;
+                rowDefs = new NotifyingCollection<GridDimension>(this, ChangeAction.Measure);
+                foreach (GridDimension def in value)
+                {
+                    rowDefs.Add(def);
+                }
                 InvalidateMeasure();
             }
         }
 
         private NotifyingCollection<GridDimension> colDefs;
-        public NotifyingCollection<GridDimension> ColumnDefinitions
+        /// <summary>
+        /// Definition of the number of columns, their sizes, and their types
+        /// </summary>
+        public ICollection<GridDimension> ColumnDefinitions
         {
             get => colDefs;
             set
             {
-                colDefs = value;
+                colDefs = new NotifyingCollection<GridDimension>(this, ChangeAction.Measure);
+                foreach (GridDimension def in value)
+                {
+                    colDefs.Add(def);
+                }
                 InvalidateMeasure();
             }
         }
 
         private float minWidth = 0;
+        /// <summary>
+        /// The minimum width to be occupied by the grid
+        /// </summary>
         public float MinWidth
         {
             get => minWidth;
@@ -104,6 +135,9 @@ namespace MagicUI.Elements
         }
 
         private float minHeight = 0;
+        /// <summary>
+        /// The minimum height to be occupied by the grid
+        /// </summary>
         public float MinHeight
         {
             get => minHeight;
@@ -117,6 +151,11 @@ namespace MagicUI.Elements
             }
         }
 
+        /// <summary>
+        /// Creates a grid layout
+        /// </summary>
+        /// <param name="onLayout">The layout root to draw the grid layout on</param>
+        /// <param name="name">the name of the grid layout</param>
         public GridLayout(LayoutRoot onLayout, string name = "New GridLayout") : base(onLayout, name)
         {
             rowDefs = new(this, ChangeAction.Measure) { new GridDimension(0, GridUnit.AbsoluteMin) };
