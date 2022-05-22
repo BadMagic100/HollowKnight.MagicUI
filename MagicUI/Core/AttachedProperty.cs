@@ -75,4 +75,25 @@ namespace MagicUI.Core
             return valueLookup[element];
         }
     }
+
+    /// <summary>
+    /// Chainable extension methods to apply attached properties to elements inline at declaration time
+    /// </summary>
+    public static class ApplyAttachedPropertyChainables
+    {
+        /// <summary>
+        /// Applies a value to an attached property on a given element and returns the element for chaining
+        /// </summary>
+        /// <typeparam name="T">The type of the element</typeparam>
+        /// <typeparam name="U">The type of the property</typeparam>
+        /// <param name="element">The element to attach a property to</param>
+        /// <param name="property">The property to attach</param>
+        /// <param name="value">The new value of the property</param>
+        /// <returns>The original element for chaining</returns>
+        public static T WithProp<T, U>(this T element, AttachedProperty<U> property, U value) where T : ArrangableElement
+        {
+            property.Set(element, value);
+            return element;
+        }
+    }
 }
