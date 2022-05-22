@@ -13,7 +13,6 @@ namespace MagicUI.Elements
         private readonly Image backgroundObj;
 
         private float minWidth;
-
         /// <summary>
         /// The minimum width of the background
         /// </summary>
@@ -31,7 +30,6 @@ namespace MagicUI.Elements
         }
 
         private float minHeight;
-
         /// <summary>
         /// The minimum height of the background
         /// </summary>
@@ -48,8 +46,7 @@ namespace MagicUI.Elements
             }
         }
         
-        private Padding borders = new(0, 0, 0, 0);
-
+        private Padding borders = Padding.Zero;
         /// <summary>
         /// How far around the enclosed element the background will stretch to (left, top, right, bottom)
         /// </summary>
@@ -89,19 +86,15 @@ namespace MagicUI.Elements
             if (Child != null)
             {
                 backgroundObj.Width = Math.Max(MinWidth, Child.EffectiveSize.x + borders.AddedWidth);
-
                 backgroundObj.Height = Math.Max(MinHeight, Child.EffectiveSize.y + borders.AddedHeight);
             }
             else
             {
                 backgroundObj.Width = MinWidth;
-
                 backgroundObj.Height = MinHeight;
             }
-            
-            backgroundObj.Measure();
 
-            return backgroundObj.EffectiveSize;
+            return backgroundObj.Measure();
         }
 
         protected override void ArrangeOverride(Vector2 alignedTopLeftCorner)
@@ -109,12 +102,10 @@ namespace MagicUI.Elements
             Child?.Arrange(new Rect
             (
                 alignedTopLeftCorner + new Vector2(borders.Left, borders.Top),
-                new Vector2(backgroundObj.EffectiveSize.x - borders.AddedWidth, backgroundObj.EffectiveSize.y - borders.AddedHeight)
+                new Vector2(ContentSize.x - borders.AddedWidth, ContentSize.y - borders.AddedHeight)
             ));
 
-            backgroundObj.Arrange(new Rect(alignedTopLeftCorner, backgroundObj.EffectiveSize));
-
-            return;
+            backgroundObj.Arrange(new Rect(alignedTopLeftCorner, ContentSize));
         }
 
         protected override void DestroyOverride()
