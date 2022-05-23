@@ -55,7 +55,7 @@ namespace MagicUI.Elements
             get => borders;
             set
             {
-                if (!borders.Equals(value))
+                if (borders != value)
                 {
                     borders = value;
                     InvalidateMeasure();

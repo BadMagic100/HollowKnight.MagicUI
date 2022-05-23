@@ -117,8 +117,7 @@ namespace MagicUI.Core
             get => padding;
             set
             {
-                // note - default struct value comparison MAY be slow. I don't anticipate it's a huge issue though
-                if (!padding.Equals(value))
+                if (padding != value)
                 {
                     padding = value;
                     InvalidateMeasure();

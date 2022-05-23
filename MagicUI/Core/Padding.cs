@@ -6,7 +6,7 @@ namespace MagicUI.Core
     /// <summary>
     /// Describes the padding around an element
     /// </summary>
-    public struct Padding
+    public struct Padding : IEquatable<Padding>
     {
         /// <summary>
         /// A uniform empty padding
@@ -126,6 +126,44 @@ namespace MagicUI.Core
                 Right + other.Right, 
                 Bottom + other.Bottom
             );
+        }
+
+        /// <inheritdoc/>
+        public override bool Equals(object? obj)
+        {
+            return obj is Padding padding && Equals(padding);
+        }
+
+        /// <inheritdoc/>
+        public bool Equals(Padding other)
+        {
+            return Left == other.Left &&
+                   Top == other.Top &&
+                   Right == other.Right &&
+                   Bottom == other.Bottom;
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            int hashCode = -1819631549;
+            hashCode = hashCode * -1521134295 + Left.GetHashCode();
+            hashCode = hashCode * -1521134295 + Top.GetHashCode();
+            hashCode = hashCode * -1521134295 + Right.GetHashCode();
+            hashCode = hashCode * -1521134295 + Bottom.GetHashCode();
+            return hashCode;
+        }
+
+        /// <inheritdoc/>
+        public static bool operator ==(Padding left, Padding right)
+        {
+            return left.Equals(right);
+        }
+
+        /// <inheritdoc/>
+        public static bool operator !=(Padding left, Padding right)
+        {
+            return !(left == right);
         }
     }
 }

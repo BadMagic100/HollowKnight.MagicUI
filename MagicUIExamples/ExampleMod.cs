@@ -43,11 +43,11 @@ namespace MagicUIExamples
                 layout.RenderDebugLayoutBounds = debugBoundStatePersistent;
 
                 // comment out examples as needed to see only the specific ones you want
-                //SimpleLayoutExample.Setup(layout);
-                //InteractivityAndDynamicSizingExample.Setup(layout);
-                //ComplexLayoutExample.Setup(layout);
-                //NonPersistentLayoutExample.Setup(layout);
-                GridExample.Setup(layout);
+                SimpleLayoutExample.Setup(layout);
+                InteractivityAndDynamicSizingExample.Setup(layout);
+                ComplexLayoutExample.Setup(layout);
+                NonPersistentLayoutExample.Setup(layout);
+                //GridExample.Setup(layout);
             }
 
             orig(self);
