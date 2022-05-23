@@ -92,13 +92,15 @@ namespace MagicUI.Elements
 
         private NotifyingCollection<GridDimension> rowDefs;
         /// <summary>
-        /// Definition of the number of rows, their sizes, and their types
+        /// Definition of the number of rows, their sizes, and their types. By default this is empty. If the grid is measured
+        /// with empty row definitions, one will be added for you with a minimum height of 0px.
         /// </summary>
         public ICollection<GridDimension> RowDefinitions => rowDefs;
 
         private NotifyingCollection<GridDimension> colDefs;
         /// <summary>
-        /// Definition of the number of columns, their sizes, and their types
+        /// Definition of the number of columns, their sizes, and their types. By default this is empty. If the grid is measured
+        /// with empty column definitions, one will be added for you with a minimum height of 0px.
         /// </summary>
         public ICollection<GridDimension> ColumnDefinitions => colDefs;
 
