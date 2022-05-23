@@ -163,6 +163,18 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
+            // add default rows if they're not provided
+            if (rowDefs.Count == 0)
+            {
+                rowDefs.Add(new GridDimension(0, GridUnit.AbsoluteMin));
+                MagicUI.Instance.LogDebug($"Adding default min-size row def to {Name}");
+            }
+            if (colDefs.Count == 0)
+            {
+                colDefs.Add(new GridDimension(0, GridUnit.AbsoluteMin));
+                MagicUI.Instance.LogDebug($"Adding default min-size column def to {Name}");
+            }
+
             rowSizes = new float[rowDefs.Count];
             colSizes = new float[colDefs.Count];
             float[] rowProportions = new float[rowDefs.Count];

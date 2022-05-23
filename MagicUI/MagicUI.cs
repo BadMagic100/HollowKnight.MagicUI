@@ -1,4 +1,5 @@
 ﻿using Modding;
+using System;
 
 namespace MagicUI
 {
@@ -7,7 +8,19 @@ namespace MagicUI
     /// </summary>
     public class MagicUI : Mod, IGlobalSettings<MagicUIGlobalSettings>
     {
-        internal static MagicUI? Instance { get; private set; }
+        private static MagicUI? instance;
+        internal static MagicUI Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    throw new InvalidOperationException($"{nameof(MagicUI)} was never initialized!");
+                }
+                return instance;
+            }
+            private set => instance = value;
+        }
 
         /// <summary>
         /// Global settings for the mod

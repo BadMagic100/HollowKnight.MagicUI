@@ -1,5 +1,6 @@
 ﻿using MagicUI.Core;
 using MagicUI.Elements;
+using MagicUI.Graphics;
 
 namespace MagicUIExamples
 {
@@ -85,6 +86,89 @@ namespace MagicUIExamples
                         VerticalAlignment = VerticalAlignment.Center,
                         HorizontalAlignment = HorizontalAlignment.Center,
                     }.WithProp(GridLayout.Column, 3)
+                }
+            };
+
+            // more complex usage of grids, mix and match proportional and absolute columns
+            new GridLayout(layout, "Complex Grid Example")
+            {
+                Padding = new Padding(10),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center,
+                RowDefinitions =
+                {
+                    new GridDimension(1, GridUnit.Proportional),
+                    new GridDimension(50, GridUnit.AbsoluteMin),
+                    new GridDimension(50, GridUnit.AbsoluteMin),
+                    new GridDimension(3, GridUnit.Proportional),
+                },
+                ColumnDefinitions =
+                {
+                    new GridDimension(1.5f, GridUnit.Proportional),
+                    new GridDimension(50, GridUnit.AbsoluteMin),
+                    new GridDimension(50, GridUnit.AbsoluteMin),
+                    new GridDimension(5, GridUnit.Proportional),
+                },
+                MinWidth = 400,
+                MinHeight = 400,
+                Children =
+                {
+                    new Image(layout, BuiltInSprites.CreateSlicedBorderRect())
+                    {
+                        Width = 90,
+                        Height = 90,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                    }.WithProp(GridLayout.Row, 1).WithProp(GridLayout.Column, 1)
+                    .WithProp(GridLayout.RowSpan, 2).WithProp(GridLayout.ColumnSpan, 2),
+                    new Image(layout, BuiltInSprites.CreateQuill())
+                    {
+                        Width = 25,
+                        Height = 25,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Tint = UnityEngine.Color.magenta,
+                    }.WithProp(GridLayout.Row, 1).WithProp(GridLayout.Column, 1),
+                    new Image(layout, BuiltInSprites.CreateQuill())
+                    {
+                        Width = 25,
+                        Height = 25,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Tint = UnityEngine.Color.green,
+                    }.WithProp(GridLayout.Row, 2).WithProp(GridLayout.Column, 1),
+                    new Image(layout, BuiltInSprites.CreateQuill())
+                    {
+                        Width = 25,
+                        Height = 25,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Tint = UnityEngine.Color.blue,
+                    }.WithProp(GridLayout.Row, 1).WithProp(GridLayout.Column, 2),
+                    new Image(layout, BuiltInSprites.CreateQuill())
+                    {
+                        Width = 25,
+                        Height = 25,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Tint = UnityEngine.Color.cyan,
+                    }.WithProp(GridLayout.Row, 2).WithProp(GridLayout.Column, 2),
+                    new TextObject(layout)
+                    {
+                        FontSize = 22,
+                        Text = "This is in\nthe largest\ncell",
+                        TextAlignment = HorizontalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Right,
+                        VerticalAlignment = VerticalAlignment.Bottom,
+                    }.WithProp(GridLayout.Row, 3).WithProp(GridLayout.Column, 3),
+                    new TextObject(layout)
+                    {
+                        // using only the available space provided by min size this column should be
+                        // ~70px wide; (400 - 50 - 50) / 6.5 * 1.5 to respect proportionality.
+                        // note that by adding this longer text, the grid becomes much wider than 400px
+                        // to retain the proportionality constraint as the cell grows.
+                        Text = "Wider than 70px"
+                    } // default row and column are 0
                 }
             };
         }
