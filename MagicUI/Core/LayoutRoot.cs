@@ -31,6 +31,11 @@ namespace MagicUI.Core
         public GameObject Canvas { get => rootCanvas; }
 
         /// <summary>
+        /// A read-only collection of elements registered to this layout
+        /// </summary>
+        public IEnumerable<ArrangableElement> Elements => layoutOrchestrator.Elements;
+
+        /// <summary>
         /// A predicate that determines whether the layout should be visible. By default (i.e. when there is no condition), the layout is
         /// always visible.
         /// </summary>

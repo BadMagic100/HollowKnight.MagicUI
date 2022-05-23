@@ -16,6 +16,8 @@ namespace MagicUI.Behaviours
 
         public bool shouldRenderDebugBounds = false;
 
+        public IEnumerable<ArrangableElement> Elements => elements.AsReadOnly();
+
         /// <summary>
         /// Registers an element in layout for arrangement and later lookup
         /// </summary>

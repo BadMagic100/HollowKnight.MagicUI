@@ -48,6 +48,19 @@ namespace MagicUI.Core
             actionOnChange.Notify(owner);
         }
 
+        /// <summary>
+        /// Convenience method to add several items at once
+        /// </summary>
+        /// <param name="items">The items to add to the collection</param>
+        public void AddRange(IEnumerable<T> items)
+        {
+            foreach (T item in items)
+            {
+                this.items.Add(item);
+            }
+            actionOnChange.Notify(owner);
+        }
+
         /// <inheritdoc/>
         public void Clear()
         {
