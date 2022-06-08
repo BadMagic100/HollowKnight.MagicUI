@@ -248,7 +248,10 @@ namespace MagicUI.Elements
             textComponent.fontSize = fontSize;
             textComponent.alignment = TextAnchor.MiddleCenter;
             textComponent.color = contentColor;
-            textTx.sizeDelta = MeasureText();
+
+            ContentSizeFitter fitter = textObj.AddComponent<ContentSizeFitter>();
+            fitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
 
             textObj.transform.SetParent(imgObj.transform, false);
 
@@ -303,8 +306,6 @@ namespace MagicUI.Elements
 
             imgTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, ContentSize.x);
             imgTx.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, ContentSize.y);
-
-            textTx.sizeDelta = MeasureText();
 
             Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, ContentSize);
             imgTx.anchorMin = pos;
