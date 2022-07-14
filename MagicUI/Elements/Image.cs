@@ -50,6 +50,23 @@ namespace MagicUI.Elements
             }
         }
 
+        private bool preserveAspect = false;
+        /// <summary>
+        /// Whether to preserve the aspect ratio of the image when scaling
+        /// </summary>
+        public bool PreserveAspectRatio
+        {
+            get => preserveAspect;
+            set
+            {
+                if (preserveAspect != value)
+                {
+                    preserveAspect = value;
+                    InvalidateMeasure();
+                }
+            }
+        }
+
         private Color color = Color.white;
         /// <summary>
         /// A color to apply over top of the image
@@ -78,7 +95,7 @@ namespace MagicUI.Elements
             imgObj = new GameObject(name);
             imgObj.AddComponent<CanvasRenderer>();
 
-            Vector2 size = sprite.textureRect.size;
+            Vector2 size = sprite.rect.size;
             Vector2 pos = UI.UnityScreenPosition(new Vector2(0, 0), size);
             tx = imgObj.AddComponent<RectTransform>();
             tx.sizeDelta = size;
@@ -88,6 +105,7 @@ namespace MagicUI.Elements
             height = size.y;
 
             img = imgObj.AddComponent<UImage>();
+            img.useSpriteMesh = true; // use a mesh material to respect packing rotation when applicable
             img.sprite = sprite;
             img.color = color;
             if (sprite.border != Vector4.zero)
@@ -113,6 +131,7 @@ namespace MagicUI.Elements
             tx.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, height);
 
             img.color = color;
+            img.preserveAspect = preserveAspect;
 
             Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, ContentSize);
             tx.anchorMin = pos;
