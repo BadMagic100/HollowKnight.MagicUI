@@ -84,6 +84,24 @@ namespace MagicUI.Elements
             }
         }
 
+        private Sprite sprite;
+        private UImage.Type nextType;
+        private bool isSpriteValid = true;
+        /// <summary>
+        /// The current sprite underlying the image
+        /// </summary>
+        public Sprite Sprite
+        {
+            get => sprite;
+            set
+            {
+                nextType = value.border != Vector4.zero ? UImage.Type.Sliced : UImage.Type.Simple;
+                sprite = value;
+                isSpriteValid = false;
+                InvalidateArrange();
+            }
+        }
+
         /// <summary>
         /// Creates an image
         /// </summary>
@@ -107,6 +125,7 @@ namespace MagicUI.Elements
             img = imgObj.AddComponent<UImage>();
             img.useSpriteMesh = true; // use a mesh material to respect packing rotation when applicable
             img.sprite = sprite;
+            this.sprite = sprite;
             img.color = color;
             if (sprite.border != Vector4.zero)
             {
@@ -132,6 +151,12 @@ namespace MagicUI.Elements
 
             img.color = color;
             img.preserveAspect = preserveAspect;
+            if (!isSpriteValid)
+            {
+                img.sprite = sprite;
+                img.type = nextType;
+                isSpriteValid = true;
+            }
 
             Vector2 pos = UI.UnityScreenPosition(alignedTopLeftCorner, ContentSize);
             tx.anchorMin = pos;
