@@ -36,6 +36,21 @@ namespace MagicUI.Core
         public IEnumerable<ArrangableElement> Elements => layoutOrchestrator.Elements;
 
         /// <summary>
+        /// Whether the elements in this layout hierarchy should be interactive. When true (by default), the elements in the hierarchy
+        /// will block interaction with other UI elements.
+        /// </summary>
+        public bool Interactive
+        {
+            get => rootCanvas.GetComponent<CanvasGroup>().interactable;
+            set
+            {
+                CanvasGroup grp = rootCanvas.GetComponent<CanvasGroup>();
+                grp.interactable = value;
+                grp.blocksRaycasts = value;
+            }
+        }
+
+        /// <summary>
         /// A predicate that determines whether the layout should be visible. By default (i.e. when there is no condition), the layout is
         /// always visible.
         /// </summary>
