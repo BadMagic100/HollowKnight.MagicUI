@@ -23,15 +23,18 @@ namespace MagicUI.Core
         public bool IsPersistent { get; private set; }
 
         private readonly GameObject rootCanvas;
+        private readonly CanvasGroup grp;
         internal readonly LayoutOrchestrator layoutOrchestrator;
+        private readonly InteractivityController interactivityController;
+        private readonly FadeController fadeController;
 
         /// <summary>
-        /// The unity <see cref="UnityEngine.Canvas"/> underlying the layout
+        /// The unity <see cref="UnityEngine.Canvas"/> underlying the layout.
         /// </summary>
         public GameObject Canvas { get => rootCanvas; }
 
         /// <summary>
-        /// A read-only collection of elements registered to this layout
+        /// A read-only collection of elements registered to this layout.
         /// </summary>
         public IEnumerable<ArrangableElement> Elements => layoutOrchestrator.Elements;
 
@@ -41,13 +44,8 @@ namespace MagicUI.Core
         /// </summary>
         public bool Interactive
         {
-            get => rootCanvas.GetComponent<CanvasGroup>().interactable;
-            set
-            {
-                CanvasGroup grp = rootCanvas.GetComponent<CanvasGroup>();
-                grp.interactable = value;
-                grp.blocksRaycasts = value;
-            }
+            get => interactivityController.interactiveWhileVisible;
+            set => interactivityController.interactiveWhileVisible = value;
         }
 
         /// <summary>
@@ -56,14 +54,20 @@ namespace MagicUI.Core
         /// </summary>
         public Func<bool>? VisibilityCondition
         {
-            get => rootCanvas.GetComponent<ConditionalVisibility>()?.condition;
+            get => interactivityController.condition;
+            set => interactivityController.condition = value;
+        }
+
+        /// <summary>
+        /// The current opacity of elements in the layout hierarchy.
+        /// </summary>
+        public float Opacity
+        {
+            get => grp.alpha;
             set
             {
-                ConditionalVisibility? viz = rootCanvas.GetComponent<ConditionalVisibility>();
-                if (viz != null)
-                {
-                    viz.condition = value;
-                }
+                fadeController.Cancel();
+                grp.alpha = value;
             }
         }
 
@@ -100,9 +104,13 @@ namespace MagicUI.Core
             scale.enabled = true;
 
             rootCanvas.AddComponent<GraphicRaycaster>();
-            rootCanvas.AddComponent<CanvasGroup>();
-            rootCanvas.AddComponent<ConditionalVisibility>();
 
+            grp = rootCanvas.AddComponent<CanvasGroup>();
+
+            fadeController = rootCanvas.AddComponent<FadeController>();
+            // it is important the interactivity controller comes later so it takes higher precedence while the layout should be invisible.
+            // this allows it to suppress any unintended changes in fade while visibility condition evaluates to false.
+            interactivityController = rootCanvas.AddComponent<InteractivityController>();
             layoutOrchestrator = rootCanvas.AddComponent<LayoutOrchestrator>();
 
             if (persist)
@@ -141,6 +149,17 @@ namespace MagicUI.Core
             listener.modifiers = modifiers;
             listener.execute = execute;
             listener.enableCondition = condition;
+        }
+
+        /// <summary>
+        /// Linearly fades the elements in this layout hierarchy to a new opacity value.
+        /// </summary>
+        /// <param name="targetOpacity">The target opacity.</param>
+        /// <param name="fadeDuration">The duration of time the fade should take to complete, in seconds.</param>
+        public void BeginFade(float targetOpacity, float fadeDuration)
+        {
+            fadeController.Cancel();
+            fadeController.BeginFade(targetOpacity, fadeDuration);
         }
 
         /// <summary>
