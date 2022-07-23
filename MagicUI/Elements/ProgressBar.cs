@@ -5,7 +5,9 @@ using UImage = UnityEngine.UI.Image;
 namespace MagicUI.Elements
 {
     /// <summary>
-    /// A horizontal progress bar
+    /// A horizontal progress bar. Note that this element only manages the filling image and value,
+    /// for a more visually complex progress bar (e.g. with a border), use a <see cref="Panel"/> (recommended)
+    /// or <see cref="GridLayout"/> to overlay the progress bar on a border image.
     /// </summary>
     public sealed class ProgressBar : ArrangableElement, IGameObjectWrapper
     {
