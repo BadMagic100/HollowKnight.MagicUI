@@ -1,4 +1,5 @@
 ﻿using MagicUI.Core;
+using MagicUI.Styles;
 using UnityEngine;
 
 namespace MagicUI.Elements
@@ -10,6 +11,7 @@ namespace MagicUI.Elements
     /// Each panel will be as large as the largest child in one direction, and as large as the child in the panel
     /// in the other direction. The panel will be as large as needed to fit each child with the specified spacing and orientation
     /// </remarks>
+    [Stylable]
     public sealed class StackLayout : Layout
     {
         private float spacing = 0;
@@ -70,7 +72,11 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
-            if (Children.Count == 0) return Vector2.zero;
+            if (Children.Count == 0)
+            {
+                return Vector2.zero;
+            }
+
             float nonFlowMeasure = 0;
             float orientationFlowMeasure = (Children.Count - 1) * spacing;
             foreach (ArrangableElement child in Children)

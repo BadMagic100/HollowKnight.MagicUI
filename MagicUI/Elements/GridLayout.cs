@@ -169,12 +169,12 @@ namespace MagicUI.Elements
             if (rowDefs.Count == 0)
             {
                 rowDefs.Add(new GridDimension(0, GridUnit.AbsoluteMin));
-                MagicUI.Instance.LogDebug($"Adding default min-size row def to {Name}");
+                MagicUIMod.Instance.LogDebug($"Adding default min-size row def to {Name}");
             }
             if (colDefs.Count == 0)
             {
                 colDefs.Add(new GridDimension(0, GridUnit.AbsoluteMin));
-                MagicUI.Instance.LogDebug($"Adding default min-size column def to {Name}");
+                MagicUIMod.Instance.LogDebug($"Adding default min-size column def to {Name}");
             }
 
             rowSizes = new float[rowDefs.Count];

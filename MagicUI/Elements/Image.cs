@@ -1,4 +1,5 @@
 ﻿using MagicUI.Core;
+using MagicUI.Styles;
 using UnityEngine;
 using UImage = UnityEngine.UI.Image;
 
@@ -7,6 +8,7 @@ namespace MagicUI.Elements
     /// <summary>
     /// A simple image element
     /// </summary>
+    [Stylable]
     public sealed class Image : ArrangableElement, IGameObjectWrapper
     {
         private readonly GameObject imgObj;
@@ -90,6 +92,7 @@ namespace MagicUI.Elements
         /// <summary>
         /// The current sprite underlying the image
         /// </summary>
+        [StyleIgnore]
         public Sprite Sprite
         {
             get => sprite;

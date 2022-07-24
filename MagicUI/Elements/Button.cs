@@ -1,6 +1,7 @@
 ﻿using MagicUI.Behaviours;
 using MagicUI.Core;
 using MagicUI.Graphics;
+using MagicUI.Styles;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ namespace MagicUI.Elements
     /// <summary>
     /// A button element
     /// </summary>
+    [Stylable]
     public sealed class Button : ArrangableElement, IGameObjectWrapper, IControllerInteractable
     {
         private readonly GameObject imgObj;
@@ -56,6 +58,7 @@ namespace MagicUI.Elements
         /// <summary>
         /// The button's content
         /// </summary>
+        [StyleIgnore]
         public string Content
         {
             get => content;
@@ -192,6 +195,7 @@ namespace MagicUI.Elements
         /// <summary>
         /// Whether the button is enabled
         /// </summary>
+        [StyleIgnore]
         public bool Enabled
         {
             get => enabled;

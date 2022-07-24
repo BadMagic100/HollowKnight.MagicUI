@@ -1,5 +1,6 @@
 ﻿using MagicUI.Core;
 using MagicUI.Graphics;
+using MagicUI.Styles;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ namespace MagicUI.Elements
     /// <summary>
     /// A text input element
     /// </summary>
+    [Stylable]
     public sealed class TextInput : ArrangableElement, IGameObjectWrapper, IControllerInteractable
     {
         private readonly GameObject underlineObj;

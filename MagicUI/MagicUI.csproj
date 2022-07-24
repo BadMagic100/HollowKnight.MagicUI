@@ -8,6 +8,8 @@
         <Description>A Hollow Knight Mod</Description>
         <Copyright>Copyright © 2022</Copyright>
         <AssemblyVersion>1.4.*</AssemblyVersion>
+        <NoWarn>CS7035</NoWarn>
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <Deterministic>false</Deterministic>
         <Nullable>enable</Nullable>
         <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -52,6 +54,13 @@
     
       <DocumentationFile></DocumentationFile>
     </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\StyleGenerators\StyleGenerators.csproj"
+                          OutputItemType="Analyzer"
+                          ReferenceOutputAssembly="false"/>
+    </ItemGroup>
+    
     <ItemGroup>
         <None Include="..\README.md" />
     </ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using MagicUI.Core;
+using MagicUI.Styles;
 using System;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace MagicUI.Elements
     /// Each panel in the grid is the size of the largest element; the grid will be as large as needed to fit one panel per
     /// child with the required number of rows/columns and spacing based on the specified parameters
     /// </remarks>
+    [Stylable]
     public sealed class DynamicUniformGrid : Layout
     {
         private float verticalSpacing = 0;
@@ -115,7 +117,10 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
-            if (Children.Count == 0) return Vector2.zero;
+            if (Children.Count == 0)
+            {
+                return Vector2.zero;
+            }
 
             float panelWidth = 0;
             float panelHeight = 0;

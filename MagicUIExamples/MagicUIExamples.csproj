@@ -8,6 +8,7 @@
         <Description>A Hollow Knight Mod</Description>
         <Copyright>Copyright ©  2022</Copyright>
         <AssemblyVersion>1.1.*</AssemblyVersion>
+        <NoWarn>CS7035</NoWarn>
         <Deterministic>false</Deterministic>
         <Nullable>enable</Nullable>
         <OutputPath>bin\$(Configuration)\</OutputPath>

@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32002.261
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicUI", "MagicUI\MagicUI.csproj", "{4B6FE558-7B15-44C5-980A-EFE4FF5768BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicUIExamples", "MagicUIExamples\MagicUIExamples.csproj", "{8FA405E0-EF0C-4532-8F2A-C030663EEF3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicUIExamples", "MagicUIExamples\MagicUIExamples.csproj", "{8FA405E0-EF0C-4532-8F2A-C030663EEF3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StyleGenerators", "StyleGenerators\StyleGenerators.csproj", "{B7E25847-87B8-446B-96E7-DEC6625E5A2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{8FA405E0-EF0C-4532-8F2A-C030663EEF3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FA405E0-EF0C-4532-8F2A-C030663EEF3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FA405E0-EF0C-4532-8F2A-C030663EEF3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E25847-87B8-446B-96E7-DEC6625E5A2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E25847-87B8-446B-96E7-DEC6625E5A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E25847-87B8-446B-96E7-DEC6625E5A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E25847-87B8-446B-96E7-DEC6625E5A2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

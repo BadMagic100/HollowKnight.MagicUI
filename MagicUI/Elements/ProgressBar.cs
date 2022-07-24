@@ -1,4 +1,5 @@
 ﻿using MagicUI.Core;
+using MagicUI.Styles;
 using UnityEngine;
 using UImage = UnityEngine.UI.Image;
 
@@ -9,6 +10,7 @@ namespace MagicUI.Elements
     /// for a more visually complex progress bar (e.g. with a border), use a <see cref="Panel"/> (recommended)
     /// or <see cref="GridLayout"/> to overlay the progress bar on a border image.
     /// </summary>
+    [Stylable]
     public sealed class ProgressBar : ArrangableElement, IGameObjectWrapper
     {
         private readonly GameObject imgObj;
@@ -91,6 +93,7 @@ namespace MagicUI.Elements
         /// <summary>
         /// The current sprite underlying the progress bar
         /// </summary>
+        [StyleIgnore]
         public Sprite Sprite
         {
             get => sprite;

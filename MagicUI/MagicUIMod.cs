@@ -6,16 +6,16 @@ namespace MagicUI
     /// <summary>
     /// Base mod class
     /// </summary>
-    public class MagicUI : Mod, IGlobalSettings<MagicUIGlobalSettings>
+    public class MagicUIMod : Mod, IGlobalSettings<MagicUIGlobalSettings>
     {
-        private static MagicUI? instance;
-        internal static MagicUI Instance
+        private static MagicUIMod? instance;
+        internal static MagicUIMod Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    throw new InvalidOperationException($"{nameof(MagicUI)} was never initialized!");
+                    throw new InvalidOperationException($"{nameof(MagicUIMod)} was never initialized!");
                 }
                 return instance;
             }
@@ -30,8 +30,10 @@ namespace MagicUI
         /// <inheritdoc/>
         public override string GetVersion() => GetType().Assembly.GetName().Version.ToString();
 
-        /// <inheritdoc/>
-        public override void Initialize()
+        /// <summary>
+        /// Instantiates the mod instance
+        /// </summary>
+        public MagicUIMod() : base("MagicUI")
         {
             Instance = this;
         }

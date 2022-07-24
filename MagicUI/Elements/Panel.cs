@@ -1,5 +1,6 @@
 using MagicUI.Core;
 using MagicUI.Graphics;
+using MagicUI.Styles;
 using System;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace MagicUI.Elements
     /// A container that overlays a single element on top of a background image. The background will always be scaled to surround
     /// the element. To have a Sprite scale without stretching its borders, use <see cref="TextureExtensions.ToSlicedSprite"/> to create the sprite.
     /// </summary>
+    [Stylable]
     public sealed class Panel : Container
     {
         private readonly Image backgroundObj;

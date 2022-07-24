@@ -13,9 +13,9 @@ namespace MagicUI.Core.Internal
 
         public void Log(string message)
         {
-            if (MagicUI.Instance != null && MagicUI.Instance.GlobalSettings.LogLayoutInformation)
+            if (MagicUIMod.Instance != null && MagicUIMod.Instance.GlobalSettings.LogLayoutInformation)
             {
-                switch (MagicUI.Instance.GlobalSettings.LogLevel)
+                switch (MagicUIMod.Instance.GlobalSettings.LogLevel)
                 {
                     case LogLevel.Fine:
                         logger.LogFine(message);

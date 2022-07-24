@@ -1,4 +1,5 @@
 ﻿using MagicUI.Core.Internal;
+using MagicUI.Styles;
 using System;
 using UnityEngine;
 
@@ -7,6 +8,7 @@ namespace MagicUI.Core
     /// <summary>
     /// Root class for arrangeable UI elements
     /// </summary>
+    [Stylable]
     public abstract class ArrangableElement
     {
         private static readonly SettingsBoundLogger log = LogHelper.GetLogger();
