@@ -55,5 +55,14 @@ namespace MagicUI.Graphics
             Texture2D tex = Loader.GetTexture("inv_item__0004_quill-white.png");
             return tex.ToSprite();
         }
+
+        /// <summary>
+        /// Creates a standard sprite of a 40x40 white box for general use
+        /// </summary>
+        public static Sprite CreateBox()
+        {
+            Texture2D tex = Loader.GetTexture("Box.png");
+            return tex.ToSprite();
+        }
     }
 }
