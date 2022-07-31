@@ -303,6 +303,16 @@ namespace MagicUI.Elements
                     colSizes[col] += remainingWidth * colProportions[col];
                 }
             }
+            remainingWidth = minWidth - colSizes.Sum();
+            // on the offchance there's no proportional cols, reallocate the remaining space equally among the absolute columns.
+            if (remainingWidth > 0)
+            {
+                float sizePerCol = remainingWidth / colDefs.Count;
+                for (int col = 0; col < colDefs.Count; col++)
+                {
+                    colSizes[col] += sizePerCol;
+                }
+            }
 
             float remainingHeight = minHeight - requiredHeight;
             if (remainingHeight > 0)
@@ -310,6 +320,15 @@ namespace MagicUI.Elements
                 for (int row = 0; row < rowDefs.Count; row++)
                 {
                     rowSizes[row] += remainingHeight * rowProportions[row];
+                }
+            }
+            remainingHeight = minHeight - rowSizes.Sum();
+            if (remainingHeight > 0)
+            {
+                float sizePerRow = remainingHeight / rowDefs.Count;
+                for (int row = 0; row < rowDefs.Count; row++)
+                {
+                    rowSizes[row] += sizePerRow;
                 }
             }
 

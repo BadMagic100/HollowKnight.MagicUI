@@ -4,7 +4,7 @@ namespace MagicUI.Core.Internal
 {
     internal class SettingsBoundLogger
     {
-        private SimpleLogger logger;
+        private readonly SimpleLogger logger;
 
         public SettingsBoundLogger(string name)
         {
