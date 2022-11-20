@@ -432,10 +432,10 @@ namespace MagicUI.Elements
         {
             icon.color = iconColor;
 
+            input.text = text;
             input.contentType = contentType;
             input.interactable = enabled;
 
-            textComponent.text = text;
             textComponent.alignment = textAlignment;
             textComponent.font = font;
             textComponent.fontSize = fontSize;
