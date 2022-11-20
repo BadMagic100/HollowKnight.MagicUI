@@ -11,6 +11,11 @@ namespace MagicUI.Behaviours
         private bool hasCachedAlpha = false;
         private float cachedAlpha;
 
+        internal void ForceUpdate()
+        {
+            Update();
+        }
+
         private void Update()
         {
             CanvasGroup grp = GetComponent<CanvasGroup>();

@@ -205,6 +205,14 @@ namespace MagicUI.Core
         }
 
         /// <summary>
+        /// Forces the interactivity controller to immediately re-evaluate interactivity conditions without needing to wait a frame
+        /// </summary>
+        public void ForceInteractivityRefresh()
+        {
+            interactivityController.ForceUpdate();
+        }
+
+        /// <summary>
         /// Destroys the layout root and all of its child elements
         /// </summary>
         public void Destroy()
