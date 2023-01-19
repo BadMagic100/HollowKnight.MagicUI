@@ -1,4 +1,5 @@
-﻿using MagicUI.Core;
+﻿using MagicUI.Behaviours;
+using MagicUI.Core;
 using MagicUI.Graphics;
 using MagicUI.Styles;
 using System;
@@ -31,6 +32,8 @@ namespace MagicUI.Elements
         private Sprite? borderSprite;
         private Sprite? borderlessSprite;
 
+        private bool suppressingSubmission = false;
+
         /// <summary>
         /// Event that fires when the edit is completed, e.g. by clicking off the element. Sends this input and its current text.
         /// </summary>
@@ -41,9 +44,22 @@ namespace MagicUI.Elements
         /// </summary>
         public event Action<TextInput, string>? TextChanged;
 
+        /// <summary>
+        /// Event that fires when the text input is hovered over, either by mouse or controller inputs.
+        /// </summary>
+        public event Action<TextInput>? OnHover;
+
+        /// <summary>
+        /// Event that fires when the text input stops being hovered over, either by mouse or controller inputs.
+        /// </summary>
+        public event Action<TextInput>? OnUnhover;
+
         private void InvokeEditFinished(string text)
         {
-            TextEditFinished?.Invoke(this, text);
+            if (!suppressingSubmission)
+            {
+                TextEditFinished?.Invoke(this, text);
+            }
         }
 
         private void InvokeTextChanged(string text)
@@ -390,6 +406,10 @@ namespace MagicUI.Elements
             input.onEndEdit.AddListener(InvokeEditFinished);
             input.onValueChanged.AddListener(InvokeTextChanged);
 
+            SelectionEventProxy selectionProxy = underlineObj.AddComponent<SelectionEventProxy>();
+            selectionProxy.OnSelectProxy = () => OnHover?.Invoke(this);
+            selectionProxy.OnDeselectProxy = () => OnUnhover?.Invoke(this);
+
             // hide the GO until the first arrange cycle takes control
             underlineObj.SetActive(false);
         }
@@ -483,6 +503,25 @@ namespace MagicUI.Elements
             UnityEngine.Object.Destroy(underlineObj);
             UnityEngine.Object.Destroy(textObj);
             UnityEngine.Object.Destroy(placeholderObj);
+        }
+
+        /// <summary>
+        /// Selects and activates the text input.
+        /// </summary>
+        public void SelectAndActivate()
+        {
+            input.Select();
+            input.ActivateInputField();
+        }
+
+        /// <summary>
+        /// Deactivates the text input.
+        /// </summary>
+        public void Deactivate()
+        {
+            suppressingSubmission = true;
+            input.DeactivateInputField();
+            suppressingSubmission = false;
         }
 
         /// <inheritdoc/>

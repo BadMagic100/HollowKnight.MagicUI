@@ -26,6 +26,8 @@ namespace MagicUIExamples
                 MinWidth = 100
             };
             testButton.Click += ClearContent;
+            testButton.OnHover += (_) => MagicUIExamples.Instance!.Log("Hovered!");
+            testButton.OnUnhover += (_) => MagicUIExamples.Instance!.Log("Unhovered!");
 
             Button toggleButton = new(layout)
             {

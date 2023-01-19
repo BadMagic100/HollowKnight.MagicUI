@@ -32,6 +32,16 @@ namespace MagicUI.Elements
         /// </summary>
         public event Action<Button>? Click;
 
+        /// <summary>
+        /// Event that fires when the button is hovered over, either by mouse or controller inputs.
+        /// </summary>
+        public event Action<Button>? OnHover;
+
+        /// <summary>
+        /// Event that fires when the button stops being hovered over, either by mouse or controller inputs.
+        /// </summary>
+        public event Action<Button>? OnUnhover;
+
         private void InvokeClick()
         {
             Click?.Invoke(this);
@@ -237,6 +247,10 @@ namespace MagicUI.Elements
             btn = imgObj.AddComponent<MultiGraphicButton>();
             btn.interactable = enabled;
             btn.onClick.AddListener(InvokeClick);
+
+            SelectionEventProxy selectionProxy = imgObj.AddComponent<SelectionEventProxy>();
+            selectionProxy.OnSelectProxy = () => OnHover?.Invoke(this);
+            selectionProxy.OnDeselectProxy = () => OnUnhover?.Invoke(this);
 
             imgObj.transform.SetParent(onLayout.Canvas.transform, false);
 
