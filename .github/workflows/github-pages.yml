@@ -10,9 +10,9 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Checkout doc source
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ref: docs-source
           path: docs
