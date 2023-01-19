@@ -7,7 +7,7 @@
         <Product>MagicUI</Product>
         <Description>A Hollow Knight Mod</Description>
         <Copyright>Copyright © 2022</Copyright>
-        <AssemblyVersion>1.6.*</AssemblyVersion>
+        <AssemblyVersion>1.7.*</AssemblyVersion>
         <NoWarn>CS7035</NoWarn>
         <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
         <Deterministic>false</Deterministic>
