@@ -1,4 +1,6 @@
-﻿namespace MagicUI.Core
+﻿using MagicUI.Styles;
+
+namespace MagicUI.Core
 {
     /// <summary>
     /// Root class for an arrangable element with a single child
@@ -9,6 +11,7 @@
         /// <summary>
         /// The child of this container.Replacing or removing the child will destroy it.
         /// </summary>
+        [StyleIgnore]
         public ArrangableElement? Child 
         {
             get => child; 

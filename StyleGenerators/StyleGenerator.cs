@@ -47,6 +47,8 @@ namespace StyleGenerators
                 .Where(p => !p.GetAttributes().Any(ad => ad.AttributeClass.Equals(styleIgnoreSymbol, SymbolEqualityComparer.Default)));
 
             StringBuilder source = new($@"
+#nullable annotations
+
 namespace MagicUI.Styles
 {{
     /// <summary>

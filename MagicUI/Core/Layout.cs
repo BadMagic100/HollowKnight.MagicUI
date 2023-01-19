@@ -1,4 +1,6 @@
-﻿namespace MagicUI.Core
+﻿using MagicUI.Styles;
+
+namespace MagicUI.Core
 {
     /// <summary>
     /// Root class for an arrangable element with multiple children
@@ -8,6 +10,7 @@
         /// <summary>
         /// The children of this layout
         /// </summary>
+        [StyleIgnore]
         public ParentedElementList Children { get; }
 
         /// <summary>
