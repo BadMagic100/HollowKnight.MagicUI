@@ -18,6 +18,9 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         public GameObject GameObject { get => textObj; }
 
+        /// <inheritdoc/>
+        public override bool MeasureIsResolutionSensitive => true;
+
         private string text = "";
         /// <summary>
         /// The text of this element
@@ -199,17 +202,14 @@ namespace MagicUI.Elements
             float availableWidth = Mathf.Min(UI.Screen.width, MaxWidth);
             float availableHeight = Mathf.Min(UI.Screen.height, MaxHeight);
             TextGenerationSettings settings = textComponent.GetGenerationSettings(new Vector2(availableWidth, availableHeight));
-            // by default, this will inherit the parent canvas's scale factor, which is set to scale with screen space.
-            // however, since we're functioning in an unscaled coordinate system we should get the unscaled size to measure correctly.
-            settings.scaleFactor = 1;
             // use the staged backing fields instead of the actual current property of the text.
             // in other words, the value it will be after measure/arrange rather than the value it currently is.
             settings.textAnchor = textAlignment;
             settings.font = font;
             settings.fontSize = fontSize;
 
-            float preferredWidth = textGen.GetPreferredWidth(text, settings);
-            float preferredHeight = textGen.GetPreferredHeight(text, settings);
+            float preferredWidth = textGen.GetPreferredWidth(text, settings) / settings.scaleFactor;
+            float preferredHeight = textGen.GetPreferredHeight(text, settings) / settings.scaleFactor;
             float width = Mathf.Min(preferredWidth, MaxWidth);
             float height = Mathf.Min(preferredHeight, MaxHeight);
             return new Vector2(width, height);

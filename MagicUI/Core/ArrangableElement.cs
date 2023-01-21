@@ -19,6 +19,12 @@ namespace MagicUI.Core
         public LayoutRoot LayoutRoot { get; private set; }
 
         /// <summary>
+        /// Indicates whether an element's ability to accurately measure itself is sensitive to the display resolution.
+        /// Such elements are automatically remeasured when the resolution changes
+        /// </summary>
+        public virtual bool MeasureIsResolutionSensitive => false;
+
+        /// <summary>
         /// Whether the most recent measurement can be treated as accurate
         /// </summary>
         public bool MeasureIsValid { get; private set; } = false;
@@ -250,7 +256,10 @@ namespace MagicUI.Core
             };
 
             Vector2 vec = new(x, y);
-            log.Log($"{Name} top-left corner aligned and adjusted to {vec}");
+            if (!ArrangeIsValid)
+            {
+                log.Log($"{Name} top-left corner aligned and adjusted to {vec}");
+            }
             return vec;
         }
 

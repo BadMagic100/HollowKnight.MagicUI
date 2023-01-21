@@ -14,6 +14,8 @@ namespace MagicUI.Behaviours
         private readonly List<ArrangableElement> elements = new();
         private readonly Dictionary<string, List<ArrangableElement>> elementLookup = new();
 
+        private Vector2 lastKnownResolution = Vector2.zero;
+
         public bool shouldRenderDebugBounds = false;
 
         public IEnumerable<ArrangableElement> Elements => elements.AsReadOnly();
@@ -98,6 +100,14 @@ namespace MagicUI.Behaviours
 
         private void Update()
         {
+            if (lastKnownResolution.x != Screen.width || lastKnownResolution.y != Screen.height)
+            {
+                foreach (ArrangableElement elem in elements.Where(e => e.MeasureIsResolutionSensitive))
+                {
+                    elem.InvalidateMeasure();
+                }
+            }
+            lastKnownResolution = new(Screen.width, Screen.height);
             // since measure invalidation propagates up the visual tree,
             // we can take only elements that have no parents (i.e. are roots of trees).
             IEnumerable<ArrangableElement> elementsToRemeasure = elements
