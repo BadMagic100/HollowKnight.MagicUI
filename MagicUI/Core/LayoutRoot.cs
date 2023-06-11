@@ -1,4 +1,5 @@
-﻿using MagicUI.Behaviours;
+﻿using InControl;
+using MagicUI.Behaviours;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -147,6 +148,20 @@ namespace MagicUI.Core
             HotkeyListener listener = rootCanvas.AddComponent<HotkeyListener>();
             listener.key = key;
             listener.modifiers = modifiers;
+            listener.execute = execute;
+            listener.enableCondition = condition;
+        }
+
+        /// <summary>
+        /// Initializes a PlayerAction listener that performs an action when the PlayerAction IsPressed goes from False to True
+        /// </summary>
+        /// <param name="playerAction">The PlayerAction to bind to</param>
+        /// <param name="execute">The action to perform when the PlayerAction is pressed</param>
+        /// <param name="condition">The condition in which this action should be enabled</param>
+        public void ListenForPlayerAction(PlayerAction playerAction, Action execute, Func<bool>? condition = null)
+        {
+            PlayerActionListener listener = rootCanvas.AddComponent<PlayerActionListener>();
+            listener.playerAction = playerAction;
             listener.execute = execute;
             listener.enableCondition = condition;
         }
