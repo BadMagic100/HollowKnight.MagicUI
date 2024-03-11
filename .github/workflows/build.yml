@@ -64,7 +64,7 @@ jobs:
           echo "::set-output name=archiveHash::$sha"
           echo "::set-output name=buildVersion::$ver"
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: false
           generate_release_notes: true
