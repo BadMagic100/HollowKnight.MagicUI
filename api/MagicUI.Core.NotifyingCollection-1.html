@@ -1,0 +1,617 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class NotifyingCollection&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class NotifyingCollection&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="MagicUI.Core.NotifyingCollection`1">
+  
+  
+  <h1 id="MagicUI_Core_NotifyingCollection_1" data-uid="MagicUI.Core.NotifyingCollection`1" class="text-break">Class NotifyingCollection&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>A collection that can notify its owner's layout system when its contents are updated</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">NotifyingCollection&lt;T&gt;</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;T&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</div>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="MagicUI.Core.html">MagicUI.Core</a></h6>
+  <h6><strong>Assembly</strong>: MagicUI.dll</h6>
+  <h5 id="MagicUI_Core_NotifyingCollection_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class NotifyingCollection&lt;T&gt; : ICollection&lt;T&gt;, IEnumerable&lt;T&gt;, IEnumerable</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td><p>The type of contents</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1__ctor_MagicUI_Core_ArrangableElement_MagicUI_Core_ChangeAction_.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.%23ctor(MagicUI.Core.ArrangableElement%2CMagicUI.Core.ChangeAction)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L22">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1__ctor_" data-uid="MagicUI.Core.NotifyingCollection`1.#ctor*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1__ctor_MagicUI_Core_ArrangableElement_MagicUI_Core_ChangeAction_" data-uid="MagicUI.Core.NotifyingCollection`1.#ctor(MagicUI.Core.ArrangableElement,MagicUI.Core.ChangeAction)">NotifyingCollection(ArrangableElement, ChangeAction)</h4>
+  <div class="markdown level1 summary"><p>Creates a notifying collection</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NotifyingCollection(ArrangableElement owner, ChangeAction actionOnChange)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.ArrangableElement.html">ArrangableElement</a></td>
+        <td><span class="parametername">owner</span></td>
+        <td><p>The collection owner</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.ChangeAction.html">ChangeAction</a></td>
+        <td><span class="parametername">actionOnChange</span></td>
+        <td><p>The action to take when a change occurs</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_Count.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.Count%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L29">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_Count_" data-uid="MagicUI.Core.NotifyingCollection`1.Count*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_Count" data-uid="MagicUI.Core.NotifyingCollection`1.Count">Count</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_IsReadOnly.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.IsReadOnly%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L42">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_IsReadOnly_" data-uid="MagicUI.Core.NotifyingCollection`1.IsReadOnly*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_IsReadOnly" data-uid="MagicUI.Core.NotifyingCollection`1.IsReadOnly">IsReadOnly</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsReadOnly { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_Item_System_Int32_.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.Item(System.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L35">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_Item_" data-uid="MagicUI.Core.NotifyingCollection`1.Item*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_Item_System_Int32_" data-uid="MagicUI.Core.NotifyingCollection`1.Item(System.Int32)">Item[Int32]</h4>
+  <div class="markdown level1 summary"><p>Indexing operator for this collection</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T this[int idx] { get; set; }</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">idx</span></td>
+        <td><p>The index</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_Add__0_.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.Add(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L45">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_Add_" data-uid="MagicUI.Core.NotifyingCollection`1.Add*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_Add__0_" data-uid="MagicUI.Core.NotifyingCollection`1.Add(`0)">Add(T)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_AddRange_System_Collections_Generic_IEnumerable__0__.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.AddRange(System.Collections.Generic.IEnumerable%7B%600%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L55">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_AddRange_" data-uid="MagicUI.Core.NotifyingCollection`1.AddRange*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_AddRange_System_Collections_Generic_IEnumerable__0__" data-uid="MagicUI.Core.NotifyingCollection`1.AddRange(System.Collections.Generic.IEnumerable{`0})">AddRange(IEnumerable&lt;T&gt;)</h4>
+  <div class="markdown level1 summary"><p>Convenience method to add several items at once</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddRange(IEnumerable&lt;T&gt; items)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;T&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>The items to add to the collection</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_Clear.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.Clear%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L65">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_Clear_" data-uid="MagicUI.Core.NotifyingCollection`1.Clear*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_Clear" data-uid="MagicUI.Core.NotifyingCollection`1.Clear">Clear()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_Contains__0_.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.Contains(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L72">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_Contains_" data-uid="MagicUI.Core.NotifyingCollection`1.Contains*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_Contains__0_" data-uid="MagicUI.Core.NotifyingCollection`1.Contains(`0)">Contains(T)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Contains(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_CopyTo__0___System_Int32_.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.CopyTo(%600%5B%5D%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L75">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_CopyTo_" data-uid="MagicUI.Core.NotifyingCollection`1.CopyTo*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_CopyTo__0___System_Int32_" data-uid="MagicUI.Core.NotifyingCollection`1.CopyTo(`0[],System.Int32)">CopyTo(T[], Int32)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CopyTo(T[] array, int arrayIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T[]</td>
+        <td><span class="parametername">array</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
+        <td><span class="parametername">arrayIndex</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_GetEnumerator.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L78">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_GetEnumerator_" data-uid="MagicUI.Core.NotifyingCollection`1.GetEnumerator*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_GetEnumerator" data-uid="MagicUI.Core.NotifyingCollection`1.GetEnumerator">GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerator&lt;T&gt; GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_Remove__0_.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.Remove(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L81">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_Remove_" data-uid="MagicUI.Core.NotifyingCollection`1.Remove*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_Remove__0_" data-uid="MagicUI.Core.NotifyingCollection`1.Remove(`0)">Remove(T)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Remove(T item)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">item</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="eii">Explicit Interface Implementations
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1_System_Collections_IEnumerable_GetEnumerator.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601.System%23Collections%23IEnumerable%23GetEnumerator%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L94">View Source</a>
+  </span>
+  <a id="MagicUI_Core_NotifyingCollection_1_System_Collections_IEnumerable_GetEnumerator_" data-uid="MagicUI.Core.NotifyingCollection`1.System#Collections#IEnumerable#GetEnumerator*"></a>
+  <h4 id="MagicUI_Core_NotifyingCollection_1_System_Collections_IEnumerable_GetEnumerator" data-uid="MagicUI.Core.NotifyingCollection`1.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">System.Collections.Generic.ICollection&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">System.Collections.Generic.IEnumerable&lt;T&gt;</a>
+  </div>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_NotifyingCollection_1.md&amp;value=---%0Auid%3A%20MagicUI.Core.NotifyingCollection%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/NotifyingCollection.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

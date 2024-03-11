@@ -1,0 +1,152 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>MagicUI Quickstart Guide </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="MagicUI Quickstart Guide ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="magicui-quickstart-guide">MagicUI Quickstart Guide</h1>
+
+<h2 id="what-is-magicui">What is MagicUI?</h2>
+<p>MagicUI is a hierarchical UI framework for Hollow Knight mods to abstract away the details of working with GameObjects
+and Unity UI directly. Its structure is heavily inspired by <a href="https://docs.microsoft.com/en-us/visualstudio/designers/getting-started-with-wpf?view=vs-2022">WPF</a>,
+and it aims to be built of modular components. This allows mod developers to create elegant UIs in a very simple and expressive
+way. MagicUI is particularly powerful in cases where your UI elements have dynamic sizing or need to be positioned relative to
+each other (i.e. saying &quot;these 2 things should be in the bottom-left corner 5px apart&quot; is more natural than &quot;these 2 things
+should be at (x1, y1) and (x2, y2)&quot;).</p>
+<p>MagicUI offers the following features:</p>
+<ul>
+<li>Several built-in UI components and layouts for general use</li>
+<li>Interface for creating custom UI components and layouts</li>
+<li>Texture and Sprite utilities to simplify loading in embedded image assets</li>
+<li>Flexibility to interact with the underlying unity GameObjects if desired</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>MagicUI is a mod like any other Hollow Knight mod for 1.5. This means you can install it from Scarab, and declare it as a
+dependency when adding your mod to Scarab. You can also install it manually from the <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/releases/latest">latest GitHub release</a>.
+Released versions on GitHub will be more frequent than Scarab releases to minimize churn, and may include non-critical bugfixes
+or feature additions for developer preview.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+<p>See the <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/tree/master/MagicUIExamples">MagicUIExamples</a> project on GitHub for
+several basic examples of creating UI with MagicUI. In general, you will need to do the following:</p>
+<ol>
+<li>Create a <a href="../api/MagicUI.Core.LayoutRoot.html">LayoutRoot</a>. This is the top-level UI orchestrator that you add elements to. Usually
+you only need one, but you can create as many as you'd like to create logical separation between different UIs.
+<pre><code class="lang-csharp">LayoutRoot myLayoutRoot = new(true, &quot;Persistent example layout&quot;);
+</code></pre>
+</li>
+<li>Create <a href="../api/MagicUI.Core.ArrangableElement.html">ArrangableElement</a> components in your LayoutRoot and set their properties
+during initialization.
+<pre><code class="lang-csharp">new TextObject(myLayoutRoot)
+{
+    TextAlignment = HorizontalAlignment.Center,
+    Text = &quot;This is center-aligned text in the\ntop-left&quot;,
+    Padding = new(10)
+};
+</code></pre>
+</li>
+<li>Modify the properties of elements using your mod logic - or don't! Either way, you've created a UI only by declaring some
+basic parameters.</li>
+</ol>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/docs-source/articles/quickstart.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

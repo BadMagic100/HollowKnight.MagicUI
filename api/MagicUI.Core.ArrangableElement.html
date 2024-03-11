@@ -1,0 +1,984 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ArrangableElement
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ArrangableElement
+   ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="MagicUI.Core.ArrangableElement">
+  
+  
+  <h1 id="MagicUI_Core_ArrangableElement" data-uid="MagicUI.Core.ArrangableElement" class="text-break">Class ArrangableElement
+  </h1>
+  <div class="markdown level0 summary"><p>Root class for arrangeable UI elements</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><span class="xref">ArrangableElement</span></div>
+      <div class="level2"><a class="xref" href="MagicUI.Core.Container.html">Container</a></div>
+      <div class="level2"><a class="xref" href="MagicUI.Core.Layout.html">Layout</a></div>
+      <div class="level2"><a class="xref" href="MagicUI.Elements.Button.html">Button</a></div>
+      <div class="level2"><a class="xref" href="MagicUI.Elements.Image.html">Image</a></div>
+      <div class="level2"><a class="xref" href="MagicUI.Elements.ProgressBar.html">ProgressBar</a></div>
+      <div class="level2"><a class="xref" href="MagicUI.Elements.TextFormatter-1.html">TextFormatter&lt;T&gt;</a></div>
+      <div class="level2"><a class="xref" href="MagicUI.Elements.TextInput.html">TextInput</a></div>
+      <div class="level2"><a class="xref" href="MagicUI.Elements.TextObject.html">TextObject</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals#system-object-referenceequals(system-object-system-object)">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode#system-object-gethashcode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype#system-object-gettype">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone#system-object-memberwiseclone">Object.MemberwiseClone()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="MagicUI.Core.html">MagicUI.Core</a></h6>
+  <h6><strong>Assembly</strong>: MagicUI.dll</h6>
+  <h5 id="MagicUI_Core_ArrangableElement_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class ArrangableElement</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement__ctor_MagicUI_Core_LayoutRoot_System_String_.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.%23ctor(MagicUI.Core.LayoutRoot%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L213">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement__ctor_" data-uid="MagicUI.Core.ArrangableElement.#ctor*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement__ctor_MagicUI_Core_LayoutRoot_System_String_" data-uid="MagicUI.Core.ArrangableElement.#ctor(MagicUI.Core.LayoutRoot,System.String)">ArrangableElement(LayoutRoot, String)</h4>
+  <div class="markdown level1 summary"><p>Creates an arrangable element</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ArrangableElement(LayoutRoot onLayout, string name = &quot;New ArrangableElement&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.LayoutRoot.html">LayoutRoot</a></td>
+        <td><span class="parametername">onLayout</span></td>
+        <td><p>The layout to draw the element on</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the elemtent</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="MagicUI_Core_ArrangableElement__ctor_MagicUI_Core_LayoutRoot_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Arrangable elements should be placed on the same layout as their parents. This is not a hard requirement, so
+in theory, it should work to put different parts of the logical tree in different layouts.
+However, if you do this, know that it may cause unexpected behavior and use with caution.</p>
+</div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_ArrangeIsValid.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.ArrangeIsValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L35">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_ArrangeIsValid_" data-uid="MagicUI.Core.ArrangableElement.ArrangeIsValid*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_ArrangeIsValid" data-uid="MagicUI.Core.ArrangableElement.ArrangeIsValid">ArrangeIsValid</h4>
+  <div class="markdown level1 summary"><p>Whether the most recent arrangement can be treated as accurate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ArrangeIsValid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_ContentSize.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.ContentSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L170">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_ContentSize_" data-uid="MagicUI.Core.ArrangableElement.ContentSize*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_ContentSize" data-uid="MagicUI.Core.ArrangableElement.ContentSize">ContentSize</h4>
+  <div class="markdown level1 summary"><p>The cached size of this element's actual content. Set from the last result of <a class="xref" href="MagicUI.Core.ArrangableElement.html#MagicUI_Core_ArrangableElement_Measure">Measure()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 ContentSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_DestroyInProgress.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.DestroyInProgress%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L45">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_DestroyInProgress_" data-uid="MagicUI.Core.ArrangableElement.DestroyInProgress*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_DestroyInProgress" data-uid="MagicUI.Core.ArrangableElement.DestroyInProgress">DestroyInProgress</h4>
+  <div class="markdown level1 summary"><p>Whether the element is currently in the process of being destroyed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DestroyInProgress { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_EffectiveSize.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.EffectiveSize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L175">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_EffectiveSize_" data-uid="MagicUI.Core.ArrangableElement.EffectiveSize*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_EffectiveSize" data-uid="MagicUI.Core.ArrangableElement.EffectiveSize">EffectiveSize</h4>
+  <div class="markdown level1 summary"><p>The cached effective size in the layout system including padding and visibility. Set from the last result of <a class="xref" href="MagicUI.Core.ArrangableElement.html#MagicUI_Core_ArrangableElement_Measure">Measure()</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 EffectiveSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_HorizontalAlignment.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.HorizontalAlignment%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L62">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_HorizontalAlignment_" data-uid="MagicUI.Core.ArrangableElement.HorizontalAlignment*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_HorizontalAlignment" data-uid="MagicUI.Core.ArrangableElement.HorizontalAlignment">HorizontalAlignment</h4>
+  <div class="markdown level1 summary"><p>The arrangeable's horizontal alignment</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HorizontalAlignment HorizontalAlignment { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.HorizontalAlignment.html">HorizontalAlignment</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_IsEffectivelyVisible.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.IsEffectivelyVisible%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L139">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_IsEffectivelyVisible_" data-uid="MagicUI.Core.ArrangableElement.IsEffectivelyVisible*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_IsEffectivelyVisible" data-uid="MagicUI.Core.ArrangableElement.IsEffectivelyVisible">IsEffectivelyVisible</h4>
+  <div class="markdown level1 summary"><p>Whether the element's content will be rendered, i.e. if this elements ancestors in the logical tree are all visible</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsEffectivelyVisible { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_LayoutRoot.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.LayoutRoot%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L19">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_LayoutRoot_" data-uid="MagicUI.Core.ArrangableElement.LayoutRoot*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_LayoutRoot" data-uid="MagicUI.Core.ArrangableElement.LayoutRoot">LayoutRoot</h4>
+  <div class="markdown level1 summary"><p>The visual layout parent of this element</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LayoutRoot LayoutRoot { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.LayoutRoot.html">LayoutRoot</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_LogicalParent.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.LogicalParent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L180">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_LogicalParent_" data-uid="MagicUI.Core.ArrangableElement.LogicalParent*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_LogicalParent" data-uid="MagicUI.Core.ArrangableElement.LogicalParent">LogicalParent</h4>
+  <div class="markdown level1 summary"><p>This element's parent in the layout hierarchy, if any</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ArrangableElement LogicalParent { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.ArrangableElement.html">ArrangableElement</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_MeasureIsResolutionSensitive.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.MeasureIsResolutionSensitive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L25">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_MeasureIsResolutionSensitive_" data-uid="MagicUI.Core.ArrangableElement.MeasureIsResolutionSensitive*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_MeasureIsResolutionSensitive" data-uid="MagicUI.Core.ArrangableElement.MeasureIsResolutionSensitive">MeasureIsResolutionSensitive</h4>
+  <div class="markdown level1 summary"><p>Indicates whether an element's ability to accurately measure itself is sensitive to the display resolution.
+Such elements are automatically remeasured when the resolution changes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual bool MeasureIsResolutionSensitive { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_MeasureIsValid.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.MeasureIsValid%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L30">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_MeasureIsValid_" data-uid="MagicUI.Core.ArrangableElement.MeasureIsValid*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_MeasureIsValid" data-uid="MagicUI.Core.ArrangableElement.MeasureIsValid">MeasureIsValid</h4>
+  <div class="markdown level1 summary"><p>Whether the most recent measurement can be treated as accurate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool MeasureIsValid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_Name.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.Name%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L50">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_Name_" data-uid="MagicUI.Core.ArrangableElement.Name*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_Name" data-uid="MagicUI.Core.ArrangableElement.Name">Name</h4>
+  <div class="markdown level1 summary"><p>The name of the arrangeable for lookup purposes</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_Padding.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.Padding%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L123">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_Padding_" data-uid="MagicUI.Core.ArrangableElement.Padding*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_Padding" data-uid="MagicUI.Core.ArrangableElement.Padding">Padding</h4>
+  <div class="markdown level1 summary"><p>The padding around</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Padding Padding { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.Padding.html">Padding</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_PlacementRect.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.PlacementRect%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L56">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_PlacementRect_" data-uid="MagicUI.Core.ArrangableElement.PlacementRect*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_PlacementRect" data-uid="MagicUI.Core.ArrangableElement.PlacementRect">PlacementRect</h4>
+  <div class="markdown level1 summary"><p>The current rect this element is placed in. This is set before <a class="xref" href="MagicUI.Core.ArrangableElement.html#MagicUI_Core_ArrangableElement_ArrangeOverride_Vector2_">ArrangeOverride(Vector2)</a> is called, so you can access the placement
+space for custom implementations of the aligned top-left corner if needed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rect PlacementRect { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rect</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_VerticalAlignment.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.VerticalAlignment%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L79">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_VerticalAlignment_" data-uid="MagicUI.Core.ArrangableElement.VerticalAlignment*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_VerticalAlignment" data-uid="MagicUI.Core.ArrangableElement.VerticalAlignment">VerticalAlignment</h4>
+  <div class="markdown level1 summary"><p>The arrangeable's vertical alignment</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VerticalAlignment VerticalAlignment { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.VerticalAlignment.html">VerticalAlignment</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_Visibility.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.Visibility%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L96">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_Visibility_" data-uid="MagicUI.Core.ArrangableElement.Visibility*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_Visibility" data-uid="MagicUI.Core.ArrangableElement.Visibility">Visibility</h4>
+  <div class="markdown level1 summary"><p>The actual visibility of the element</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Visibility Visibility { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.Visibility.html">Visibility</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_WasEverArranged.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.WasEverArranged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L40">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_WasEverArranged_" data-uid="MagicUI.Core.ArrangableElement.WasEverArranged*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_WasEverArranged" data-uid="MagicUI.Core.ArrangableElement.WasEverArranged">WasEverArranged</h4>
+  <div class="markdown level1 summary"><p>Whether the element was successfully arranged at any point</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool WasEverArranged { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_Arrange_Rect_.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.Arrange(Rect)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L296">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_Arrange_" data-uid="MagicUI.Core.ArrangableElement.Arrange*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_Arrange_Rect_" data-uid="MagicUI.Core.ArrangableElement.Arrange(Rect)">Arrange(Rect)</h4>
+  <div class="markdown level1 summary"><p>Positions the object within the allocated space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Arrange(Rect availableSpace)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Rect</span></td>
+        <td><span class="parametername">availableSpace</span></td>
+        <td><p>The space available for the element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_ArrangeOverride_Vector2_.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.ArrangeOverride(Vector2)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L314">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_ArrangeOverride_" data-uid="MagicUI.Core.ArrangableElement.ArrangeOverride*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_ArrangeOverride_Vector2_" data-uid="MagicUI.Core.ArrangableElement.ArrangeOverride(Vector2)">ArrangeOverride(Vector2)</h4>
+  <div class="markdown level1 summary"><p>Internal implementation to position the object within the allocated space.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void ArrangeOverride(Vector2 alignedTopLeftCorner)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td><span class="parametername">alignedTopLeftCorner</span></td>
+        <td><p>The space available for the element.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_Destroy.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.Destroy%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L324">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_Destroy_" data-uid="MagicUI.Core.ArrangableElement.Destroy*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_Destroy" data-uid="MagicUI.Core.ArrangableElement.Destroy">Destroy()</h4>
+  <div class="markdown level1 summary"><p>Destroys this element</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Destroy()</code></pre>
+  </div>
+  <h5 id="MagicUI_Core_ArrangableElement_Destroy_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Generally, it assumed when you destroy an element, it, its children, and any underlying <see cref="!:GameObject"></see>s are not intended to be reused.
+Accordingly, a destroyed element will be removed from its parent in most cases and unregistered from the layout system.
+Attempting to use a destroyed element will result in undefined behavior and may give unwanted results.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_DestroyOverride.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.DestroyOverride%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L346">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_DestroyOverride_" data-uid="MagicUI.Core.ArrangableElement.DestroyOverride*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_DestroyOverride" data-uid="MagicUI.Core.ArrangableElement.DestroyOverride">DestroyOverride()</h4>
+  <div class="markdown level1 summary"><p>Internal implementation to perform any additional cleanup when the element is destroyed</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract void DestroyOverride()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_DetachLogicalChild_MagicUI_Core_ArrangableElement_.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.DetachLogicalChild(MagicUI.Core.ArrangableElement)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L195">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_DetachLogicalChild_" data-uid="MagicUI.Core.ArrangableElement.DetachLogicalChild*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_DetachLogicalChild_MagicUI_Core_ArrangableElement_" data-uid="MagicUI.Core.ArrangableElement.DetachLogicalChild(MagicUI.Core.ArrangableElement)">DetachLogicalChild(ArrangableElement)</h4>
+  <div class="markdown level1 summary"><p>Detaches a child from this element in the logical tree if this element is its parent.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void DetachLogicalChild(ArrangableElement child)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.ArrangableElement.html">ArrangableElement</a></td>
+        <td><span class="parametername">child</span></td>
+        <td><p>The child object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_InvalidateArrange.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.InvalidateArrange%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L232">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_InvalidateArrange_" data-uid="MagicUI.Core.ArrangableElement.InvalidateArrange*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_InvalidateArrange" data-uid="MagicUI.Core.ArrangableElement.InvalidateArrange">InvalidateArrange()</h4>
+  <div class="markdown level1 summary"><p>Indicates the arrange is no longer valid; will trigger a rearrange of this element and its children.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InvalidateArrange()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_InvalidateMeasure.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.InvalidateMeasure%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L223">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_InvalidateMeasure_" data-uid="MagicUI.Core.ArrangableElement.InvalidateMeasure*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_InvalidateMeasure" data-uid="MagicUI.Core.ArrangableElement.InvalidateMeasure">InvalidateMeasure()</h4>
+  <div class="markdown level1 summary"><p>Indicates the measure is no longer valid; will trigger a full re-render of the visual tree.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InvalidateMeasure()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_Measure.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.Measure%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L269">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_Measure_" data-uid="MagicUI.Core.ArrangableElement.Measure*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_Measure" data-uid="MagicUI.Core.ArrangableElement.Measure">Measure()</h4>
+  <div class="markdown level1 summary"><p>Calculates the desired size of the object and caches it in <a class="xref" href="MagicUI.Core.ArrangableElement.html#MagicUI_Core_ArrangableElement_ContentSize">ContentSize</a> for later reference in this UI build cycle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 Measure()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_MeasureOverride.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.MeasureOverride%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L290">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_MeasureOverride_" data-uid="MagicUI.Core.ArrangableElement.MeasureOverride*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_MeasureOverride" data-uid="MagicUI.Core.ArrangableElement.MeasureOverride">MeasureOverride()</h4>
+  <div class="markdown level1 summary"><p>Internal implementation to calculate desired size.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected abstract Vector2 MeasureOverride()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Vector2</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement_SetLogicalChild_MagicUI_Core_ArrangableElement_.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement.SetLogicalChild(MagicUI.Core.ArrangableElement)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L186">View Source</a>
+  </span>
+  <a id="MagicUI_Core_ArrangableElement_SetLogicalChild_" data-uid="MagicUI.Core.ArrangableElement.SetLogicalChild*"></a>
+  <h4 id="MagicUI_Core_ArrangableElement_SetLogicalChild_MagicUI_Core_ArrangableElement_" data-uid="MagicUI.Core.ArrangableElement.SetLogicalChild(MagicUI.Core.ArrangableElement)">SetLogicalChild(ArrangableElement)</h4>
+  <div class="markdown level1 summary"><p>Sets the logical parent of the provided child to this element. Usable by any derived arrangable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void SetLogicalChild(ArrangableElement child)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="MagicUI.Core.ArrangableElement.html">ArrangableElement</a></td>
+        <td><span class="parametername">child</span></td>
+        <td><p>The new child object</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="MagicUI.Core.ApplyAttachedPropertyChainables.html#MagicUI_Core_ApplyAttachedPropertyChainables_WithProp__2___0_MagicUI_Core_AttachedProperty___1____1_">ApplyAttachedPropertyChainables.WithProp&lt;T, U&gt;(T, AttachedProperty&lt;U&gt;, U)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/new/master/apiSpec/new?filename=MagicUI_Core_ArrangableElement.md&amp;value=---%0Auid%3A%20MagicUI.Core.ArrangableElement%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/master/MagicUI/Core/ArrangableElement.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

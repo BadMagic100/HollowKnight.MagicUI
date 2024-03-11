@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Debugging Layouts with Global Settings </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Debugging Layouts with Global Settings ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="debugging-layouts-with-global-settings">Debugging Layouts with Global Settings</h1>
+
+<p>If your layout just isn't looking right, MagicUI provides a few global settings you can use to configure debug logging
+to see exactly what's going on behind the scenes. First, we'll see what settings are available; then we'll see how to
+use MagicUI's logs to troubleshoot unexpected behavior.</p>
+<h2 id="available-settings">Available settings</h2>
+<p>You'll have to modify the global settings file manually like the old days; these settings don't need to be exposed
+to the average player so there's no menu for them. After first running the game with MagicUI installed, the default
+settings will be available with</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>Type</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LogLayoutInformation</td>
+<td>Whether MagicUI should log information about the layout lifecycle</td>
+<td>bool</td>
+<td>false</td>
+</tr>
+<tr>
+<td>LogLevel</td>
+<td>The severity to log the information when it is logged</td>
+<td><code>Fine</code>, <code>Debug</code>, <code>Info</code>, <code>Warn</code>, or <code>Error</code></td>
+<td><code>Fine</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="debugging-logs">Debugging logs</h2>
+<p>MagicUI logs layout information from two key classes: <code>LayoutOrchestrator</code> and <a class="xref" href="../api/MagicUI.Core.ArrangableElement.html"><code>ArrangableElement</code></a>.
+LayoutOrchestrator is an internal class that manages the layout lifecycle. It will log when it detects an element with an invalid
+measurement or arrangement, and log again when it is done measuring and/or arranging that element and its children. This means
+you should look for a block like this to start diagnosing issues with a given element:</p>
+<pre><code class="lang-text">[FINE]:[MagicUI.LayoutOrchestrator] - Measure/Arrange starting for &lt;Element name&gt; of type &lt;type&gt;
+...
+[FINE]:[MagicUI.LayoutOrchestrator] - Measure/Arrange completed for &lt;Element name&gt;
+</code></pre>
+<p>Once you've found the corresponding orchestrator block for the change you made, you can look for information about that element
+and its children logged by <code>ArrangableElement</code>. Each element in the logical hierarchy will be log at the start and finish of
+each of its measures and arrangements. A block for a single element might look like this (as a reminder, elements are
+recursively measured and then recursively arranged, so complex layouts may be nested):</p>
+<pre><code class="lang-text">[DEBUG]:[MagicUI.ArrangableElement] - Measure triggered for &lt;Element name&gt;
+[DEBUG]:[MagicUI.ArrangableElement] - Computed &lt;Element name&gt; size as (0.0, 80.0), adjusted from (0.0, 40.0)
+[DEBUG]:[MagicUI.ArrangableElement] - Arrange triggered for &lt;Element name&gt; in (x:0.00, y:0.00, width:1920.00, height:1080.00)
+[DEBUG]:[MagicUI.ArrangableElement] - &lt;Element name&gt; top-left corner aligned and adjusted to (960.0, 1020.0)
+</code></pre>
+<p>This lists the following information:</p>
+<ul>
+<li>The first line notes that the measure is starting</li>
+<li>The second line notes that the measure has finished; it lists the actual content size (returned from <a class="xref" href="../api/MagicUI.Core.ArrangableElement.html#MagicUI_Core_ArrangableElement_MeasureOverride"><code>MeasureOverride</code></a>)
+and the adjusted size with padding that will be used by the layout system</li>
+<li>The third line notes that the arrange is starting, and the space available to the element as allocated by its parent</li>
+<li>The fourth line notes the position of the top-left corner of the element's content, calculated from the available space,
+alignment, and padding; this value is passed to <a class="xref" href="../api/MagicUI.Core.ArrangableElement.html#MagicUI_Core_ArrangableElement_ArrangeOverride_UnityEngine_Vector2_"><code>ArrangeOverride</code></a>.</li>
+</ul>
+<p>You can use this information to understand how the element is being measured and arranged, and why it isn't going where you think
+it should be.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/docs-source/articles/settings.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
