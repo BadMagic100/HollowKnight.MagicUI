@@ -1,6 +1,7 @@
 ﻿using MagicUI.Core;
 using MagicUI.Styles;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MagicUI.Elements
@@ -93,6 +94,9 @@ namespace MagicUI.Elements
             }
         }
 
+        private List<ArrangableElement> arrangedChildren = [];
+        private List<ArrangableElement> collapsedChildren = [];
+
         /// <summary>
         /// Creates a dynamic uniform grid layout
         /// </summary>
@@ -117,6 +121,8 @@ namespace MagicUI.Elements
         /// <inheritdoc/>
         protected override Vector2 MeasureOverride()
         {
+            arrangedChildren.Clear();
+            collapsedChildren.Clear();
             if (Children.Count == 0)
             {
                 return Vector2.zero;
@@ -135,9 +141,18 @@ namespace MagicUI.Elements
                 {
                     panelHeight = childHeight;
                 }
+
+                if (child.Visibility == Visibility.Collapsed)
+                {
+                    collapsedChildren.Add(child);
+                }
+                else
+                {
+                    arrangedChildren.Add(child);
+                }
             }
-            int numPanelsFlowDirection = (Children.Count - 1) / childrenBeforeRollover + 1;
-            int numPanelsNonFlowDirection = Children.Count >= childrenBeforeRollover ? childrenBeforeRollover : Children.Count;
+            int numPanelsFlowDirection = (arrangedChildren.Count - 1) / childrenBeforeRollover + 1;
+            int numPanelsNonFlowDirection = arrangedChildren.Count >= childrenBeforeRollover ? childrenBeforeRollover : arrangedChildren.Count;
 
             (float flowSpacing, float nonFlowSpacing) = RepackInFlowOrder(new Vector2(horizontalSpacing, verticalSpacing));
             (float panelFlow, float panelNonFlow) = RepackInFlowOrder(new Vector2(panelWidth, panelHeight));
@@ -177,8 +192,8 @@ namespace MagicUI.Elements
         {
             (float flowStart, float nonFlowStart) = RepackInFlowOrder(alignedTopLeftCorner);
 
-            int numPanelsFlowDirection = (Children.Count - 1) / childrenBeforeRollover + 1;
-            int numPanelsNonFlowDirection = Children.Count >= childrenBeforeRollover ? childrenBeforeRollover : Children.Count;
+            int numPanelsFlowDirection = (arrangedChildren.Count - 1) / childrenBeforeRollover + 1;
+            int numPanelsNonFlowDirection = arrangedChildren.Count >= childrenBeforeRollover ? childrenBeforeRollover : arrangedChildren.Count;
 
             (float flowSpacing, float nonFlowSpacing) = RepackInFlowOrder(new Vector2(horizontalSpacing, verticalSpacing));
             (float flowTotalSize, float nonFlowTotalSize) = RepackInFlowOrder(ContentSize);
@@ -186,10 +201,17 @@ namespace MagicUI.Elements
             float childFlowSize = (flowTotalSize - (numPanelsFlowDirection - 1) * flowSpacing) / numPanelsFlowDirection;
             float childNonFlowSize = (nonFlowTotalSize - (numPanelsNonFlowDirection - 1) * nonFlowSpacing) / numPanelsNonFlowDirection;
 
+            foreach (ArrangableElement child in collapsedChildren)
+            {
+                (float left, float top) = RepackInFlowOrder(alignedTopLeftCorner);
+                (float width, float height) = RepackInFlowOrder(new Vector2(childFlowSize, childNonFlowSize));
+                child.Arrange(new Rect(left, top, width, height));
+            }
+
             for (int flowPanel = 0; flowPanel < numPanelsFlowDirection; flowPanel++)
             {
                 float childFlowStart = flowPanel * (childFlowSize + flowSpacing) + flowStart;
-                int childrenAvailable = Children.Count - flowPanel * numPanelsNonFlowDirection;
+                int childrenAvailable = arrangedChildren.Count - flowPanel * numPanelsNonFlowDirection;
                 int childrenThisFlow = Math.Min(childrenBeforeRollover, childrenAvailable);
                 float nonFlowSize = childrenThisFlow * childNonFlowSize + (childrenThisFlow - 1) * nonFlowSpacing;
                 for (int nonFlowPanel = 0; nonFlowPanel < childrenThisFlow; nonFlowPanel++)
@@ -199,7 +221,7 @@ namespace MagicUI.Elements
                     int childIndex = flowPanel * childrenBeforeRollover + nonFlowPanel;
                     (float left, float top) = RepackInFlowOrder(new Vector2(childFlowStart, childNonflowStart));
                     (float width, float height) = RepackInFlowOrder(new Vector2(childFlowSize, childNonFlowSize));
-                    Children[childIndex].Arrange(new Rect(left, top, width, height));
+                    arrangedChildren[childIndex].Arrange(new Rect(left, top, width, height));
                 }
             }
         }
@@ -208,6 +230,8 @@ namespace MagicUI.Elements
         protected override void DestroyOverride()
         {
             Children.Clear();
+            arrangedChildren.Clear();
+            collapsedChildren.Clear();
         }
     }
 }
