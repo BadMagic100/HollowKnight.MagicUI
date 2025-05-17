@@ -1,0 +1,692 @@
+{
+  "homepages": [],
+  "source_base_path": "D:/a/HollowKnight.MagicUI/HollowKnight.MagicUI/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html",
+          "hash": "y+9PvDzKmgFdaWvJfWabrTBCvY677g11922VpKeNeCg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.ApplyAttachedPropertyChainables.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.ApplyAttachedPropertyChainables.html",
+          "hash": "xrMPI6+DblcOipN4TszhwtmmClOCuhypGqN+15tqjIM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.ArrangableElement.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.ArrangableElement.html",
+          "hash": "CxTu+dOrg2TmTEZq15unDayV0aC84kufz3/s+qwjozM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.AttachedProperty-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.AttachedProperty-1.html",
+          "hash": "OXHZ0e8rfHXDnXr2HNJzDSfb6ZHcZ2/jDajGPtCRQGo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.ChangeAction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.ChangeAction.html",
+          "hash": "hntB5jE3aQGkv/gjw9fFTjxDvib64ShmeJQeXoEE8lI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.ChangeActionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.ChangeActionExtensions.html",
+          "hash": "NSR7Z2NvfMQ4dqU4deC1L174vhHquWXNDfmToJ2Zp0Q="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.Container.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.Container.html",
+          "hash": "o1V0BAjED65m1EavxDZM4H2i1AtrZxoAtRh/kmwLBz8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.HorizontalAlignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.HorizontalAlignment.html",
+          "hash": "FOH5F9vWwFS2S4lXoxpd9iRoW4RRSFlNyUtcn5XimXA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.IControllerInteractable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.IControllerInteractable.html",
+          "hash": "NydDTKUYkvxQOzMSIQET9gq37b2cpq6VBXiQKo0MN0s="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.IGameObjectWrapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.IGameObjectWrapper.html",
+          "hash": "+jwTUCk68p9v52VwJ31tcRwRK/NciOLHhkvCX3DLcL8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.ILayoutParent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.ILayoutParent.html",
+          "hash": "kVvSDohiyDq7QPJ1m49BKJS3XYQf9mMlKSURHegOko8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.Layout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.Layout.html",
+          "hash": "SrSxtJr8lbcREDznAHifUV9+A1y7j4lBKxBBiGEPRaU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.LayoutRoot.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.LayoutRoot.html",
+          "hash": "9rMbfqbNdJ3IsEz4csS/UBrXFYTWAX1+x+CAIEbJOnU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.ModifierKeys.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.ModifierKeys.html",
+          "hash": "arMepVrgKUXgXGT2lVdRRDNiL2BiYBZSoEQpKhXYCaM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.NotifyingCollection-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.NotifyingCollection-1.html",
+          "hash": "DKv6CxdQy98DJ0B7Dj/XPexNCFNK6N3RIdjhBp7eEWY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.Orientation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.Orientation.html",
+          "hash": "g5Z2rrXXmJMd0dm4EmG37JjQdTnox60A4HklGDN2VXo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.Padding.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.Padding.html",
+          "hash": "6aPRUe0JMBFQ2apCysoNa61VBJz95k++vvQ+ZpZBOMY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.ParentedElementList.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.ParentedElementList.html",
+          "hash": "Yac8uhW4p+vdPVs6gli3fPPa7orBb8iiyXVX3NjxWPI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.UI.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.UI.html",
+          "hash": "Y8UNxFpJqqKPDHhnxFYB+qS4OgarB5ghkJLidCiaJsU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.UIExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.UIExtensions.html",
+          "hash": "YM8h2a/m1P43QiG1d5c81GDgMt3cYnL9uBdBC8s908A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.VerticalAlignment.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.VerticalAlignment.html",
+          "hash": "BWNfi6N4em+y2Sd4RyThTEn4wkhPNgYyEgGoZlqkZfs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.Visibility.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.Visibility.html",
+          "hash": "YbJ4VrtWdPsR4Pq0AYFAa2uwIWPmQesgo9y2FkVG8fk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Core.html",
+          "hash": "dkgmHtyWzSCCKQF8YR1JGIgMNGXktvrS5Z7S6KOkGaA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.Button.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.Button.html",
+          "hash": "no5xmFu/bM+HhmE3BTvjd4hAuszvmiQ+EmOYQRFdf9M="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.CanvasLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.CanvasLayout.html",
+          "hash": "5T+CktahULXVYnyVepiK4IX6BKhBsgUrnkinOtz+Lcs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.DynamicUniformGrid.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.DynamicUniformGrid.html",
+          "hash": "XkFvB6/VlD3npM5ICMAr0YuvBtpaG5bi4QMZ+g8EK1Y="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.GridDimension.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.GridDimension.html",
+          "hash": "Xe+0q6FJzpi4PLqBQpy/Ms6YbruAnb5zGfy9VAMF/so="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.GridLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.GridLayout.html",
+          "hash": "CbuIutoaGdhWIk20qPbFH8J400oOYY0mmcjg3vlmpug="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.GridUnit.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.GridUnit.html",
+          "hash": "zpBuaoHUd1Plve8t9srHrCYBoY169mhl2qKtF/L+tmc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.Image.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.Image.html",
+          "hash": "VmwpGKa2Zlbnu/U3g8hOJ78bKnONa8Xlm5qBZUKWF78="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.Panel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.Panel.html",
+          "hash": "Uyc3RQwfTA4Zk0sj5qInO4Xs1jhc4nR9T0v1IMCkB34="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.ProgressBar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.ProgressBar.html",
+          "hash": "Wi4VKDORcvErdvUQaioTC+FBkJUkLvj903GRpIRQt7g="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.StackLayout.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.StackLayout.html",
+          "hash": "xCZXc1L24WttSbwNfnMDnmhKsdWvYiNUbWCbgHy2MVw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.TextFormatter-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.TextFormatter-1.html",
+          "hash": "9urq2GlgyCqetrlH9bs4oM27aqqRfgjzVB8WpQZaAaQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.TextInput.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.TextInput.html",
+          "hash": "4G52vvgoen3gjYuCJGKk8N561G+7TaHGjbV8CFoI5JE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.TextObject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.TextObject.html",
+          "hash": "YcDkl9hefaGvkMEEFNSdw1oQcbtnUmXYUNj9oYZKXxs="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Elements.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Elements.html",
+          "hash": "6p+zWuKbvTzcd+s6X52UZ+BscrAHjRP+IlZwtCRJIDY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Graphics.BuiltInSprites.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Graphics.BuiltInSprites.html",
+          "hash": "mlrXh+mkeS2QqB4tyIoZus92KGtnLgltKLnsrbYQzWU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Graphics.TextureExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Graphics.TextureExtensions.html",
+          "hash": "bLXhENZnS8jpo/LgnHY1O76SRCJ8Le0qdLjCqPUsN6A="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Graphics.TextureLoader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Graphics.TextureLoader.html",
+          "hash": "ezDVnvcdAUKbIC80GRAREgW/Ed9wIgvUWwNHI0uFdIg="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Graphics.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Graphics.html",
+          "hash": "6iMnxxFRq9LmtmbATG0TTlQ7+BIM0a1k+1rRUl3UIow="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Styles.IStyle-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Styles.IStyle-1.html",
+          "hash": "AWUtsu09YDfb4+F5Lm/t+hBDBzzH+5tPvPLDB1hp1uo="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Styles.StylableAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Styles.StylableAttribute.html",
+          "hash": "+qoFcRV+4LyUBSnF5pipNDGsit5ciUj62nvzOXpgxBE="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Styles.StyleIgnoreAttribute.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Styles.StyleIgnoreAttribute.html",
+          "hash": "fCU3B3oPE4fH7gfOx6Ne7W5sEkKD/4XJLf3e+nVW8sY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/MagicUI.Styles.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/MagicUI.Styles.html",
+          "hash": "S7vpvrjNMm3RPQ80on03nXYWK6o5c4G4QgwcQtl+Qq4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html",
+          "hash": "wOP9tdfyFQnW2AyT/oSYpxrTlAa4vl3BA85Wax9TYBQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "PCUc2tc7cG3S65QY1u2tMAQIXpuLVkuxYE53nJgWsUY="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/layoutsystem.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/layoutsystem.html",
+          "hash": "HgJF3RmhU9iYt3jY/qTzHZopVCYWo/FowJWb4eqP3iM="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/quickstart.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/quickstart.html",
+          "hash": "z+8B+WmRB2VKJgownqN2V65k3sf63MrED/G6HqQc5g8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/settings.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/settings.html",
+          "hash": "wHU7+RxAlcc91pHXPpx9hhG0Vn5menabuaoY5oCq0Ak="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html",
+          "hash": "ett2ZT4lTIgd4EVUbWLEMWTPkW+pKnAmzGFFJKcnXDk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "Hx992+z42FCs9J1hXU+7fViY1Sd9zPBHw9cyh4Fyn+E="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html",
+          "hash": "3KuJ8Qr/lzqASbdwPuoGof/4H2dchewKKr2Tyj4UL/w="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
+      },
+      "processors": {
+        "ConceptualDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 6,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 44,
+          "skipped_file_count": 0
+        },
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: last post processor info is null.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
