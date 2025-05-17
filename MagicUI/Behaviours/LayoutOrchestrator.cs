@@ -59,6 +59,10 @@ namespace MagicUI.Behaviours
         /// </summary>
         public void Clear()
         {
+            foreach (ArrangableElement element in elements)
+            {
+                element.Destroy();
+            }
             elements.Clear();
             elementLookup.Clear();
         }
