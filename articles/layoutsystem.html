@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Understanding the Layout System </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Understanding the Layout System ">
+    <meta name="generator" content="docfx 2.59.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="understanding-the-layout-system">Understanding the Layout System</h1>
+
+<p>This article outlines how the layout system works. This will help users gain an understanding of common concepts you'll need to
+know to work with MagicUI and some terms you'll see throughout this documentation. The ultimate goal is to build the foundations
+needed to create more complex UIs and custom components.</p>
+<h2 id="fundamental-vocabulary">Fundamental Vocabulary</h2>
+<ul>
+<li><strong>LayoutRoot</strong>: The LayoutRoot is the top-level layout orchestrator. It handles the lifecycle of the elements you create so you
+don't have to.</li>
+<li><strong>ArrangableElement, component, element, or similar</strong>: An ArrangableElement is the most molecular building
+block in MagicUI's layout system. It's an abstraction of something that has a measurable size and contains logic to be placed
+at a given location on the screen.</li>
+<li><strong>Layout</strong>: Not to be confused with LayoutRoot, a Layout is an ArrangableElement that has multiple children and subdivides its
+space in a specific way.</li>
+<li><strong>Container</strong>: An ArrangableElement with a single child that implements additional behavior and/or properties.</li>
+<li><strong>Effective size</strong>: The size of an element with additional padding added. Parent elements treat this as the size of the child.</li>
+<li><strong>Content size</strong>: The size of an element without additional padding added. Elements treat this as their own size.</li>
+</ul>
+<h2 id="the-element-lifecycle">The Element Lifecycle</h2>
+<p>Broadly speaking, elements have 3 parts in their lifecycle:</p>
+<ol>
+<li>The element is created. At this time, you set the element's name and LayoutRoot. You can also set additional properties at
+this time to set initial state or desired traits (I recommend using initializer block syntax).</li>
+<li>The element exists and is rendered. As its properties change, it changes in size and position. The element's <code>Measure</code>
+method is called to determine its size, then its <code>Arrange</code> method is called to determine its position. This is handled
+automatically by the layout system. If a property cannot cause an element's size to change, only <code>Arrange</code> will be called.
+If an element has children, it will also measure and arrange its children as needed to determine its size and subdivide its
+space.</li>
+<li>The element is destroyed by calling its <code>Destroy</code> method. Elements specify what happens to their children when they are
+destroyed, and can also specify how to handle when one of their children is destroyed. In most cases, destroying an element
+will remove it from its parent and destroy all of its children.</li>
+</ol>
+<p>This lifecycle is visualized in the figure below (todo: add figure)</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BadMagic100/HollowKnight.MagicUI/blob/docs-source/articles/layoutsystem.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
