@@ -33,9 +33,53 @@ namespace MagicUI.Elements
                 if (value != text)
                 {
                     text = value;
+                    inlines = [new Run(text)];
+                    textComponent.supportRichText = false;
                     InvalidateMeasure();
                 }
             }
+        }
+
+        private RunCollection inlines = [];
+        /// <summary>
+        /// Gets or sets a collection of styled text runs that define the content of this text object.
+        /// When set, automatically joins the text content of all runs and updates the display.
+        /// Use this property to create rich text with mixed formatting.
+        /// </summary>
+        /// <example>
+        /// <code>
+        /// textObject.Inlines = [
+        ///     new Run("Regular text "),
+        ///     new Run("Bold text") { Bold = true },
+        ///     new Run(" Red text") { Color = Color.red }
+        /// ];
+        /// </code>
+        /// </example>
+        public RunCollection Inlines
+        {
+            get => inlines;
+            set
+            {
+                if (inlines != value)
+                {
+                    inlines.CollectionChanged -= OnInlinesChanged;
+                    inlines = value;
+                    inlines.CollectionChanged += OnInlinesChanged;
+                    UpdateTextFromInlines();
+                }
+            }
+        }
+
+        private void OnInlinesChanged(object? sender, EventArgs e)
+        {
+            UpdateTextFromInlines();
+        }
+
+        private void UpdateTextFromInlines()
+        {
+            text = string.Join("", inlines);
+            textComponent.supportRichText = true;
+            InvalidateMeasure();
         }
 
         private TextAnchor textAlignment = TextAnchor.MiddleLeft;
