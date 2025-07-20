@@ -4,9 +4,22 @@ on:
   push:
     branches: [ master ]
 
+permissions:
+  actions: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   generate-docs:
     runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Checkout
@@ -38,9 +51,11 @@ jobs:
         run: docfx docfx.json
         continue-on-error: false
 
-      - name: Publish
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload assets
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/_site
-          force_orphan: true
+          path: docs/_site
+
+      - name: Deploy
+        id: deployment
+        uses: action/deploy-pages@v4
