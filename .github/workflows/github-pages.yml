@@ -2,7 +2,7 @@ name: Docs
 
 on:
   push:
-    branches: [ master, docs-source ]
+    branches: [ master ]
 
 jobs:
   generate-docs:
@@ -11,11 +11,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Checkout doc source
-        uses: actions/checkout@v4
-        with:
-          ref: docs-source
-          path: docs
         
       - name: Setup MAPI
         uses: BadMagic100/setup-hk@v2
