@@ -1,0 +1,9 @@
+﻿apiRules:
+# Excludes types belonging to the root-level namespace - new version of
+# docfx is hierarchical so excluding the namespace also excludes nested namespaces)
+- exclude:
+    uidRegex: ^MagicUI\.(([^.])*$)
+    type: Type
+- exclude:
+    hasAttribute:
+        uid: System.ObsoleteAttribute

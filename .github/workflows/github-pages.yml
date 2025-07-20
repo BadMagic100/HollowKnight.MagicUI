@@ -29,9 +29,6 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
         
-      - name: Codegen
-        run: dotnet build -c Release
-        
       # Install DocFX
       - name: Setup DocFX
         run: dotnet tool update -g docfx
