@@ -16,7 +16,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -44,7 +44,7 @@ jobs:
   release:
     needs:
       - build
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     # only make a release if we manually request the build - other builds will be handled automatically with a push
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.should_release == 'true'
     steps:
