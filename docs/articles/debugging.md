@@ -1,4 +1,4 @@
-# Debugging Layouts with Global Settings
+# Debugging Layouts
 
 If your layout just isn't looking right, MagicUI provides a few global settings you can use to configure debug logging
 to see exactly what's going on behind the scenes. First, we'll see what settings are available; then we'll see how to

@@ -1,8 +1,5 @@
 - name: Introduction
-  items:
-  - name: Quickstart
-    href: quickstart.md
-  - name: Layout System Basics
-    href: layoutsystem.md
-- name: Debugging Layouts
-  href: settings.md
+- href: ../index.md
+- href: layoutsystem.md
+- name: Advanced Topics
+- href: debugging.md
