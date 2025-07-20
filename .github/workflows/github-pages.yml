@@ -17,12 +17,20 @@ jobs:
           ref: docs-source
           path: docs
         
+      - name: Setup MAPI
+        uses: BadMagic100/setup-hk@v2
+        with:
+          apiPath: HKManaged
+        
       # setup .NET
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
       
       - name: Install dependencies
         run: dotnet restore
+        
+      - name: Codegen
+        run: dotnet build -c Release
         
       # Install DocFX
       - name: Setup DocFX
