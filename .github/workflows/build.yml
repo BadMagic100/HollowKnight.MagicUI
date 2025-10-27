@@ -37,7 +37,7 @@ jobs:
         run: dotnet build -c Release
 
       - name: Prepare artifacts for release
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Publish
           path: MagicUI/bin/Publish/MagicUI
